@@ -1,6 +1,6 @@
 <template>
     <metainfo>
-        <template v-slot:title="{ content }">{{ content ? `${content} | Han Wang` : `Han Wang` }}</template>
+        <template v-slot:title="{ content }">{{ content ? `${content} | Han Wang - UI/UX Designr & Front-end Developer` : `Han Wang - UI/UX Designr & Front-end Developer` }}</template>
     </metainfo>
     <transition name="loading">
         <div v-if="pageLoading" class="loader">
