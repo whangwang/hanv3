@@ -3,7 +3,7 @@
         <div class="container small">
             <div class="landing">
                 <div class="mobile-video-container">
-                    <video class="video" :style="`transform: scale(${videoScale});`" src="@/assets/images/home/landing-video.mp4" autoplay muted loop></video>
+                    <video class="video" :style="`transform: scale(${videoScale});`" src="@/assets/images/home/landing-video.mp4" autoplay muted loop playsinline></video>
                     <img class="slogan-mobile" src="@/assets/images/home/headline.svg" />
                 </div>
                 <img class="slogan" src="@/assets/images/home/headline.svg" />
