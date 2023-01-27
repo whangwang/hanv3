@@ -13,7 +13,7 @@
                             <h4 class="job">UI/UX Designer & <br>Front-end Developer</h4>
                             <div class="info">
                                 <h4 class="title">LinkedIn</h4>
-                                <a href="#" class="link">https://tw.linkedin.com/in/han-wang-218dwaw12</a>
+                                <a href="https://www.linkedin.com/in/hanwang0430" class="link">https://www.linkedin.com/in/hanwang0430</a>
                             </div>
                             <div class="info">
                                 <h4 class="title">Email</h4>
