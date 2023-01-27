@@ -13,14 +13,16 @@
             z-index: 1;
 
             -webkit-mask-image:url(../images/home/landing-mask.svg);
-            -webkit-mask-position:left top;
+            -webkit-mask-position:center;
             -webkit-mask-repeat:no-repeat;
             -webkit-mask-size:100%;
           
             mask-image:url(../images/home/landing-mask.svg);
-            mask-position:left top;
+            mask-position:center;
             mask-repeat:no-repeat;
             mask-size:100%;
+
+            transform-origin: right top;
         }
         .slogan{
             width: 64.73%;
@@ -53,7 +55,30 @@
         .indicator{
             display: block;
             margin-top: 32px;
+            animation-name: more;
+            animation-duration: 1s;
+            animation-fill-mode: both;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            transform: translate(0px, 0px);
         }
+        @keyframes more {
+            0% {
+                transform: translate(0px, 0px);
+            }
+            26%{
+                transform: translate(0px, 32px);
+            }
+            53%{
+                transform: translate(0px, -16px);
+            }
+            80% {
+                transform: translate(0px, 0px);
+            }
+            100% {
+                transform: translate(0px, 0px);
+            }
+        } 
         @include smallPad(){
             text-align: center;
             .video{
@@ -133,10 +158,16 @@
                 align-self: flex-start;
                 position: sticky;
                 top: 112px;
+                transition: transform 1s, opacity 1s;
+                transform: translate(-32px, 0px);
+                opacity: 0;
             }
             .right{
                 z-index: 2;
                 margin-left: 16px;
+                opacity: 0;
+                transition: transform 1s, opacity 1s;
+                transform: translate(-32px, 0px);
                 .work{
                     cursor: pointer;
                     display: block;
@@ -183,6 +214,16 @@
                             margin-left: 0px;
                         }
                     }
+                }
+            }
+            &.show{
+                .left{
+                    transform: translate(0px, 0px);
+                    opacity: 1;
+                }
+                .right{
+                    transform: translate(0px, 0px);
+                    opacity: 1;
                 }
             }
         }
@@ -236,6 +277,9 @@
     .exp{
         margin-top: 160px;
         text-align: center;
+        transform: translate(0px, -36px);
+        opacity: 0;
+        transition: transform 1s, opacity 1s;
         .adv-title{
             color: $light;
             height: 128px;
@@ -350,6 +394,10 @@
                     }
                 }
             }
+        }
+        &.show{
+            transform: translate(0px, 0px);
+            opacity: 1;
         }
         @include smallPad(){
             margin-top: 64px;

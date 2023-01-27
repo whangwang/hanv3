@@ -50,12 +50,18 @@
 
 <script>
 import ContactSection from '@/components/ContactSection.vue'
+import { useMeta } from 'vue-meta'
 
 export default{
     name: 'WorkCocView',
     components:{
         ContactSection,
     },
+    mounted(){
+        useMeta({
+            title: 'CoC Ph.D. Official Website',
+        })
+    }
 }
 </script>
 

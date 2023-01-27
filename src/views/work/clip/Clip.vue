@@ -165,6 +165,7 @@
 
 <script>
 import ContactSection from '@/components/ContactSection.vue'
+import { useMeta } from 'vue-meta'
 
 export default{
     name: 'WorkClipView',
@@ -186,6 +187,11 @@ export default{
                 document.body.classList.remove('inverted')
             }
         }
+    },
+    mounted(){
+        useMeta({
+            title: 'Clip',
+        })
     }
 }
 </script>

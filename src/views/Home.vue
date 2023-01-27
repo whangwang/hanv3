@@ -3,7 +3,7 @@
         <div class="container small">
             <div class="landing">
                 <div class="mobile-video-container">
-                    <video class="video" src="@/assets/images/home/landing-video.mp4" autoplay muted loop></video>
+                    <video class="video" :style="`transform: scale(${videoScale});`" src="@/assets/images/home/landing-video.mp4" autoplay muted loop></video>
                     <img class="slogan-mobile" src="@/assets/images/home/headline.svg" />
                 </div>
                 <img class="slogan" src="@/assets/images/home/headline.svg" />
@@ -18,7 +18,7 @@
             </div>
             <div id="works-section" class="works">
                 <div class="list">
-                    <div class="left col-4">
+                    <div id="works-section-title" class="left col-4">
                         <h2 class="works-title">From Ideation <br>to Creation.</h2>
                         <p>Starting in 2020, I participated in <span class="prompt">15+ projects</span> with my design and development skills and built 10 products from 0 to 1.</p>
                         <button class="primary" @click="to('/work')">VIEW ALL</button>
@@ -102,12 +102,14 @@
 <script>
 // @ is an alias to /src
 import ContactSection from '@/components/ContactSection.vue'
+import { useMeta } from 'vue-meta'
 
 export default {
     name: 'HomeView',
     data(){
         return{
-            headlineHeight: 0
+            headlineHeight: 0,
+            videoScale: 1
         }
     },
     components:{
@@ -115,8 +117,37 @@ export default {
     },
     mounted(){
         this.headlineHeight = document.getElementsByClassName('works-title')[0].clientHeight + 32
+        useMeta({
+            title: '',
+        })
+    },
+    created(){
+        window.addEventListener("scroll", this.handleScroll)
     },
     methods: {
+        handleScroll(){
+            // for landing video
+            const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+            let offset = vh
+            let adjustOffset = Math.max(Math.min(window.scrollY, offset), 0)
+            this.videoScale = 1 + (adjustOffset / offset * 0.15)
+
+            // for work section title
+            let anchorWork = document.getElementById('works-section-title').offsetTop - (vh * 0.7) + 64
+            if(window.scrollY > anchorWork){
+                document.getElementById('works-section-title').parentElement.classList.add('show')
+            }else{
+                document.getElementById('works-section-title').parentElement.classList.remove('show')
+            }
+
+            // for adventure
+            let anchorExp = document.getElementById('exp-section').offsetTop - (vh * 0.7) + 64
+            if(window.scrollY > anchorExp){
+                document.getElementById('exp-section').classList.add('show')
+            }else{
+                document.getElementById('exp-section').classList.remove('show')
+            }
+        },
         to(url){
             this.$router.push({
                 path: url

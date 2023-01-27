@@ -1,4 +1,7 @@
 <template>
+    <metainfo>
+        <template v-slot:title="{ content }">{{ content ? `${content} | Han Wang` : `Han Wang` }}</template>
+    </metainfo>
     <transition name="loading">
         <div v-if="pageLoading" class="loader">
             <img src="@/assets/images/global/loading.svg" alt="" class="loading">
@@ -54,6 +57,9 @@ export default{
             }, {
                 title: 'Resume',
                 to: '/resume'
+            }, {
+                title: 'Enquiry',
+                to: '/enquiry'
             }/*, {
                 title: 'Contact',
                 to: '/contact'
@@ -80,7 +86,9 @@ export default{
             }
         }
     }, mounted(){
-        setTimeout(() => this.pageLoading = false, 1500)
+        this.$nextTick(function () {
+            setTimeout(() => this.pageLoading = false, 1500)
+        })
         this.indvidual = this.$route.meta.indvidual
         this.hideNav = this.$route.meta.hideNav
         if(this.$route.meta.indvidual){

@@ -9,7 +9,7 @@
                     I’m Han Wang, an international student studying at the University of Melbourne who come from Taiwan, also work as a freelancer, focusing on helping the client create a wonderful product using my skills.
                 </p>
                 <p v-if="false">Start at 2020, I participated <span class="prompt">15+ projects</span> with my design or develop skill, built 10 products from 0 to 1.</p>
-                <button class="primary download">
+                <button class="primary download" @click="downloadResume()">
                     Resume
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 3V19" stroke="white"/>
@@ -100,11 +100,27 @@
 
 <script>
 import ContactSection from '@/components/ContactSection.vue'
+import { useMeta } from 'vue-meta'
 
 export default{
     name: 'ResumeView',
     components:{
         ContactSection,
     },
+    mounted(){
+        useMeta({
+            title: 'Resume',
+        })
+    },
+    methods: {
+        downloadResume(){
+            var link = document.createElement('a')
+            document.body.appendChild(link)
+            link.download = 'Han_Wang_CV_2023.pdf'
+            link.href = '/Resume.pdf'
+            link.click()
+            document.body.removeChild(link)
+        }
+    }
 }
 </script>

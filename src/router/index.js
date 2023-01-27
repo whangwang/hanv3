@@ -15,6 +15,10 @@ const routes = [
         name: 'Resume',
         component: () => import('../views/Resume.vue')
     }, {
+        path: '/enquiry',
+        name: 'Enquiry',
+        component: () => import('../views/Enquiry.vue')
+    }, {
         path: '/work/clip',
         name: 'WorksClip',
         component: () => import('../views/work/clip/Clip.vue'),
@@ -51,7 +55,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next)=>{
     if(to.name === undefined || from.name === undefined)next()
-    let order = ['Home', 'Work', 'Resume']
+    let order = ['Home', 'Work', 'Resume', 'Enquiry']
     let toIndex = order.indexOf(to.name)
     let fromIndex = order.indexOf(from.name)
     if(to.name.startsWith('Works'))toIndex = 100000

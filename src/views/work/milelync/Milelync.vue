@@ -49,12 +49,18 @@
 
 <script>
 import ContactSection from '@/components/ContactSection.vue'
+import { useMeta } from 'vue-meta'
 
 export default{
     name: 'WorkMilelyncView',
     components:{
         ContactSection,
     },
+    mounted(){
+        useMeta({
+            title: 'Milelync',
+        })
+    }
 }
 </script>
 

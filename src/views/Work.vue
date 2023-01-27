@@ -35,6 +35,7 @@
 
 <script>
 import ContactSection from '@/components/ContactSection.vue'
+import { useMeta } from 'vue-meta'
 
 export default{
     name: 'WorkView',
@@ -46,6 +47,11 @@ export default{
             //this.$router.push({ path: `/work/${dist}` })
             window.open(`/work/${dist}`, '_blank').focus();
         }
+    },
+    mounted(){
+        useMeta({
+            title: 'Work',
+        })
     }
 }
 </script>

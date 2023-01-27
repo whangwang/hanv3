@@ -21,12 +21,12 @@
                             </div>
                             <div class="info">
                                 <h4 class="title">Resources</h4>
-                                <button class="secondary download">
+                                <button class="secondary download" @click="downloadResume()">
                                     Resume
                                     <img src="@/assets/images/global/deco-arrow-download.svg" alt="">
                                 </button>
                             </div>
-                            <button class="highlight enquiry">
+                            <button class="highlight enquiry" @click="goToEnquiry()">
                                 ENQUIRY
                             </button>
                         </div>
@@ -49,6 +49,21 @@ export default{
             type: Boolean,
             default: true
         },
+    },
+    methods: {
+        downloadResume(){
+            var link = document.createElement('a')
+            document.body.appendChild(link)
+            link.download = 'Han_Wang_CV_2023.pdf'
+            link.href = '/Resume.pdf'
+            link.click()
+            document.body.removeChild(link)
+        },
+        goToEnquiry(){
+            this.$router.push({
+                path: '/enquiry'
+            })
+        }
     }
 }
 </script>
