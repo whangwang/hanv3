@@ -1,0 +1,48 @@
+@import 'rwd';
+
+$gutter: 16px;
+$columns: 12;
+$columns-l: 6;
+$columns-m: 4;
+
+%container{
+    margin: auto;
+    max-width: 1920px;
+    padding: 0px 64px;
+    @media screen and (min-width: ($large-pad)){
+        @for $i from 1 through $columns {
+            .col-#{$i} {
+                width: calc( (100% - ($columns - 1) * $gutter) / $columns * $i + $gutter * ($i - 1));
+            }
+        }
+    }
+    @media screen and (max-width: ($large-pad - 1)) and (min-width: ($small-pad)){
+        padding: 0px 32px;
+        @for $i from 1 through $columns-l {
+            .col-l-#{$i} {
+                width: calc( (100% - ($columns-l - 1) * $gutter) / $columns-l * $i + $gutter * ($i - 1));
+            }
+        }
+    }
+    @media screen and (max-width: ($small-pad - 1)){
+        padding: 0px 16px;
+        @for $i from 1 through $columns-m {
+            .col-m-#{$i} {
+                width: calc( (100% - ($columns-m - 1) * $gutter) / $columns-m * $i + $gutter * ($i - 1));
+            }
+        }
+    }
+}
+
+%container-small{
+    max-width: 1489px;
+}
+
+%page-root{
+    min-width: 100vw;
+    min-height: 100vh;
+}
+
+@function col($i: default) {
+    @return calc( (100% - ($columns - 1) * $gutter) / $columns * $i + $gutter * $i);
+}

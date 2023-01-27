@@ -1,0 +1,192 @@
+@import 'config/all.scss';
+
+body:not(.detach) nav{
+    position: sticky;
+    top: 0px;
+    padding: 16px 0px;
+    background-color: rgba($light-0, 0.8);
+    backdrop-filter: blur(4px);
+    z-index: 100000;
+    &>.container{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .logos{
+            display: flex;
+            align-items: center;
+            img{
+                width: 48px;
+                height: 48px;
+            }
+            h4{
+                font-weight: 900;
+                font-style: italic;
+                color: $light;
+                margin-left: 8px;
+            }
+        }
+        .links{
+            a{
+                @extend %h5;
+                @extend %use-headline;
+                font-style: italic;
+                font-weight: 400;
+                margin-left: 48px;
+                color: $light;
+                &:hover:not(.active){
+                    color: $light-60;
+                }
+                &.active{
+                    cursor: default;
+                    @extend %clash-text;
+                    font-weight: 900;
+                    position: relative;
+                    &:before{
+                        content: ' ';
+                        margin: auto;
+                        position: absolute;
+                        width: 43px;
+                        height: 7px;
+                        background-image: url(../images/global/nav-selected.svg);
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        bottom: -10px;
+                        left: 0;
+                        right: 0;
+                    }
+                }
+            }
+            @include mobile(){
+                display: none;
+            }
+        }
+        &>a{
+            z-index: 100000;
+        }
+        .mobile-menu{
+            z-index: 100000;
+            display: none;
+            .line-top{
+                transition: transform .3s;
+                transform-origin: center;
+            }
+            .line-bottom{
+                transition: transform .3s;
+                transform-origin: center;
+            }
+            &.active .line-top{
+                transform: rotate(45deg) translate(0px, 5.27px) scale(0.9);
+            }
+            &.active .line-bottom{
+                transform: rotate(-45deg) translate(0px, -5.27px) scale(0.9);
+            }
+            @include mobile(){
+                display: block;
+            }
+        }
+        .mobile-menu-container{
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            left: 0;
+            top: 0;
+            overflow: hidden;
+            .mobile-menu-panel{
+                width: 100%;
+                height: 100%;
+                background-color: $bg-dark;
+                z-index: 10000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                transition: transform .3s, opacity .3s;
+                a{
+                    @extend %h5;
+                    @extend %use-headline;
+                    transition: transform .6s;
+                    font-style: italic;
+                    font-weight: 400;
+                    margin-bottom: 48px;
+                    color: $light;
+                    &:hover:not(.active){
+                        color: $light-60;
+                    }
+                    &.active{
+                        cursor: default;
+                        @extend %clash-text;
+                        font-weight: 900;
+                        position: relative;
+                        &:before{
+                            content: ' ';
+                            margin: auto;
+                            position: absolute;
+                            width: 43px;
+                            height: 7px;
+                            background-image: url(../images/global/nav-selected.svg);
+                            background-repeat: no-repeat;
+                            background-size: cover;
+                            bottom: -10px;
+                            left: 0;
+                            right: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.menu-enter-from{
+    .mobile-menu-panel{
+        transform: translate(10%, 0px);
+        opacity: 0;
+        a{
+            transform: translate(120px, 0px);
+        }
+    }
+}
+
+.menu-enter-to{
+    .mobile-menu-panel{
+        transform: translate(0%, 0px);
+        opacity: 1;
+        a{
+            transform: translate(0px, 0px);
+        }
+    }
+}
+
+.menu-leave-from{
+    .mobile-menu-panel{
+        transform: translate(0%, 0px);
+        opacity: 1;
+        a{
+            transform: translate(0px, 0px);
+        }
+    }
+}
+
+.menu-leave-to{
+    .mobile-menu-panel{
+        transform: translate(0%, 0px);
+        opacity: 0;
+        a{
+            transform: translate(0px, 0px);
+        }
+    }
+}
+
+.footer{
+    padding: 60px 0px 120px 0px;
+    text-align: center;
+    @extend %content;
+    @extend %use-headline;
+    font-weight: 400;
+    font-style: italic;
+    color: $light-60;
+    background-color: $bg;
+    @include smallPad(){
+        padding: 30px 0px 60px 0px;
+    }
+}

@@ -1,0 +1,191 @@
+@import 'config/all.scss';
+
+.resume-view{
+    .main-container{
+        margin-top: 32px;
+        padding-bottom: 120px;
+        display: flex;
+        .left{
+            align-self: flex-start;
+            position: sticky;
+            top: 112px;
+            .cover-container{
+                position: relative;
+                .cover{
+                    width: 100%;
+                    display: block;
+                }
+                &:after{
+                    display: none;
+                    content: 'Han Wang';
+                    position: absolute;
+                    color: $light;
+                    left: 0;
+                    bottom: 0;
+                    @extend %h2;
+                    @extend %use-headline;
+                    width: 100%;
+                    white-space: nowrap;
+                    line-height: 36px;
+                }
+            }
+            p{
+                color: $light-80;
+                margin-top: 12px;
+                span{
+                    color: $primary-green;
+                }
+                &:first-of-type{
+                    margin-top: 24px;
+                }
+            }
+            button{
+                margin-top: 32px;
+            }
+        }
+        .right{
+            color: $light;
+            margin-left: 64px;
+            .skills-chart{
+                margin-top: 32px;
+                &>*{
+                    margin: 0;
+                    display: inline-block;
+                }
+                display: inline-grid;
+                grid-template-columns: auto auto auto;
+                column-gap: 48px;
+                row-gap: 16px;
+                .title{
+                    grid-column: span 3;
+                    &:not(:first-of-type){
+                        margin-top: 24px;
+                    }
+                    color: $light-60;
+                }
+            }
+            .exp-title{
+                line-height: 72px;
+                margin-top: 64px;
+            }
+            .exp-subtitle{
+                margin-top: 16px;
+                line-height: 1em;
+                color: $light-80;
+                h4:not(:first-of-type){
+                    margin-top: 8px;
+                }
+                span{
+                    &.design{
+                        color: $primary-green;
+                    }
+                    &.dev{
+                        color: $primary-yellow;
+                    }
+                }
+            }
+            .exp-chart{
+                margin-top: 32px;
+                .exp-block{
+                    position: relative;
+                    display: block;
+                    &:before{
+                        content: ' ';
+                        width: 16px;
+                        height: 16px;
+                        border-radius: 16px;
+                        background-color: $light-60;
+                        position: absolute;
+                        left: 0;
+                        top: 4px;
+                    }
+                    &:after{
+                        content: ' ';
+                        width: 2px;
+                        height: 100%;
+                        position: absolute;
+                        left: 7px;
+                        top: 4px;
+                        bottom: 0;
+                        background-color: $light-60;
+                    }
+                    &:first-of-type{
+                        height: calc( 100% - 4px );
+                    }
+                    padding-left: 32px;
+                    padding-bottom: 64px;
+                    .date{
+                        color: $light-60;
+                        font-weight: 400;
+                    }
+                    .logo{
+                        margin-top: 16px;
+                        margin-bottom: -4px;
+                        width: 200px;
+                    }
+                    .title{
+                        margin-top: 16px;
+                        margin-bottom: 8px;
+                        span{
+                            @extend %h5;
+                            margin-left: 8px;
+                        }
+                    }
+                    .description{
+                        color: $light-80;
+                        .prompt{
+                            &.design{
+                                color: $primary-green;
+                            }
+                            &.dev{
+                                color: $primary-yellow;
+                            }
+                            &.join{
+                                background: $primary-gradient;
+                                -webkit-background-clip: text;
+                                -webkit-text-fill-color: transparent;
+                            }
+                        }
+                    }
+                }
+            }
+            @include largePad(){
+                margin-left: 32px;
+            }
+        }
+        @include smallPad(){
+            flex-direction: column;
+            padding-bottom: 0px;
+            .left{
+                position: relative;
+                top: unset;
+                text-align: center;
+                .cover-container{
+                    width: 100%;
+                    overflow: hidden;
+                    position: relative;
+                    padding-top: calc( 100% * 9 / 16);
+                    .cover{
+                        position: absolute;
+                        width: 100%;
+                        height: auto;
+                        left: 0;
+                        top: 0;
+                        margin-top: -4%;
+                    }
+                }
+                margin-bottom: 48px;
+                button{
+                    margin: auto;
+                    margin-top: 32px;
+                }
+                p{
+                    text-align: left;
+                }
+            }
+            .right{
+                margin-left: 0px;
+            }
+        }
+    }
+}

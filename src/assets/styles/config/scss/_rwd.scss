@@ -1,0 +1,61 @@
+/*
+
+>1280 desk
+1280 ~ 1024 small desk
+1024 ~ 834 large pad
+834 ~ 600 small pad
+<600 mobile
+
+*/
+
+$desk: 1280px;
+$small-desk: 1024px;
+$large-pad: 834px;
+$small-pad: 600px;
+
+@mixin desk(){
+    @media screen and (min-width: ($desk)){
+        @content
+    }
+};
+
+@mixin smallDesk(){
+    @media screen and (max-width: ($desk - 1)){
+        @content
+    }
+};
+
+@mixin smallDeskOnly(){
+    @media screen and (min-width: ($small-desk)) and (max-width: ($desk - 1)){
+        @content
+    }
+};
+
+@mixin largePad(){
+    @media screen and (max-width: ($small-desk - 1)){
+        @content
+    }
+};
+
+@mixin largePadOnly(){
+    @media screen and (min-width: ($large-pad)) and (max-width: ($small-desk - 1)){
+        @content
+    }
+};
+
+@mixin smallPad(){
+    @media screen and (max-width: ($large-pad - 1)){
+        @content
+    }
+};
+
+@mixin smallPadOnly(){
+    @media screen and (min-width: ($small-pad)) and (max-width: ($large-pad - 1)){
+        @content
+    }
+};
+@mixin mobile(){
+    @media screen and (max-width: ($small-pad - 1)){
+        @content
+    }
+};

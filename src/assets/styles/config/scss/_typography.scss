@@ -1,0 +1,111 @@
+@import 'rwd';
+
+/* typography */
+%h1{
+    font-size: 64px;
+    font-weight: 900;
+    font-style: italic;
+    @include largePad(){
+        font-size: 48px;
+    }
+    @include mobile(){
+        font-size: 32px;
+    }
+}
+%h2{
+    font-size: 48px;
+    font-weight: 900;
+    font-style: italic;
+    line-height: 60px;
+    @include largePad(){
+        font-size: 32px;
+        line-height: 48px;
+    }
+    @include mobile(){
+        font-size: 24px;
+        line-height: 36px;
+    }
+}
+%h3{
+    font-size: 32px;
+    font-weight: 900;
+    font-style: italic;
+    @include largePad(){
+        font-size: 24px;
+    }
+    @include mobile(){
+        font-size: 18px;
+    }
+}
+%h4{
+    font-size: 24px;
+    font-weight: 600;
+    font-style: normal;
+    @include largePad(){
+        font-size: 18px;
+    }
+}
+%h5{
+    font-size: 18px;
+    font-weight: 600;
+    font-style: normal;
+    @include mobile(){
+        font-size: 16px;
+    }
+}
+%h6{
+    font-size: 16px;
+    font-weight: 600;
+    font-style: normal;
+}
+%content{
+    font-size: 16px;
+    .bold{
+        font-weight: 600;
+    }
+    .prompt{
+        font-weight: 900;
+        font-style: italic;
+    }
+    @include mobile(){
+        font-size: 14px;
+    }
+}
+%content-bold{
+    font-size: 16px;
+    font-weight: 600;
+    .bold{
+        font-weight: 600;
+    }
+    .prompt{
+        font-weight: 900;
+        font-style: italic;
+    }
+    @include mobile(){
+        font-size: 14px;
+    }
+}
+%content-big{
+    font-size: 18px;
+    .bold{
+        font-weight: 600;
+    }
+    .prompt{
+        font-weight: 900;
+        font-style: italic;
+    }
+}
+%content-hint{
+    font-size: 12px;
+    font-weight: 600;
+    .bold{
+        font-weight: 600;
+    }
+    .prompt{
+        font-weight: 900;
+        font-style: italic;
+    }
+}
+%use-headline{
+    font-family: 'Montserrat', sans-serif;
+}

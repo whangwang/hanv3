@@ -1,0 +1,157 @@
+@import '../../../assets/styles/config/all';
+
+nav{
+    position: sticky;
+    top: 0;
+    padding: 16px 0px;
+    z-index: 100000;
+    &>.container{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .logos{
+            display: flex;
+            align-items: center;
+            img{
+                width: 48px;
+                height: 48px;
+            }
+            h4{
+                font-weight: 900;
+                font-style: italic;
+                color: white;
+                margin-left: 8px;
+                font-size: 24px;
+                @include largePad(){
+                    font-size: 18px;
+                }
+            }
+        }
+        .link{
+            color: white;
+            font-family: 'Red Hat Text', sans-serif;
+            font-weight: 400;
+            font-size: 18px;
+            font-style: italic;
+            position: relative;
+            img{
+                margin-left: 12px;
+                transform: translate(0px, -2px);
+            }
+            &:hover{
+                font-weight: 600;
+                img{
+                    margin-left: 16px;
+                }
+            }
+            &:before{
+                content: 'Back to han.gallery'
+            }
+            @include mobile(){
+                &:before{
+                    content: 'Back'
+                }
+
+            }
+        }
+    }
+}
+
+.work-coc-container{
+    margin-top: 64px;
+    color: $light;
+    .landing{
+        text-align: center;
+        .cover{
+            width: 100%;
+            padding-top: calc(100% * 9 / 16);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            margin-top: 48px;
+        }
+        .intro{
+            text-align: left;
+            max-width: 600px;
+            margin: auto;
+            margin-top: 48px;
+        }
+        .meta{
+            width: calc( 100% - 48px );
+            max-width: 600px;
+            background-color: $bg-dark;
+            padding: 24px;
+            margin: auto;
+            margin-top: 48px;
+            display: grid;
+            text-align: left;
+            grid-template-columns: auto 1fr;
+            column-gap: 32px;
+            row-gap: 24px;
+            h5{
+                font-size: 16px;
+            }
+            a{
+                text-decoration: none;
+                color: $light;
+                position: relative;
+                &:after{
+                    content: " ";
+                    width: 60px;
+                    height: 12px;
+                    background-image: url(../../../assets/images/global/deco-arrow-link-light.svg);
+                    position: absolute;
+                    top: 3px;
+                    right: -66px;
+                }
+                &:hover{
+                    font-weight: 600;
+                    &:after{
+                        right: -70px;
+                    }
+                }
+                @include smallPad(){
+                    text-decoration: underline;
+                    &:after{
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+    .content{
+        margin-top: 48px;
+        .screenshot{
+            width: 100%;
+            &:not(:first-of-type){
+                margin-top: 36px;
+            }
+        }
+    }
+}
+.hero{
+    width: 100%;
+    position: relative;
+    background-color: #0A0F18;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 160px;
+    .bg{
+        width: 100%;
+        max-width: 1200px;
+        margin: auto;
+        .img{
+            width: 100%;
+            padding-top: calc( 100% * 9 / 16 );
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+    }
+    h2{
+        position: absolute;
+        text-align: center;
+        color: white;
+    }
+}

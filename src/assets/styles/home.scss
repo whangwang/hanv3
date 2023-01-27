@@ -1,0 +1,380 @@
+@import 'config/all.scss';
+
+.home{
+    background: $bg;
+    margin-top: 32px;
+    .landing{
+        position: relative;
+        .video{
+            width: 49.468%;
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: 1;
+
+            -webkit-mask-image:url(../images/home/landing-mask.svg);
+            -webkit-mask-position:left top;
+            -webkit-mask-repeat:no-repeat;
+            -webkit-mask-size:100%;
+          
+            mask-image:url(../images/home/landing-mask.svg);
+            mask-position:left top;
+            mask-repeat:no-repeat;
+            mask-size:100%;
+        }
+        .slogan{
+            width: 64.73%;
+            padding-top: 3.29%;
+            position: relative;
+            z-index: 2;
+        }
+        .slogan-mobile{
+            display: none;
+        }
+        h4{
+            margin-top: 16px;
+            color: $light;
+            span{
+                @extend %use-headline;
+                background: $primary-gradient;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            .new-line-for-pad{
+                display: none;
+                @include smallDesk(){
+                    display: block;
+                }
+            }
+        }
+        button{
+            margin-top: 32px;
+        }
+        .indicator{
+            display: block;
+            margin-top: 32px;
+        }
+        @include smallPad(){
+            text-align: center;
+            .video{
+                position: relative;
+                width: 72.6%;
+                margin: auto;
+                z-index: 1;
+            }
+            .slogan{
+                display: none;
+            }
+            .slogan-mobile{
+                display: block;
+                position: absolute;
+                width: 100%;
+                margin: auto;
+                left: 0;
+                right: 0;
+                top: 50%;
+                transform: translate(0, -50%);
+                z-index: 3;
+            }
+            .mobile-video-container{
+                position: relative;
+                max-width: 600px;
+                margin: auto;
+            }
+            h4{
+                margin-top: 24px;
+            }
+            .indicator{
+                margin: auto;
+                margin-top: 16px;
+                height: 100px;
+                width: 12px;
+                object-fit: cover;
+                object-position: bottom;
+            }
+        }
+    }
+    .works{
+        margin-top: 160px;
+        color: $light;
+        .list{
+            display: flex;
+            z-index: 2;
+            .left{
+                p{
+                    margin: 0;
+                    margin-top: 32px;
+                    margin-bottom: 32px;
+                    .prompt{
+                        color: $primary-green;
+                    }
+                }
+                img{
+                    display: block;
+                    margin-top: 32px;
+                }
+                h2{
+                    z-index: 0;
+                    &:after{
+                        content: ' ';
+                        width: 976px;
+                        max-width: calc( 100vw + 64px );
+                        height: 326px;
+                        position: absolute;
+                        background-size: 976px;
+                        background-repeat: no-repeat;
+                        background-image: url(../images/home/deco-green.svg);
+                        left: -128px;
+                        top: -103px;
+                        opacity: 0.1;
+                        z-index: -1;
+                    }
+                }
+                align-self: flex-start;
+                position: sticky;
+                top: 112px;
+            }
+            .right{
+                z-index: 2;
+                margin-left: 16px;
+                .work{
+                    cursor: pointer;
+                    display: block;
+                    color: $light;
+                    .cover{
+                        width: 100%;
+                        padding-top: calc( 100% * 9 / 16);
+                        background-size: 100%;
+                        background-position: center;
+                        transition: background-size .5s;
+                    }
+                    h5{
+                        margin-top: 12px;
+                    }
+                    p{
+                        margin-top: 2px;
+                        margin-bottom: 0;
+                        color: $light-60;
+                    }
+                    &:not(:first-of-type){
+                        margin-top: 40px;
+                    }
+                    &.right{
+                        margin-left: col(5);
+                    }
+                    &.mid{
+                        margin-left: col(2);
+                        .cover{
+                            position: relative;
+                        }
+                    }
+                    &:hover{
+                        .cover{
+                            background-size: 120%;
+                        }
+                    }
+                }
+                @include smallDesk(){
+                    margin-left: 32px;
+                    flex-shrink: 2;
+                    .work{
+                        width: 100%;
+                        &.right, &.mid{
+                            margin-left: 0px;
+                        }
+                    }
+                }
+            }
+        }
+        @include smallPad(){
+            margin-top: 64px;
+            .list{
+                flex-direction: column;
+                .left{
+                    position: relative;
+                    top: 0;
+                    .indicator{
+                        display: none;
+                    }
+                    p{
+                        margin-top: 24px;
+                        margin-bottom: 24px;
+                    }
+                }
+                .right{
+                    margin-top: 40px!important;
+                    margin-left: -32px;
+                    margin-right: -32px;
+                    .work{
+                        .title, .client{
+                            padding: 0px 32px;
+                        }
+                        .title{
+                            margin-top: 16px;
+                        }
+                        .client{
+                            margin-top: 6px;
+                        }
+                    }
+                }
+            }
+        }
+        @include mobile(){
+            .list{
+                .right{
+                    margin-left: -16px;
+                    margin-right: -16px;
+                    .work{
+                        .title, .client{
+                            padding: 0px 16px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .exp{
+        margin-top: 160px;
+        text-align: center;
+        .adv-title{
+            color: $light;
+            height: 128px;
+            line-height: 128px;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 48px;
+            &:before{
+                content: ' ';
+                width: 41px;
+                height: 128px;
+                position: absolute;
+                background-image: url(../images/home/deco-advleft.svg);
+                background-repeat: no-repeat;
+                top: 0;
+                left: -89px;
+            }
+            &:after{
+                content: ' ';
+                width: 64px;
+                height: 146px;
+                position: absolute;
+                background-image: url(../images/home/deco-advright.svg);
+                background-repeat: no-repeat;
+                top: 6px;
+                right: -104px;
+            }
+        }
+        .exp-block{
+            margin-top: 24px;
+            display: grid;
+            grid-template-columns: 200px 1fr auto;
+            column-gap: 24px;
+            color: $light;
+            position: relative;
+            &:not(:last-of-type):before{
+                content: ' ';
+                position: absolute;
+                width: 2px;
+                height: 130px;
+                left: 16px;
+                bottom: 0px;
+                background-color: $light-20;
+            }
+            img{
+                width: 100%;
+                padding-bottom: 154px;
+            }
+            .description{
+                text-align: left;
+                h3{
+                    margin-top: 1px;
+                    margin-bottom: 24px;
+                    span{
+                        font-size: 18px;
+                        margin-left: 12px;
+                        @include mobile(){
+                            font-size: 12px;
+                            margin-left: 6px;
+                        }
+                    }
+                }
+                p{
+                    color: $light-80;
+                    span.design{
+                        color: $primary-green;
+                    }
+                    span.dev{
+                        color: $primary-yellow;
+                    }
+                    span.join{
+                        background: $primary-gradient;
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                    }
+                }
+            }
+            .date{
+                p{
+                    color: $light-60;
+                }
+            }
+            @include largePad(){
+                row-gap: 6px;
+                padding-bottom: 96px;
+                &:last-of-type{
+                    padding-bottom: 0px;
+                }
+                grid-template-columns: 1fr;
+                &:not(:last-of-type):before{
+                    height: 72px;
+                    left: 0;
+                    right: 0;
+                    margin: auto;
+                }
+                img{
+                    height: 32px;
+                    width: auto;
+                    padding-bottom: 0px;
+                }
+                .date{
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                    p{
+                        line-height: 32px;
+                    }
+                }
+                .description{
+                    h3{
+                        margin-bottom: 12px;
+                    }
+                }
+            }
+        }
+        @include smallPad(){
+            margin-top: 64px;
+            .adv-title{
+                margin-bottom: 8px;
+                width: 100%;
+                &:before{
+                    left: -32px;
+                    background-position: -18px 0;
+                }
+                &:after{
+                    right: -32px;
+                    background-position: 24px 0;
+                }
+            }
+        }
+        @include mobile(){
+            .adv-title{
+                &:before{
+                    left: -16px;
+                }
+                &:after{
+                    right: -16px;
+                }
+            }
+        }
+    }
+}

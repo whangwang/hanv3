@@ -1,0 +1,65 @@
+@import 'config/all.scss';
+
+.work-view{
+    .main-container{
+        margin-top: 32px;
+        padding-bottom: 120px;
+        h2{
+            color: $light;
+        }
+        .list{
+            margin-top: 48px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 16px;
+            row-gap: 32px;
+            .block{
+                cursor: pointer;
+                .cover{
+                    width: 100%;
+                    padding-top: calc( 100% * 9 / 16 );
+                    background-size: 100% auto;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    transition: background-size .5s;
+                }
+                h5{
+                    margin-top: 16px;
+                    color: $light-80;
+                }
+                &:hover{
+                    .cover{
+                        background-size: 120%;
+                    }
+                    h5{
+                        color: $light;
+                    }
+                }
+            }
+            @include largePad(){
+                grid-template-columns: 1fr;
+                margin-top: 24px;
+                row-gap: 40px;
+                .block{
+                    margin-left: -32px;
+                    margin-right: -32px;
+                    h5{
+                        padding: 0px 32px;
+                    }
+                }
+            }
+            @include mobile(){
+                .block{
+                    margin-left: -16px;
+                    margin-right: -16px;
+                    h5{
+                        padding: 0px 16px;
+                    }
+                }
+            }
+        }
+        @include mobile(){
+            padding-bottom: 0px;
+        }
+    }
+}

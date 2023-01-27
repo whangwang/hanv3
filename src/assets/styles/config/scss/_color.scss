@@ -1,0 +1,28 @@
+/* Primary */
+$primary-green: #6CFFB0;
+$primary-yellow: #FFF96C;
+$primary-gradient: linear-gradient(to right bottom, rgba($primary-green, 1) 0%, rgba($primary-yellow, 1) 100%);
+
+/* Gray Scale */
+$light: #FFFFFF;
+$light-80: #CED2D9;
+$light-60: #9DA5B2;
+$light-40: #6D778C;
+$light-20: #3C4A65;
+$light-0: #0B1D3F;
+
+/* Backgrounds */
+$bg: #0B1D3F;
+$bg-dark: #03112B;
+$bg-light: #E0E8F9;
+$bg-modal: rgba(#0B1D3F, 0.75);
+
+%clash-text{
+    background-color: $primary-green;
+    background-image: url(../images/global/text-mask.svg);
+    background-size: 50px auto;
+    background-repeat: no-repeat;
+    background-position: calc(100% + 5px) calc(0% - 5px);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
