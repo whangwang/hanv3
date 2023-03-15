@@ -27,7 +27,7 @@
                     <div class="right col-8" :style="`margin-top: ${headlineHeight}px;`">
                         <a class="work col-7" target="_blank" href="/work/clip">
                             <div :style="renderCoverImage('clip')" alt="" class="cover"></div>
-                            <h5 class="title">Digital License APP baseㄎ on Blockchain</h5>
+                            <h5 class="title">Digital License APP based on Blockchain</h5>
                             <p class="client bold">Snowbridge Inc.</p>
                         </a>
                         <a class="work col-7 right" target="_blank" href="/work/coc">
