@@ -16,7 +16,7 @@
                 </div>
             </router-link>
             <div class="links">
-                <router-link :key="`link${ind}`" v-for="(ele, ind) in links" :class="path.split('/')[1] == ele.to.slice(1) && 'active'" :to="ele.to">{{ ele.title }}</router-link>
+                <router-link :key="`link${ind}`" v-for="(ele, ind) in links" :class="path.split('/')[2] == ele.to.slice(1) && 'active'" :to="ele.to">{{ ele.title }}</router-link>
             </div>
             <div :class="`mobile-menu ${openMobileMenu ? 'active' : ''}`" @click="openMobileMenu = !openMobileMenu">
                 <svg class="menu-icon" width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
