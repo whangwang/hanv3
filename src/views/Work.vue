@@ -45,7 +45,7 @@ export default{
     methods:{
         to(dist){
             //this.$router.push({ path: `/work/${dist}` })
-            window.open(`/work/${dist}`, '_blank').focus();
+            window.open(`/#/work/${dist}`, '_blank').focus();
         }
     },
     mounted(){

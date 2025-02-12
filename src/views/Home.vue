@@ -25,17 +25,17 @@
                         <img @click="anchor('exp-section')" src="@/assets/images/global/deco-arrow-more.svg" alt="" class="indicator">
                     </div>
                     <div class="right col-8" :style="`margin-top: ${headlineHeight}px;`">
-                        <a class="work col-7" target="_blank" href="/work/clip">
+                        <a class="work col-7" target="_blank" href="/#/work/clip">
                             <div :style="renderCoverImage('clip')" alt="" class="cover"></div>
                             <h5 class="title">Digital License APP based on Blockchain</h5>
                             <p class="client bold">Snowbridge Inc.</p>
                         </a>
-                        <a class="work col-7 right" target="_blank" href="/work/coc">
+                        <a class="work col-7 right" target="_blank" href="/#/work/coc">
                             <div :style="renderCoverImage('coc')" alt="" class="cover"></div>
                             <h5 class="title">NCCU CoC Ph.D. Program Official Website</h5>
                             <p class="client bold">National Chengchi University</p>
                         </a>
-                        <a class="work col-7 mid" target="_blank" href="/work/cloudmatrix">
+                        <a class="work col-7 mid" target="_blank" href="/#/work/cloudmatrix">
                             <div :style="renderCoverImage('cloudmatrix')" alt="" class="cover"></div>
                             <h5 class="title">The official website for face recognization system</h5>
                             <p class="client bold">Gigabyte(Cloudmatrix)</p>
