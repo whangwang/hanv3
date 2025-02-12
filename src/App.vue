@@ -16,7 +16,7 @@
                 </div>
             </router-link>
             <div class="links">
-                <router-link :key="`link${ind}`" v-for="(ele, ind) in links" :class="path.split('/')[2] == ele.to.slice(1) && 'active'" :to="ele.to">{{ ele.title }}</router-link>
+                <router-link :key="`link${ind}`" v-for="(ele, ind) in links" :class="path.split('/')[1] == ele.to.slice(1) && 'active'" :to="ele.to">{{ ele.title }}</router-link>
             </div>
             <div :class="`mobile-menu ${openMobileMenu ? 'active' : ''}`" @click="openMobileMenu = !openMobileMenu">
                 <svg class="menu-icon" width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -64,7 +64,7 @@ export default{
                 title: 'Contact',
                 to: '/contact'
             }*/],
-            path: window.location.pathname,
+            path: '',
             contactSize: true,
             smallContact: ['Home', 'Resume'],
             pageLoading: true,
@@ -75,7 +75,7 @@ export default{
     }, watch: {
         $route() {
             this.openMobileMenu = false
-            this.path = window.location.pathname
+            this.path = this.$route.path
             this.contactSize = this.smallContact.includes(this.$route.name)
             this.indvidual = this.$route.meta.indvidual
             this.hideNav = this.$route.meta.hideNav
@@ -86,6 +86,7 @@ export default{
             }
         }
     }, mounted(){
+        this.path = this.$route.path
         this.$nextTick(function () {
             setTimeout(() => this.pageLoading = false, 1500)
         })
