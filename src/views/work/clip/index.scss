@@ -633,9 +633,12 @@ nav{
 }
 
 body.inverted{
-    background-color: white;
+    background-color: white!important;
     .change-color{
         color: #232B3E!important;
+    }
+    .footer{
+        background-color: #232B3E!important;
     }
 }
 

@@ -1,12 +1,12 @@
 <template>
     <div class="resume-view">
         <div class="container small main-container">
-            <div class="col-4 left">
+            <div class="col-3 left">
                 <div class="cover-container">
                     <img src="@/assets/images/resume/cover@1x.jpg" :srcset="renderImage('resume/cover.jpg')" class="cover" />
                 </div>
                 <p>
-                    I’m Han Wang, an international student studying at the University of Melbourne who come from Taiwan, also work as a freelancer, focusing on helping the client create a wonderful product using my skills.
+                    I’m Han Wang, a developer and designer with a background in computer science, human-computer interaction and front-end development. I specialize in bridging design and development to create seamless digital experiences. With experience in both freelance and agency environments, I thrive on crafting intuitive and visually compelling products.
                 </p>
                 <p v-if="false">Start at 2020, I participated <span class="prompt">15+ projects</span> with my design or develop skill, built 10 products from 0 to 1.</p>
                 <button class="primary download" @click="downloadResume()">
@@ -17,39 +17,59 @@
                     </svg>
                 </button>
             </div>
-            <div class="col-8 right">
+            <div class="col-9 right">
                 <h2>Skills</h2>
                 <div class="skills-chart">
                     <h6 class="title">Design</h6>
                     <h5 class="content">UI Design</h5>
                     <h5 class="content">UX Design</h5>
+                    <h5 class="content">UX Research</h5>
                     <h5 class="content">Design Handoff</h5>
                     <h6 class="title">Frontend Develop</h6>
                     <h5 class="content">Vue.js</h5>
+                    <h5 class="content">Next.js</h5>
                     <h5 class="content">ReactJS</h5>
                     <h5 class="content">NodeJS</h5>
                     <h5 class="content">HTML</h5>
                     <h5 class="content">CSS/SCSS</h5>
+                    <h5 class="content">Tailwind CSS</h5>
                     <h5 class="content">jQuery</h5>
                     <h6 class="title">Others</h6>
-                    <h5 class="content">Python</h5>
+                    <h5 class="content">Java</h5>
                     <h5 class="content">C++</h5>
                     <h5 class="content">C</h5>
+                    <h5 class="content">Python</h5>
                     <h5 class="content">AWS</h5>
                     <h5 class="content">Nginx Routing</h5>
                     <h5 class="content">Git</h5>
                 </div>
                 <h2 class="exp-title">Experience</h2>
                 <div class="exp-subtitle">
-                    <h4><span class="design">2+ years'</span> as a UI/UX designer</h4>
-                    <h4><span class="dev">4+ years'</span> as a developer</h4>
+                    <h4><span class="design">3+ years'</span> as a UI/UX designer</h4>
+                    <h4><span class="dev">5+ years'</span> as a developer</h4>
                 </div>
                 <div class="exp-chart">
                     <div class="exp-block">
-                        <p class="date">Feb 2023 - Dec 2024(EST)</p>
+                        <p class="date">Jan 2025  -  present</p>
+                        <img src="@/assets/images/global/clients/unimelb.png" alt="" class="logo">
+                        <h4 class="title">UX/UI Designer</h4>
+                        <p class="description">
+                            Collaborating with the Enterprise Performance Group's Digital Design team on one of a SSTP project to enhance the student portal experience. In this role, I leading the UI design and <span class="prompt design">creating mockups in Figma</span>, which have received positive feedback from stakeholders. Additionally, I <span class="prompt design">co-led a design proposal presentation</span> to stakeholders, focusing on improvements for the student portal.
+                        </p>
+                    </div>
+                    <div class="exp-block">
+                        <p class="date">Mar 2024  -  Dec 2024</p>
+                        <img src="@/assets/images/global/clients/unimelb.png" alt="" class="logo">
+                        <h4 class="title">Student Co-Designer</h4>
+                        <p class="description">
+                            Collaborating with the Operational Performance Group's Digital Design team on user research initiatives, leading <span class="prompt design">interviews with 13 students</span> to gather valuable insights. Assisting in planning and executing successful student <span class="prompt design">workshops</span>, receiving positive feedback from the project lead. Engaging in <span class="prompt design">various research activities</span>, including desk research, workshops, and interviews.
+                        </p>
+                    </div>
+                    <div class="exp-block">
+                        <p class="date">Feb 2023 - Dec 2024</p>
                         <h4 class="title">The University of Melbourne</h4>
                         <p class="description">
-                            Master of Information Technology
+                            Master of Information Technology (Human-Computer Interaction)
                         </p>
                     </div>
                     <div class="exp-block">

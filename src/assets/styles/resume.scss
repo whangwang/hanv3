@@ -53,11 +53,11 @@
                     display: inline-block;
                 }
                 display: inline-grid;
-                grid-template-columns: auto auto auto;
+                grid-template-columns: auto auto auto auto;
                 column-gap: 48px;
                 row-gap: 16px;
                 .title{
-                    grid-column: span 3;
+                    grid-column: span 4;
                     &:not(:first-of-type){
                         margin-top: 24px;
                     }

@@ -25,26 +25,55 @@
                         <img @click="anchor('exp-section')" src="@/assets/images/global/deco-arrow-more.svg" alt="" class="indicator">
                     </div>
                     <div class="right col-8" :style="`margin-top: ${headlineHeight}px;`">
+                        <a class="work col-7" target="_blank" href="/#/work/nubila">
+                            <div :style="renderCoverImage('nubila')" alt="" class="cover"></div>
+                            <h5 class="title">Designing the future of weather detection based on blockchain</h5>
+                            <p class="client bold">Nubila Inc.</p>
+                        </a>
+                        <a class="work col-7 right" target="_blank" href="/#/work/avianlens">
+                            <div :style="renderCoverImage('avianlens')" alt="" class="cover"></div>
+                            <h5 class="title">A hackathon-winning birdwatching companion APP</h5>
+                            <p class="client bold">CISSA</p>
+                        </a>
                         <a class="work col-7" target="_blank" href="/#/work/clip">
                             <div :style="renderCoverImage('clip')" alt="" class="cover"></div>
                             <h5 class="title">Digital License APP based on Blockchain</h5>
                             <p class="client bold">Snowbridge Inc.</p>
                         </a>
-                        <a class="work col-7 right" target="_blank" href="/#/work/coc">
-                            <div :style="renderCoverImage('coc')" alt="" class="cover"></div>
-                            <h5 class="title">NCCU CoC Ph.D. Program Official Website</h5>
-                            <p class="client bold">National Chengchi University</p>
-                        </a>
-                        <a class="work col-7 mid" target="_blank" href="/#/work/cloudmatrix">
-                            <div :style="renderCoverImage('cloudmatrix')" alt="" class="cover"></div>
-                            <h5 class="title">The official website for face recognization system</h5>
-                            <p class="client bold">Gigabyte(Cloudmatrix)</p>
+                        <a class="work col-7 mid" target="_blank" href="/#/work/stickerhd">
+                            <div :style="renderCoverImage('stickerhd')" alt="" class="cover"></div>
+                            <h5 class="title">E-commerce website for printing company</h5>
+                            <p class="client bold">StickerHD Inc.</p>
                         </a>
                     </div>
                 </div>
             </div>
             <div id="exp-section" class="exp">
                 <h2 class="adv-title">My Adventure</h2>
+                <div class="exp-block">
+                    <img src="@/assets/images/global/clients/unimelb.png" alt="" class="logo">
+                    <div class="description">
+                        <h3 class="job-title">UX/UI Designer</h3>
+                        <p>
+                            Collaborating with the Enterprise Performance Group's Digital Design team on one of a SSTP project to enhance the student portal experience. In this role, I leading the UI design and <span class="prompt design">creating mockups in Figma</span>, which have received positive feedback from stakeholders. Additionally, I <span class="prompt design">co-led a design proposal presentation</span> to stakeholders, focusing on improvements for the student portal.
+                        </p>
+                    </div>
+                    <div class="date">
+                        <p>Jan 2025  -  present</p>
+                    </div>
+                </div>
+                <div class="exp-block">
+                    <img src="@/assets/images/global/clients/unimelb.png" alt="" class="logo">
+                    <div class="description">
+                        <h3 class="job-title">Student Co-Designer</h3>
+                        <p>
+                            Collaborating with the Operational Performance Group's Digital Design team on user research initiatives, leading <span class="prompt design">interviews with 13 students</span> to gather valuable insights. Assisting in planning and executing successful student <span class="prompt design">workshops</span>, receiving positive feedback from the project lead. Engaging in <span class="prompt design">various research activities</span>, including desk research, workshops, and interviews.
+                        </p>
+                    </div>
+                    <div class="date">
+                        <p>Mar 2024 - Dec 2024</p>
+                    </div>
+                </div>
                 <div class="exp-block">
                     <img src="@/assets/images/global/clients/aja.png" alt="" class="logo">
                     <div class="description">

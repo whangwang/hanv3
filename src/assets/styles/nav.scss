@@ -1,6 +1,6 @@
 @import 'config/all.scss';
 
-body:not(.detach) nav{
+body:not(.detach):not(.custom-color) nav{
     position: sticky;
     top: 0px;
     padding: 16px 0px;
@@ -178,6 +178,7 @@ body:not(.detach) nav{
 }
 
 .footer{
+    position: relative;
     padding: 60px 0px 120px 0px;
     text-align: center;
     @extend %content;
@@ -185,8 +186,10 @@ body:not(.detach) nav{
     font-weight: 400;
     font-style: italic;
     color: $light-60;
-    background-color: $bg;
     @include smallPad(){
         padding: 30px 0px 60px 0px;
     }
+}
+body:not(.custom-color) .footer{
+  background-color: $bg;
 }

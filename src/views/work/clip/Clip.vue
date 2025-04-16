@@ -7,7 +7,7 @@
                         <img src="@/assets/images/global/logo.svg" alt="">
                         <h4>Han Wang</h4>
                     </div>
-                    <a href="/work" class="link">
+                    <a href="/#/work" class="link">
                         <img src="@/assets/images/projects/back-arrow.svg"/>
                     </a>
                 </a>
@@ -159,7 +159,7 @@
             </div>
             <h2 class="container small">Digital license APP based on Blockchain</h2>
         </div>
-        <ContactSection :small="true" />
+        <ContactSection :small="true" bg="#232B3E" />
     </div>
 </template>
 

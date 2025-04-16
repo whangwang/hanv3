@@ -1,7 +1,7 @@
 <template>
-    <div class="contact-section">
+    <div class="contact-section" :style="bg != '' ? { backgroundColor: bg } : {}">
         <div :class="`container ${small && 'small'}`">
-            <h2 class="section-title">Let’s Create Miracle <br class="new-line-mobile">Together !</h2>
+            <h2 :class="`section-title ${dark && 'dark'}`">Let’s Create Miracle <br class="new-line-mobile">Together !</h2>
         </div>
         <div class="group">
             <div :class="`container ${small && 'small'}`">
@@ -20,9 +20,13 @@
                                 <a href="mailto:whangwang0430@gmail.com" class="link">whangwang0430@gmail.com</a>
                             </div>
                             <div class="info">
-                                <h4 class="title">Resources</h4>
-                                <button class="secondary download" @click="downloadResume()">
-                                    Resume
+                                <h4 class="title">See my resume as a:</h4>
+                                <button class="secondary download" @click="downloadResume('Designer')">
+                                    Designer
+                                    <img src="@/assets/images/global/deco-arrow-download.svg" alt="">
+                                </button>
+                                <button class="secondary download" @click="downloadResume('Developer')">
+                                    Developer
                                     <img src="@/assets/images/global/deco-arrow-download.svg" alt="">
                                 </button>
                             </div>
@@ -49,13 +53,21 @@ export default{
             type: Boolean,
             default: true
         },
+        bg: {
+            type: String,
+            default: ''
+        },
+        dark: {
+            type: Boolean,
+            default: false
+        }
     },
     methods: {
-        downloadResume(){
+        downloadResume(role){
             var link = document.createElement('a')
             document.body.appendChild(link)
-            link.download = 'Han_Wang_CV_2023.pdf'
-            link.href = '/Resume.pdf'
+            link.download = `Han_Wang_${role}_Resume_2025.pdf`
+            link.href = `Han_Wang_${role}_Resume_2025.pdf`
             link.click()
             document.body.removeChild(link)
         },

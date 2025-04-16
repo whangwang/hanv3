@@ -132,6 +132,9 @@
     h2.section-title{
         color: $light;
         margin-bottom: 32px;
+        &.dark{
+            color: $light-0;
+        }
     }
     .group{
         position: relative;
@@ -213,7 +216,7 @@
             height: 100%;
             left: 0;
             top: 0;
-            background: linear-gradient(to right, $bg 0%, $bg 50%, $bg-light 50%, $bg-light 100%);
+            background: linear-gradient(to right, transparent 0%, transparent 50%, $bg-light 50%, $bg-light 100%);
             z-index: -1;
         }
     }

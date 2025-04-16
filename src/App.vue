@@ -84,6 +84,13 @@ export default{
             }else{
                 document.body.classList.remove('detach')
             }
+            if(this.$route.meta.backgroundColor){
+                document.body.classList.add('custom-color')
+                document.body.style.backgroundColor = this.$route.meta.backgroundColor
+            }else{
+                document.body.classList.remove('custom-color')
+                document.body.style.backgroundColor = ""
+            }
         }
     }, mounted(){
         this.path = this.$route.path
@@ -96,6 +103,13 @@ export default{
             document.body.classList.add('detach')
         }else{
             document.body.classList.remove('detach')
+        }
+        if(this.$route.meta.backgroundColor){
+            document.body.classList.add('custom-color')
+            document.body.style.backgroundColor = this.$route.meta.backgroundColor
+        }else{
+            document.body.classList.remove('custom-color')
+            document.body.style.backgroundColor = ""
         }
     },
     methods: {

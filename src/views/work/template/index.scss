@@ -1,0 +1,204 @@
+@import '../../../assets/styles/config/all';
+
+nav{
+    position: relative;
+    width: 100%;
+    top: 0;
+    padding: 16px 0px;
+    z-index: 100000;
+    &>.container{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .logos{
+            display: flex;
+            align-items: center;
+            img{
+                width: 48px;
+                height: 48px;
+            }
+            h4{
+                font-weight: 900;
+                font-style: italic;
+                color: white;
+                margin-left: 8px;
+                font-size: 24px;
+                @include largePad(){
+                    font-size: 18px;
+                }
+            }
+        }
+        .link{
+            color: white;
+            font-family: 'Red Hat Text', sans-serif;
+            font-weight: 400;
+            font-size: 18px;
+            font-style: italic;
+            position: relative;
+            img{
+                margin-left: 12px;
+                transform: translate(0px, -2px);
+            }
+            &:hover{
+                font-weight: 600;
+                img{
+                    margin-left: 16px;
+                }
+            }
+            &:before{
+                content: 'Back to han.gallery'
+            }
+            @include mobile(){
+                &:before{
+                    content: 'Back'
+                }
+
+            }
+        }
+    }
+}
+
+.background-decoration{
+  width: 100%;
+  filter: blur(60px);
+  position: absolute;
+}
+
+.work-template-view.light{
+  nav{
+    &>.container{
+      .logos{
+        h4{
+          color: $light-0;
+        }
+      }
+      .link{
+        color: $light-0;
+      }
+    }
+  }
+  .landing-container{
+    .landing-title{
+      color: $light-0;
+    }
+  }
+  .project-info{
+    color: $light-0;
+    .project-props{
+      h5{
+        color: $primary-green-dark;
+      }
+      p{
+        a{
+          color: $primary-yellow-dark!important;
+        }
+      }
+    }
+  }
+  .showcase-container{
+    .showcase-group{
+      h4{
+        color: $light-0;
+      }
+    }
+  }
+}
+
+.work-template-container{
+  position: relative;
+  padding-top: 64px;
+}
+
+.landing-container{
+  text-align: center;
+  .cover-img{
+    width: 100%;
+    height: auto;
+    max-width: 1000px;
+    margin: auto;
+    border-radius: 12px;
+    border: 12px solid rgba(137,152,162, 0.2);
+    display: block;
+    box-sizing: border-box;
+  }
+  .cover-logo{
+    display: block;
+    margin: auto;
+    margin-top: 64px;
+    height: 32px;
+  }
+  .landing-title{
+    color: $light;
+    text-align: center;
+    margin-top: 24px;
+  }
+}
+
+.project-info{
+  display: flex;
+  color: $light;
+  max-width: 1000px;
+  margin: auto;
+  margin-top: 64px;
+  .project-props{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 32px;
+    row-gap: 24px;
+    width: 400px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    margin-right: 72px;
+    @extend %content-big;
+    h5{
+      color: $primary-green;
+    }
+    p{
+      @extend %content-big;
+      margin-bottom: 6px;
+      a{
+        color: $primary-yellow!important;
+        text-decoration: underline;
+        font-weight: bold;
+      }
+    }
+  }
+  .project-description{
+    p{
+      @extend %content-big;
+      margin-bottom: 16px;
+    }
+  }
+  @include smallDesk(){
+    display: block;
+    .project-props{
+      width: 100%;
+      max-width: 400px;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 16px;
+      margin: auto;
+    }
+    .project-description{
+      margin-top: 48px;
+    }
+  }
+}
+
+.showcase-container{
+  text-align: center;
+  border-top: 1px solid $light-20;
+  margin-top: 64px;
+  padding-top: 72px;
+  .showcase-group{
+    margin-bottom: 72px;
+    h4{
+      color: $light;
+      margin-bottom: 24px;
+    }
+    img{
+      width: 100%;
+      margin-bottom: 16px;
+      border: 2px solid rgba(137,152,162, 0.2);
+    }
+  }
+}
