@@ -9,13 +9,6 @@
                     I’m Han Wang, a developer and designer with a background in computer science, human-computer interaction and front-end development. I specialize in bridging design and development to create seamless digital experiences. With experience in both freelance and agency environments, I thrive on crafting intuitive and visually compelling products.
                 </p>
                 <p v-if="false">Start at 2020, I participated <span class="prompt">15+ projects</span> with my design or develop skill, built 10 products from 0 to 1.</p>
-                <button class="primary download" @click="downloadResume()">
-                    Resume
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 3V19" stroke="white"/>
-                        <path d="M6 15L12 21L18 15L12 16.7143L6 15Z" fill="white"/>
-                    </svg>
-                </button>
             </div>
             <div class="col-9 right">
                 <h2>Skills</h2>
@@ -133,14 +126,14 @@ export default{
         })
     },
     methods: {
-        downloadResume(){
+        downloadResume(role){
             var link = document.createElement('a')
             document.body.appendChild(link)
-            link.download = 'Han_Wang_CV_2023.pdf'
-            link.href = '/Resume.pdf'
+            link.download = `Han_Wang_${role}_Resume_2025.pdf`
+            link.href = `Han_Wang_${role}_Resume_2025.pdf`
             link.click()
             document.body.removeChild(link)
-        }
+        },
     }
 }
 </script>

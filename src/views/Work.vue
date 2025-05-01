@@ -3,10 +3,6 @@
         <div class="container main-container">
             <h2>From Ideation <br>to Creation.</h2>
             <div class="list">
-                <div class="block" @click="to('clip')">
-                    <div class="cover" :style="renderCoverImage('clip')"></div>
-                    <h5>Digital license APP based on Blockchain</h5>
-                </div>
                 <div class="block" @click="to('avianlens')">
                     <div class="cover" :style="renderCoverImage('avianlens')"></div>
                     <h5>A hackathon-winning birdwatching companion APP</h5>
@@ -14,6 +10,14 @@
                 <div class="block" @click="to('nubila')">
                     <div class="cover" :style="renderCoverImage('nubila')"></div>
                     <h5>Designing the future of weather detection based on blockchain</h5>
+                </div>
+                <div class="block" @click="to('tiago')">
+                    <div class="cover" :style="renderCoverImage('tiago')"></div>
+                    <h5>Improve User experience in TIAGo Teleoperation</h5>
+                </div>
+                <div class="block" @click="to('clip')">
+                    <div class="cover" :style="renderCoverImage('clip')"></div>
+                    <h5>Digital license APP based on Blockchain</h5>
                 </div>
                 <div class="block" @click="to('stickerhd')">
                     <div class="cover" :style="renderCoverImage('stickerhd')"></div>

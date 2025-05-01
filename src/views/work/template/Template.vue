@@ -17,7 +17,7 @@
         <div class="container small work-template-container">
           <div class="landing-container">
             <img class="cover-img" :srcset="renderImage(data.landing)" />
-            <img class="cover-logo" :src="require(`@/assets/images/projects/${data.logo}`)" />
+            <img v-if="data.logo != null" class="cover-logo" :src="require(`@/assets/images/projects/${data.logo}`)" />
             <h2 class="landing-title" v-html="data.title"></h2>
           </div>
           <div class="project-info">

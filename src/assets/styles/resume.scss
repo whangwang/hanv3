@@ -29,6 +29,15 @@
                     line-height: 36px;
                 }
             }
+            .resume-download-btn-group{
+              width: 100%;
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              button{
+                display: flex;
+                width: 100%;
+              }
+            }
             p{
                 color: $light-80;
                 margin-top: 12px;
