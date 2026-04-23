@@ -3,7 +3,9 @@
     "allow": [
       "mcp__plugin_figma_figma__whoami",
       "mcp__plugin_figma_figma__get_design_context",
-      "WebFetch(domain:stickerhd.com)"
+      "WebFetch(domain:stickerhd.com)",
+      "Bash(nvm use *)",
+      "Bash(npm install *)"
     ]
   }
 }
