@@ -248,13 +248,13 @@ const routes = [
   {
     path: "/work/stickerhd",
     name: "WorksStickerHD",
-    component: () => import("../views/work/template/Template.vue"),
+    component: () => import("../views/work/stickerhd/Stickerhd.vue"),
     meta: {
+      indvidual: true,
       hideNav: true,
-      backgroundColor: worksUsingTemplate.stickerhd.backgroundColor,
-      title: worksUsingTemplate.stickerhd.metaTitle,
+      backgroundColor: "#254441",
+      title: "StickerHD — Deliver Uplift for E-Commerce",
     },
-    props: () => ({ data: worksUsingTemplate.stickerhd }),
   },
   {
     path: "/work/tiago",

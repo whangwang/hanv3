@@ -20,13 +20,8 @@
                                 <a href="mailto:whangwang0430@gmail.com" class="link">whangwang0430@gmail.com</a>
                             </div>
                             <div class="info">
-                                <h4 class="title">See my resume as a:</h4>
                                 <button class="secondary download" @click="downloadResume('Designer')">
-                                    Designer
-                                    <img src="@/assets/images/global/deco-arrow-download.svg" alt="">
-                                </button>
-                                <button class="secondary download" @click="downloadResume('Developer')">
-                                    Developer
+                                    Download my resume
                                     <img src="@/assets/images/global/deco-arrow-download.svg" alt="">
                                 </button>
                             </div>
@@ -66,8 +61,8 @@ export default{
         downloadResume(role){
             var link = document.createElement('a')
             document.body.appendChild(link)
-            link.download = `Han_Wang_${role}_Resume_2025.pdf`
-            link.href = `Han_Wang_${role}_Resume_2025.pdf`
+            link.download = `Han_Wang_Resume.pdf`
+            link.href = `Han_Wang_${role}_Resume_${new Date().getFullYear()}.pdf`
             link.click()
             document.body.removeChild(link)
         },

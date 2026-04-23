@@ -57,20 +57,26 @@
             margin-left: 64px;
             .skills-chart{
                 margin-top: 32px;
-                &>*{
-                    margin: 0;
-                    display: inline-block;
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 32px;
+                @include largePad() { grid-template-columns: repeat(2, 1fr); }
+                @include smallPad() { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+
+                .skill-col {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
                 }
-                display: inline-grid;
-                grid-template-columns: auto auto auto auto;
-                column-gap: 48px;
-                row-gap: 16px;
-                .title{
-                    grid-column: span 4;
-                    &:not(:first-of-type){
-                        margin-top: 24px;
-                    }
+
+                .title {
                     color: $light-60;
+                    margin: 0 0 4px;
+                }
+
+                .content {
+                    margin: 0;
+                    color: $light-80;
                 }
             }
             .exp-title{
@@ -134,11 +140,18 @@
                     }
                     .title{
                         margin-top: 16px;
-                        margin-bottom: 8px;
+                        margin-bottom: 4px;
                         span{
                             @extend %h5;
                             margin-left: 8px;
                         }
+                    }
+                    .org {
+                        font-size: 13px;
+                        color: $light-60;
+                        font-weight: 400;
+                        margin: 0 0 8px;
+                        line-height: 1.4;
                     }
                     .description{
                         color: $light-80;

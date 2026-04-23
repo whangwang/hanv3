@@ -42,6 +42,14 @@
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
             }
+            .tag{
+              background-color: rgba(255, 255, 255, 0.1);
+              display: inline-block;
+              padding: 4px 12px;
+              border-radius: 12px;
+              font-size: 16px;
+              margin-top: 12px;
+            }
             .new-line-for-pad{
                 display: none;
                 @include smallDesk(){
@@ -332,7 +340,7 @@
                 text-align: left;
                 h3{
                     margin-top: 1px;
-                    margin-bottom: 24px;
+                    margin-bottom: 6px;
                     span{
                         font-size: 18px;
                         margin-left: 12px;
@@ -341,6 +349,13 @@
                             margin-left: 6px;
                         }
                     }
+                }
+                .org {
+                    font-size: 13px;
+                    color: $light-40;
+                    font-weight: 400;
+                    margin: 0 0 16px;
+                    line-height: 1.4;
                 }
                 p{
                     color: $light-80;

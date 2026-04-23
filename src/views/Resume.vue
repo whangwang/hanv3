@@ -6,102 +6,116 @@
                     <img src="@/assets/images/resume/cover@1x.jpg" :srcset="renderImage('resume/cover.jpg')" class="cover" />
                 </div>
                 <p>
-                    I’m Han Wang, a developer and designer with a background in computer science, human-computer interaction and front-end development. I specialize in bridging design and development to create seamless digital experiences. With experience in both freelance and agency environments, I thrive on crafting intuitive and visually compelling products.
+                    Experience Designer with 4+ years delivering end-to-end UX for large-scale institutional digital platforms. Currently designing student-facing digital experiences at the University of Melbourne, serving 50,000+ students across user research, service blueprints, and design system work.
+                    <br />I combine deep user research with hands-on front-end fluency — bridging user needs, technical constraints, and business outcomes without handoff friction.
                 </p>
                 <p v-if="false">Start at 2020, I participated <span class="prompt">15+ projects</span> with my design or develop skill, built 10 products from 0 to 1.</p>
             </div>
             <div class="col-9 right">
                 <h2>Skills</h2>
                 <div class="skills-chart">
-                    <h6 class="title">Design</h6>
-                    <h5 class="content">UI Design</h5>
-                    <h5 class="content">UX Design</h5>
-                    <h5 class="content">UX Research</h5>
-                    <h5 class="content">Design Handoff</h5>
-                    <h6 class="title">Frontend Develop</h6>
-                    <h5 class="content">Vue.js</h5>
-                    <h5 class="content">Next.js</h5>
-                    <h5 class="content">ReactJS</h5>
-                    <h5 class="content">NodeJS</h5>
-                    <h5 class="content">HTML</h5>
-                    <h5 class="content">CSS/SCSS</h5>
-                    <h5 class="content">Tailwind CSS</h5>
-                    <h5 class="content">jQuery</h5>
-                    <h6 class="title">Others</h6>
-                    <h5 class="content">Java</h5>
-                    <h5 class="content">C++</h5>
-                    <h5 class="content">C</h5>
-                    <h5 class="content">Python</h5>
-                    <h5 class="content">AWS</h5>
-                    <h5 class="content">Nginx Routing</h5>
-                    <h5 class="content">Git</h5>
+                    <div class="skill-col">
+                        <h6 class="title">Research &amp; Strategy</h6>
+                        <h5 class="content">Research Planning</h5>
+                        <h5 class="content">Desktop Research</h5>
+                        <h5 class="content">Stakeholder Management</h5>
+                        <h5 class="content">Kano Studies</h5>
+                        <h5 class="content">Semi-Structured Interviews</h5>
+                        <h5 class="content">Workshops</h5>
+                        <h5 class="content">Covert Observation</h5>
+                        <h5 class="content">Strategic Design</h5>
+                        <h5 class="content">RICE Analysis</h5>
+                    </div>
+                    <div class="skill-col">
+                        <h6 class="title">Design</h6>
+                        <h5 class="content">UX Design</h5>
+                        <h5 class="content">UI Design</h5>
+                        <h5 class="content">Prototyping</h5>
+                        <h5 class="content">Usability Testing</h5>
+                        <h5 class="content">End-to-End Product Development</h5>
+                        <h5 class="content">Design Handoff</h5>
+                        <h5 class="content">Design Proposal</h5>
+                    </div>
+                    <div class="skill-col">
+                        <h6 class="title">Software &amp; Design Engineering</h6>
+                        <h5 class="content">Figma (Variables, Tokens, MCP)</h5>
+                        <h5 class="content">Zeplin</h5>
+                        <h5 class="content">Next.js</h5>
+                        <h5 class="content">React</h5>
+                        <h5 class="content">Tailwind CSS</h5>
+                        <h5 class="content">Redux</h5>
+                        <h5 class="content">API Contract Documentation</h5>
+                        <h5 class="content">GenAI-assisted Prototyping</h5>
+                    </div>
+                    <div class="skill-col">
+                        <h6 class="title">Project Experience</h6>
+                        <h5 class="content">Institutional Websites</h5>
+                        <h5 class="content">Student Portals</h5>
+                        <h5 class="content">Fintech / Crypto Apps</h5>
+                        <h5 class="content">Insurance Platforms</h5>
+                        <h5 class="content">E-commerce</h5>
+                        <h5 class="content">Blockchain Apps</h5>
+                    </div>
                 </div>
                 <h2 class="exp-title">Experience</h2>
                 <div class="exp-subtitle">
-                    <h4><span class="design">3+ years'</span> as a UI/UX designer</h4>
-                    <h4><span class="dev">5+ years'</span> as a developer</h4>
+                    <h4><span class="design">4+ years’</span> in design career</h4>
+                    <h4><span class="design">20+ clients</span> across diverse platforms</h4>
                 </div>
                 <div class="exp-chart">
                     <div class="exp-block">
-                        <p class="date">Jan 2025  -  present</p>
+                        <p class="date">Jan 2025  —  present</p>
                         <img src="@/assets/images/global/clients/unimelb.png" alt="" class="logo">
-                        <h4 class="title">UX/UI Designer</h4>
+                        <h4 class="title">Experience Design Analyst</h4>
+                        <p class="org">Enterprise Service Group · Full-time</p>
                         <p class="description">
-                            Collaborating with the Enterprise Performance Group's Digital Design team on one of a SSTP project to enhance the student portal experience. In this role, I leading the UI design and <span class="prompt design">creating mockups in Figma</span>, which have received positive feedback from stakeholders. Additionally, I <span class="prompt design">co-led a design proposal presentation</span> to stakeholders, focusing on improvements for the student portal.
+                            <span class="prompt design">Student Website Transformation:</span> Solo project lead for the first three months — managed project planning, desktop research, research design, and all stakeholder communication before the Design Lead joined. Facilitated stakeholder discussions to define a research plan for redesigning help content and support-seeking experiences. Conducted desktop research, competitor analysis, current-state reviews, and interviews to inform institutional channel strategy decisions.<br /><br />
+                            <span class="prompt design">Authenticated Experience (Student Digital Portal):</span> Ran research synthesis and solution design for the unification of the University's authenticated student platform — serving domestic, international, undergraduate, and postgraduate segments across the full student lifecycle. Applied a hypothesis-led approach validated through <span class="prompt design">13 in-depth interviews</span> and <span class="prompt design">249 Kano survey responses</span>, then used <span class="prompt design">RICE</span> to prioritise <span class="prompt design">25 Vision Stories</span> into a multi-horizon roadmap that directly informed the University's <span class="prompt design">2026 capital funding decision</span>.<br /><br />
+                            <span class="prompt design">Quantifiable Impact:</span> Short-term uplift delivered a <span class="prompt design">+289% increase in banner click-through rate (8,522 → 33,169 YoY)</span>, improved mobile engagement to <span class="prompt design">60.77% (+13.4% YoY)</span>, and generated <span class="prompt design">~60,000 clicks</span> on the new personalised onboarding shortcut during peak enrolment.
                         </p>
                     </div>
                     <div class="exp-block">
-                        <p class="date">Mar 2024  -  Dec 2024</p>
+                        <p class="date">Mar 2024  —  Dec 2024</p>
                         <img src="@/assets/images/global/clients/unimelb.png" alt="" class="logo">
                         <h4 class="title">Student Co-Designer</h4>
+                        <p class="org">Enterprise Service Group · Intern</p>
                         <p class="description">
-                            Collaborating with the Operational Performance Group's Digital Design team on user research initiatives, leading <span class="prompt design">interviews with 13 students</span> to gather valuable insights. Assisting in planning and executing successful student <span class="prompt design">workshops</span>, receiving positive feedback from the project lead. Engaging in <span class="prompt design">various research activities</span>, including desk research, workshops, and interviews.
+                            Translated student insights into a comprehensive end-to-end journey using <span class="prompt design">TheyDo</span>, mapping insights across each stage to create a centralised repository for broader organisational use. Planned and facilitated <span class="prompt design">13 in-depth student interviews</span> to uncover pain points in the student portal experience, alongside supporting survey design and workshop facilitation. Interview findings directly informed the <span class="prompt design">2025 Auth UX strategic direction</span>. Received outstanding feedback from stakeholders, resulting in a return offer as a full-time designer.
                         </p>
                     </div>
                     <div class="exp-block">
-                        <p class="date">Feb 2023 - Dec 2024</p>
-                        <h4 class="title">The University of Melbourne</h4>
+                        <p class="date">Feb 2023  —  Dec 2024</p>
+                        <h4 class="title">University of Melbourne</h4>
                         <p class="description">
-                            Master of Information Technology (Human-Computer Interaction)
+                            Master of Information Technology (Human-Computer Interaction)<br />
+                            <span class="prompt design">Awarded the 2023 Dean’s Honours List</span> · WAM 78.5 (H2A)<br />
+                            <span class="prompt design">1st Place, CISSA UI/UX Design Hackathon 2023</span> (AvianLens)
                         </p>
                     </div>
                     <div class="exp-block">
-                        <p class="date">Jan 2021  -  Dec 2022</p>
+                        <p class="date">Jan 2021  —  Nov 2022</p>
                         <img src="@/assets/images/global/clients/aja.png" alt="" class="logo">
                         <h4 class="title">UI Designer</h4>
+                        <p class="org">AJA Creative · Full-time</p>
                         <p class="description">
-                            Cooperate with colleagues in <span class="prompt design">five</span> different design projects, including several big <span class="prompt design">banks</span>, one of the largest <span class="prompt design">insurance companies</span> in Taiwan, and a <span class="prompt design">startup company</span> focusing on machine learning.
+                            Collaborated across five design projects spanning major banks, a leading insurance company, and an AI startup.<br /><br />
+                            <span class="prompt design">Nanshan Life Insurance (Agent App):</span> Led UI design as the sole designer — developing visual proposals, design systems, and interface solutions informed by user shadowing and co-creation workshops.<br /><br />
+                            <span class="prompt design">CTBC Bank (SME Banking App):</span> Redesigned homepage visual direction and contributed to scalable UI delivery aligned with design guidelines.<br /><br />
+                            <span class="prompt design">InfuseAI Website:</span> Conducted audience research, delivered end-to-end website design, and built the production site in Webflow with handover documentation.
                         </p>
                     </div>
                     <div class="exp-block">
-                        <p class="date">Jul 2019  -  May 2020</p>
-                        <img src="@/assets/images/global/clients/NCCU.png" alt="" class="logo">
-                        <h4 class="title">Research Assistant <span>with Porf. Kung Chen</span></h4>
+                        <p class="date">Sep 2018  —  present</p>
+                        <h4 class="title">Freelancer</h4>
                         <p class="description">
-                            Working in <span class="prompt join">Emerging Technologies and Application Lab</span>, focusing on Implementing several Blockchain-based services with the governments in Taiwan.
+                            Delivered UI/UX design, front-end development, and design consulting for <span class="prompt design">20+ clients</span> across e-commerce (StickerHD), fintech, blockchain (CLIP/Snowbridge), AI/ML (Nubila.ai), and institutional websites. The freelance track is where I've maintained hands-on technical fluency in the <span class="prompt design">Next.js / React / Tailwind CSS</span> ecosystem.
                         </p>
                     </div>
                     <div class="exp-block">
-                        <p class="date">Dec 2019  -  Feb 2020</p>
-                        <img src="@/assets/images/global/clients/gigabyte.png" alt="" class="logo">
-                        <h4 class="title">Front-end Developer Intern</h4>
-                        <p class="description">
-                            Responsible for the product’s official website for a face recognition system. Start with designing the interface and user flow in <span class="prompt design">Figma</span>, and built it with <span class="prompt dev">Vue.js</span>, finished this mission by <span class="prompt join">myself only</span>.
-                        </p>
-                    </div>
-                    <div class="exp-block">
-                        <p class="date">Jul 2018  -  Dec 2018</p>
-                        <img src="@/assets/images/global/clients/feversocial.png" alt="" class="logo">
-                        <h4 class="title">Front-end Developer Intern</h4>
-                        <p class="description">
-                            Developed several new features and solved issues for a single page CMS platform using <span class="prompt dev">ReactJS</span>, and built an automation software testing flow using <span class="prompt dev">Jenkins</span> and <span class="prompt dev">Docker</span>.
-                        </p>
-                    </div>
-                    <div class="exp-block">
-                        <p class="date">Sep 2015  -  Jun 2019</p>
+                        <p class="date">Sep 2015  —  Jun 2019</p>
                         <h4 class="title">National Chengchi University</h4>
                         <p class="description">
-                            Bachelor for Science in Computer Science
+                            Bachelor of Science in Computer Science
                         </p>
                     </div>
                 </div>

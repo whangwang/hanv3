@@ -8,8 +8,8 @@
                 </div>
                 <img class="slogan" src="@/assets/images/home/headline.svg" />
                 <h4>
-                    UI/UX Designer & <br class="new-line-for-pad">Front-end Developer<br> 
-                    based in <span>Melbourne</span>
+                    Designer, Researcher, Developer<br />
+                    <p class="tag">Based in <span>Melbourne, VIC 3000</span></p>
                 </h4>
                 <button @click="anchor('contact-section', 80)" class="highlight">
                     GET IN TOUCH
@@ -20,106 +20,73 @@
                 <div class="list">
                     <div id="works-section-title" class="left col-4">
                         <h2 class="works-title">From Ideation <br>to Creation.</h2>
-                        <p>Starting in 2020, I participated in <span class="prompt">15+ projects</span> with my design and development skills and built 10 products from 0 to 1.</p>
+                        <p>Since 2018, I’ve contributed to <span class="prompt">20+ projects</span>—designing and developing over 15 products from concept to launch.</p>
                         <button class="primary" @click="to('/work')">VIEW ALL</button>
                         <img @click="anchor('exp-section')" src="@/assets/images/global/deco-arrow-more.svg" alt="" class="indicator">
                     </div>
                     <div class="right col-8" :style="`margin-top: ${headlineHeight}px;`">
-                        <a class="work col-7" target="_blank" href="/#/work/nubila">
-                            <div :style="renderCoverImage('nubila')" alt="" class="cover"></div>
-                            <h5 class="title">Designing the future of weather detection based on blockchain</h5>
-                            <p class="client bold">Nubila Inc.</p>
+                        <a class="work col-7" target="_blank" href="/#/work/stickerhd">
+                            <div :style="renderCoverImage('stickerhd')" alt="" class="cover"></div>
+                            <h5 class="title">E-commerce website redesign</h5>
+                            <p class="client bold">StickerHD.com</p>
+                        </a>
+                        <a class="work col-7 mid" target="_blank" href="/#/work/tiago">
+                            <div :style="renderCoverImage('tiago')" alt="" class="cover"></div>
+                            <h5 class="title">Improve User experience in TIAGo Teleoperation</h5>
+                            <p class="client bold">TIAGo</p>
                         </a>
                         <a class="work col-7 right" target="_blank" href="/#/work/avianlens">
                             <div :style="renderCoverImage('avianlens')" alt="" class="cover"></div>
                             <h5 class="title">A hackathon-winning birdwatching companion APP</h5>
                             <p class="client bold">CISSA</p>
                         </a>
-                        <a class="work col-7" target="_blank" href="/#/work/clip">
-                            <div :style="renderCoverImage('clip')" alt="" class="cover"></div>
-                            <h5 class="title">Digital License APP based on Blockchain</h5>
-                            <p class="client bold">Snowbridge Inc.</p>
-                        </a>
-                        <a class="work col-7 mid" target="_blank" href="/#/work/stickerhd">
-                            <div :style="renderCoverImage('stickerhd')" alt="" class="cover"></div>
-                            <h5 class="title">E-commerce website for printing company</h5>
-                            <p class="client bold">StickerHD Inc.</p>
+                        <a class="work col-7 mid" target="_blank" href="/#/work/nubila">
+                            <div :style="renderCoverImage('nubila')" alt="" class="cover"></div>
+                            <h5 class="title">Designing the future of weather detection based on blockchain</h5>
+                            <p class="client bold">Nubila Inc.</p>
                         </a>
                     </div>
                 </div>
             </div>
             <div id="exp-section" class="exp">
-                <h2 class="adv-title">My Adventure</h2>
+                <h2 class="adv-title">Experience</h2>
                 <div class="exp-block">
                     <img src="@/assets/images/global/clients/unimelb.png" alt="" class="logo">
                     <div class="description">
-                        <h3 class="job-title">UX/UI Designer</h3>
+                        <h3 class="job-title">Experience Design Analyst</h3>
+                        <p class="org">University of Melbourne, Enterprise Service Group · Full-time</p>
                         <p>
-                            Collaborating with the Enterprise Performance Group's Digital Design team on one of a SSTP project to enhance the student portal experience. In this role, I leading the UI design and <span class="prompt design">creating mockups in Figma</span>, which have received positive feedback from stakeholders. Additionally, I <span class="prompt design">co-led a design proposal presentation</span> to stakeholders, focusing on improvements for the student portal.
+                            Solo project lead for the first three months before the Design Lead joined. Applied a hypothesis-led approach validated through <span class="prompt design">13 in-depth interviews</span> and <span class="prompt design">249 Kano survey responses</span>, then used <span class="prompt design">RICE</span> to prioritise <span class="prompt design">25 Vision Stories</span> into a roadmap that directly informed the University's <span class="prompt design">2026 capital funding decision</span>. Short-term uplift delivered a <span class="prompt design">+289% banner click-through increase (8,522 → 33,169 YoY)</span>, mobile engagement of <span class="prompt design">60.77% (+13.4% YoY)</span>, and <span class="prompt design">~60,000 onboarding clicks</span> during peak enrolment.
                         </p>
                     </div>
                     <div class="date">
-                        <p>Jan 2025  -  present</p>
+                        <p>Jan 2025 — present</p>
                     </div>
                 </div>
                 <div class="exp-block">
                     <img src="@/assets/images/global/clients/unimelb.png" alt="" class="logo">
                     <div class="description">
                         <h3 class="job-title">Student Co-Designer</h3>
+                        <p class="org">University of Melbourne, Enterprise Service Group · Intern</p>
                         <p>
-                            Collaborating with the Operational Performance Group's Digital Design team on user research initiatives, leading <span class="prompt design">interviews with 13 students</span> to gather valuable insights. Assisting in planning and executing successful student <span class="prompt design">workshops</span>, receiving positive feedback from the project lead. Engaging in <span class="prompt design">various research activities</span>, including desk research, workshops, and interviews.
+                            Translated student insights into a comprehensive end-to-end journey using <span class="prompt design">TheyDo</span>, creating a centralised repository for broader organisational use. Planned and facilitated <span class="prompt design">13 in-depth student interviews</span> to uncover portal pain points — findings directly informed the <span class="prompt design">2025 Auth UX strategic direction</span>. Received outstanding feedback, resulting in a return offer as a full-time designer.
                         </p>
                     </div>
                     <div class="date">
-                        <p>Mar 2024 - Dec 2024</p>
+                        <p>Mar 2024 — Dec 2024</p>
                     </div>
                 </div>
                 <div class="exp-block">
                     <img src="@/assets/images/global/clients/aja.png" alt="" class="logo">
                     <div class="description">
                         <h3 class="job-title">UI Designer</h3>
+                        <p class="org">AJA Creative · Full-time</p>
                         <p>
-                            Cooperate with colleagues in <span class="prompt design">five</span> different design projects, including several big <span class="prompt design">banks</span>, one of the largest <span class="prompt design">insurance companies</span> in Taiwan, and a <span class="prompt design">startup company</span> focusing on machine learning.
+                            Collaborated across five design projects spanning major banks, a leading insurance company, and an AI startup. Led UI design for <span class="prompt design">Nanshan Life Insurance’s agent app</span> as the sole designer — informed by user shadowing and co-creation workshops. Contributed to <span class="prompt design">CTBC Bank’s SME banking app</span> and delivered <span class="prompt design">InfuseAI’s official website</span> end-to-end in Webflow.
                         </p>
                     </div>
                     <div class="date">
-                        <p>Jan 2021  -  Dec 2022</p>
-                    </div>
-                </div>
-                <div class="exp-block">
-                    <img src="@/assets/images/global/clients/NCCU.png" alt="" class="logo">
-                    <div class="description">
-                        <h3 class="job-title">Research Assistant <span>with Porf. Kung Chen</span></h3>
-                        <p>
-                            Working in <span class="prompt join">Emerging Technologies and Application Lab</span>, focusing on Implementing several Blockchain-based services with the governments in Taiwan.
-                        </p>
-                    </div>
-                    <div class="date">
-                        <p>Jul 2019  -  May 2020</p>
-                    </div>
-                </div>
-                <div class="exp-block">
-                    <img src="@/assets/images/global/clients/gigabyte.png" alt="" class="logo">
-                    <div class="description">
-                        <h3 class="job-title">Front-end Developer Intern</h3>
-                        <p>
-                            Responsible for the product’s official website for a face recognition system. Start with designing the interface and user flow in <span class="prompt design">Figma</span>, and built it with <span class="prompt dev">Vue.js</span>, finished this mission by <span class="prompt join">myself only</span>.
-                        </p>
-                    </div>
-                    <div class="date">
-                        <p >Dec 2019  -  Feb 2020</p>
-                    </div>
-                </div>
-                <div class="exp-block">
-                    <img src="@/assets/images/global/clients/feversocial.png" alt="" class="logo">
-                    <div class="description">
-                        <h3 class="job-title">Front-end Developer Intern</h3>
-                        <p>
-                            Developed several new features and solved issues for a single page CMS platform using <span class="prompt dev">ReactJS</span>, and built an automation software testing flow using <span class="prompt dev">Jenkins</span> and <span class="prompt dev">Docker</span>.
-                        </p>
-                    </div>
-                    <div class="date">
-                        <p>Jul 2018  -  Dec 2018</p>
+                        <p>Jan 2021 — Nov 2022</p>
                     </div>
                 </div>
             </div>
