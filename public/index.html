@@ -24,6 +24,15 @@
     <meta property="twitter:description" content="I’m Han Wang, an international student studying at the University of Melbourne who come from Taiwan, also work as a freelancer, focusing on helping the client create a wonderful product using my skills.">
     <meta property="twitter:image" content="<%= BASE_URL %>ogimage.jpg">
 
+    <!-- Google Analytics 4 — replace G-XXXXXXXXXX with your Measurement ID -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GDR2XVWGFJ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-GDR2XVWGFJ', { send_page_view: false });
+    </script>
+
     <link rel="apple-touch-icon" sizes="180x180" href="<%= BASE_URL %>fav/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="<%= BASE_URL %>fav/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="<%= BASE_URL %>fav/favicon-16x16.png">

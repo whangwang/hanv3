@@ -296,4 +296,13 @@ router.beforeEach((to, from, next) => {
   next();
 });
 
+// Track every page navigation in GA4
+router.afterEach((to) => {
+  if (typeof window.gtag !== 'function') return;
+  window.gtag('event', 'page_view', {
+    page_path:  to.fullPath,
+    page_title: to.meta.title || document.title,
+  });
+});
+
 export default router;
