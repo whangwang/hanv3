@@ -355,6 +355,7 @@
 <script>
 import ContactSection from '@/components/ContactSection.vue'
 import { useMeta } from 'vue-meta'
+import { pageMeta, projectCover } from '@/utils/pageMeta'
 
 export default{
     name: 'WorkALView',
@@ -520,9 +521,13 @@ export default{
       }
     },
     mounted(){
-        useMeta({
-            title: 'AvianLens - Unlock the World of Wings',
-        })
+        useMeta(pageMeta({
+            title: 'AvianLens — Unlock the World of Wings',
+            description: 'A hackathon-winning crowd-sourced birdwatching companion app. 1st place at the CISSA UI/UX hackathon — designed end-to-end in two days.',
+            path: '/work/avianlens',
+            image: projectCover('avianlens'),
+            type: 'article',
+        }))
         this.vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
         this.dictionaryDescription = document.querySelector(".description.dictionary")
         this.dictionaryScreen = document.querySelector(".screen.dictionary")

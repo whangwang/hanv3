@@ -51,6 +51,7 @@
 <script>
 import ContactSection from '@/components/ContactSection.vue'
 import { useMeta } from 'vue-meta'
+import { pageMeta, projectCover } from '@/utils/pageMeta'
 
 export default{
     name: 'WorkCloudmatrixView',
@@ -58,9 +59,13 @@ export default{
         ContactSection,
     },
     mounted(){
-        useMeta({
-            title: 'Cloudmatrix',
-        })
+        useMeta(pageMeta({
+            title: 'Cloudmatrix — Face Recognition Platform',
+            description: 'The official website for a face recognition platform — design and front-end build.',
+            path: '/work/cloudmatrix',
+            image: projectCover('cloudmatrix'),
+            type: 'article',
+        }))
     }
 }
 </script>

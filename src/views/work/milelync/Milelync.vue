@@ -50,6 +50,7 @@
 <script>
 import ContactSection from '@/components/ContactSection.vue'
 import { useMeta } from 'vue-meta'
+import { pageMeta, projectCover } from '@/utils/pageMeta'
 
 export default{
     name: 'WorkMilelyncView',
@@ -57,9 +58,13 @@ export default{
         ContactSection,
     },
     mounted(){
-        useMeta({
-            title: 'Milelync',
-        })
+        useMeta(pageMeta({
+            title: 'Milelync — B2B Problem-Solving System',
+            description: 'A B2B problem-solving system designed for industry collaboration — design and product thinking.',
+            path: '/work/milelync',
+            image: projectCover('milelync'),
+            type: 'article',
+        }))
     }
 }
 </script>

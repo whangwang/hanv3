@@ -3,6 +3,10 @@
         <div class="container main-container">
             <h2>From Ideation <br>to Creation.</h2>
             <div class="list">
+                <div class="block" @click="to('authux')">
+                    <div class="cover" :style="renderCoverImage('auth')"></div>
+                    <h5>Improving authenticated student experience - a strategic service design</h5>
+                </div>
                 <div class="block" @click="to('stickerhd')">
                     <div class="cover" :style="renderCoverImage('stickerhd')"></div>
                     <h5>E-commerce website redesign</h5>
@@ -52,6 +56,7 @@
 <script>
 import ContactSection from '@/components/ContactSection.vue'
 import { useMeta } from 'vue-meta'
+import { pageMeta } from '@/utils/pageMeta'
 
 export default{
     name: 'WorkView',
@@ -65,9 +70,11 @@ export default{
         }
     },
     mounted(){
-        useMeta({
+        useMeta(pageMeta({
             title: 'Work',
-        })
+            description: 'Selected work by Han Wang — case studies across strategic service design, product design, and front-end engineering.',
+            path: '/work',
+        }))
     }
 }
 </script>

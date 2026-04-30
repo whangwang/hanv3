@@ -51,6 +51,7 @@
 <script>
 import ContactSection from '@/components/ContactSection.vue'
 import { useMeta } from 'vue-meta'
+import { pageMeta, projectCover } from '@/utils/pageMeta'
 
 export default{
     name: 'WorkCocView',
@@ -58,9 +59,13 @@ export default{
         ContactSection,
     },
     mounted(){
-        useMeta({
+        useMeta(pageMeta({
             title: 'CoC Ph.D. Official Website',
-        })
+            description: 'Official website for the National Chengchi University CoC PhD program — design and front-end build.',
+            path: '/work/coc',
+            image: projectCover('coc'),
+            type: 'article',
+        }))
     }
 }
 </script>

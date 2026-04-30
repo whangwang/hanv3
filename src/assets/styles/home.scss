@@ -336,6 +336,14 @@
                 width: 100%;
                 padding-bottom: 154px;
             }
+            &.large{
+              img{
+                padding-bottom: 200px;
+              }
+              &:not(:last-of-type):before{
+                height: 176px;
+              }
+            }
             .description{
                 text-align: left;
                 h3{
@@ -369,6 +377,20 @@
                         background: $primary-gradient;
                         -webkit-background-clip: text;
                         -webkit-text-fill-color: transparent;
+                    }
+                }
+                .project-link {
+                    margin-top: 12px;
+                    a {
+                        color: #6cdaff;
+                        text-decoration: none;
+                        font-weight: 600;
+                        border-bottom: 1px solid transparent;
+                        transition: border-color 0.2s ease, color 0.2s ease;
+                        &:hover {
+                            color: darken(#6cdaff, 20%);
+                            border-bottom-color: currentColor;
+                        }
                     }
                 }
             }

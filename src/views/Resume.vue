@@ -73,6 +73,9 @@
                             <span class="prompt design">Authenticated Experience (Student Digital Portal):</span> Ran research synthesis and solution design for the unification of the University's authenticated student platform — serving domestic, international, undergraduate, and postgraduate segments across the full student lifecycle. Applied a hypothesis-led approach validated through <span class="prompt design">13 in-depth interviews</span> and <span class="prompt design">249 Kano survey responses</span>, then used <span class="prompt design">RICE</span> to prioritise <span class="prompt design">25 Vision Stories</span> into a multi-horizon roadmap that directly informed the University's <span class="prompt design">2026 capital funding decision</span>.<br /><br />
                             <span class="prompt design">Quantifiable Impact:</span> Short-term uplift delivered a <span class="prompt design">+289% increase in banner click-through rate (8,522 → 33,169 YoY)</span>, improved mobile engagement to <span class="prompt design">60.77% (+13.4% YoY)</span>, and generated <span class="prompt design">~60,000 clicks</span> on the new personalised onboarding shortcut during peak enrolment.
                         </p>
+                        <p class="project-link">
+                            <a href="/#/work/authux">Project: Student Authenticated Experience Improvement →</a>
+                        </p>
                     </div>
                     <div class="exp-block">
                         <p class="date">Mar 2024  —  Dec 2024</p>
@@ -128,6 +131,7 @@
 <script>
 import ContactSection from '@/components/ContactSection.vue'
 import { useMeta } from 'vue-meta'
+import { pageMeta } from '@/utils/pageMeta'
 
 export default{
     name: 'ResumeView',
@@ -135,9 +139,11 @@ export default{
         ContactSection,
     },
     mounted(){
-        useMeta({
+        useMeta(pageMeta({
             title: 'Resume',
-        })
+            description: 'Han Wang — Experience Design Analyst with a hybrid background across strategic service design, product design, and front-end engineering. Master of IT (HCI) and Bachelor of Science (CS).',
+            path: '/resume',
+        }))
     },
     methods: {
         downloadResume(role){

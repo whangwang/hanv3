@@ -25,20 +25,20 @@
                         <img @click="anchor('exp-section')" src="@/assets/images/global/deco-arrow-more.svg" alt="" class="indicator">
                     </div>
                     <div class="right col-8" :style="`margin-top: ${headlineHeight}px;`">
-                        <a class="work col-7" target="_blank" href="/#/work/stickerhd">
-                            <div :style="renderCoverImage('stickerhd')" alt="" class="cover"></div>
-                            <h5 class="title">E-commerce website redesign</h5>
-                            <p class="client bold">StickerHD.com</p>
+                        <a class="work col-7" target="_blank" href="/#/work/authux">
+                            <div :style="renderCoverImage('auth')" alt="" class="cover"></div>
+                            <h5 class="title">Improving authenticated student experience</h5>
+                            <p class="client bold">University of Melbourne</p>
                         </a>
                         <a class="work col-7 mid" target="_blank" href="/#/work/tiago">
                             <div :style="renderCoverImage('tiago')" alt="" class="cover"></div>
                             <h5 class="title">Improve User experience in TIAGo Teleoperation</h5>
                             <p class="client bold">TIAGo</p>
                         </a>
-                        <a class="work col-7 right" target="_blank" href="/#/work/avianlens">
-                            <div :style="renderCoverImage('avianlens')" alt="" class="cover"></div>
-                            <h5 class="title">A hackathon-winning birdwatching companion APP</h5>
-                            <p class="client bold">CISSA</p>
+                        <a class="work col-7 right" target="_blank" href="/#/work/stickerhd">
+                            <div :style="renderCoverImage('stickerhd')" alt="" class="cover"></div>
+                            <h5 class="title">E-commerce website redesign</h5>
+                            <p class="client bold">StickerHD.com</p>
                         </a>
                         <a class="work col-7 mid" target="_blank" href="/#/work/nubila">
                             <div :style="renderCoverImage('nubila')" alt="" class="cover"></div>
@@ -50,13 +50,16 @@
             </div>
             <div id="exp-section" class="exp">
                 <h2 class="adv-title">Experience</h2>
-                <div class="exp-block">
+                <div class="exp-block large">
                     <img src="@/assets/images/global/clients/unimelb.png" alt="" class="logo">
                     <div class="description">
                         <h3 class="job-title">Experience Design Analyst</h3>
                         <p class="org">University of Melbourne, Enterprise Service Group · Full-time</p>
                         <p>
                             Solo project lead for the first three months before the Design Lead joined. Applied a hypothesis-led approach validated through <span class="prompt design">13 in-depth interviews</span> and <span class="prompt design">249 Kano survey responses</span>, then used <span class="prompt design">RICE</span> to prioritise <span class="prompt design">25 Vision Stories</span> into a roadmap that directly informed the University's <span class="prompt design">2026 capital funding decision</span>. Short-term uplift delivered a <span class="prompt design">+289% banner click-through increase (8,522 → 33,169 YoY)</span>, mobile engagement of <span class="prompt design">60.77% (+13.4% YoY)</span>, and <span class="prompt design">~60,000 onboarding clicks</span> during peak enrolment.
+                        </p>
+                        <p class="project-link">
+                            <a href="/#/work/authux">Project: Student Authenticated Experience Improvement →</a>
                         </p>
                     </div>
                     <div class="date">
@@ -99,6 +102,7 @@
 // @ is an alias to /src
 import ContactSection from '@/components/ContactSection.vue'
 import { useMeta } from 'vue-meta'
+import { pageMeta } from '@/utils/pageMeta'
 
 export default {
     name: 'HomeView',
@@ -113,9 +117,11 @@ export default {
     },
     mounted(){
         this.headlineHeight = document.getElementsByClassName('works-title')[0].clientHeight + 32
-        useMeta({
-            title: '',
-        })
+        useMeta(pageMeta({
+            title: 'UI/UX Designer & Front-end Developer',
+            description: 'Han Wang — Experience Design Analyst by day, freelance designer-developer the rest of the time. Strategic service design, research synthesis, design systems, and front-end engineering.',
+            path: '/',
+        }))
     },
     created(){
         window.addEventListener("scroll", this.handleScroll)

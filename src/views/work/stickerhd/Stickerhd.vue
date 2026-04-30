@@ -414,6 +414,7 @@
 <script>
 import { useMeta } from 'vue-meta'
 import ContactSection from '@/components/ContactSection.vue'
+import { pageMeta, projectCover } from '@/utils/pageMeta'
 
 export default {
   name: 'WorkStickerHDView',
@@ -422,7 +423,13 @@ export default {
   },
 
   mounted() {
-    useMeta({ title: 'StickerHD — Deliver Uplift for E-Commerce' })
+    useMeta(pageMeta({
+      title: 'StickerHD — Deliver Uplift for E-Commerce',
+      description: 'A 90-day end-to-end e-commerce redesign for a custom sticker printing company. Two-tier design token architecture, Next.js + Tailwind front-end, and a "handover-less" workflow.',
+      path: '/work/stickerhd',
+      image: projectCover('stickerhd'),
+      type: 'article',
+    }))
     this._initVideoSync()
   },
 

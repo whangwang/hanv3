@@ -47,6 +47,7 @@
 <script>
 import { useMeta } from 'vue-meta'
 import ContactSection from '@/components/ContactSection.vue'
+import { pageMeta, projectCover } from '@/utils/pageMeta'
 
 export default{
     name: 'WorkTemplateView',
@@ -55,9 +56,17 @@ export default{
     },
     props: ['data'],
     mounted(){
-        useMeta({
-            title: this.$route.meta.title,
-        })
+        // Cover field is stored as "<project>/cover" — split out the project folder name
+        const projectName = (this.data?.cover || '').split('/')[0]
+        // Strip HTML and use the first description paragraph as the OG description
+        const rawDesc = (this.data?.description?.[0] || '').replace(/\s+/g, ' ').trim()
+        useMeta(pageMeta({
+            title: this.data?.metaTitle || this.$route.meta.title,
+            description: rawDesc,
+            path: this.$route.path,
+            image: projectName ? projectCover(projectName) : undefined,
+            type: 'article',
+        }))
     }
 }
 </script>

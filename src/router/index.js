@@ -217,6 +217,17 @@ const routes = [
     meta: { indvidual: true, hideNav: true, backgroundColor: "#13140D" },
   },
   {
+    path: "/work/authux",
+    name: "WorksAuth",
+    component: () => import("../views/work/auth/Auth.vue"),
+    meta: {
+      indvidual: true,
+      hideNav: true,
+      backgroundColor: "#000F46",
+      title: "Authenticated Student Experience — Strategic Service Design",
+    },
+  },
+  {
     path: "/work/coc",
     name: "WorksCoc",
     component: () => import("../views/work/coc/Coc.vue"),
@@ -298,9 +309,9 @@ router.beforeEach((to, from, next) => {
 
 // Track every page navigation in GA4
 router.afterEach((to) => {
-  if (typeof window.gtag !== 'function') return;
-  window.gtag('event', 'page_view', {
-    page_path:  to.fullPath,
+  if (typeof window.gtag !== "function") return;
+  window.gtag("event", "page_view", {
+    page_path: to.fullPath,
     page_title: to.meta.title || document.title,
   });
 });

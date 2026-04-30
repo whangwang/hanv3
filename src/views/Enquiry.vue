@@ -76,15 +76,18 @@
 
 <script>
 import { useMeta } from 'vue-meta'
+import { pageMeta } from '@/utils/pageMeta'
 import VueSlider from 'vue-slider-component'
 import emailjs from 'emailjs-com'
 
 export default{
     name: 'EnquiryView',
     mounted(){
-        useMeta({
+        useMeta(pageMeta({
             title: 'Enquiry',
-        })
+            description: 'Get in touch with Han Wang for design and development collaboration — UI/UX, design systems, front-end engineering.',
+            path: '/enquiry',
+        }))
         this.priceRange = [this.priceRangeOptions[0], this.priceRangeOptions[2]]
     },
     data(){

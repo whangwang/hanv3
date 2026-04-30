@@ -169,6 +169,21 @@
                             }
                         }
                     }
+                    .project-link {
+                        margin-top: 24px;
+                        font-size: inherit;
+                        a {
+                            color: #6cdaff;
+                            text-decoration: none;
+                            font-weight: 600;
+                            border-bottom: 1px solid transparent;
+                            transition: border-color 0.2s ease, color 0.2s ease;
+                            &:hover {
+                                color: darken(#6cdaff, 20%);
+                                border-bottom-color: currentColor;
+                            }
+                        }
+                    }
                 }
             }
             @include largePad(){

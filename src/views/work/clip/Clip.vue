@@ -166,6 +166,7 @@
 <script>
 import ContactSection from '@/components/ContactSection.vue'
 import { useMeta } from 'vue-meta'
+import { pageMeta, projectCover } from '@/utils/pageMeta'
 
 export default{
     name: 'WorkClipView',
@@ -189,9 +190,13 @@ export default{
         }
     },
     mounted(){
-        useMeta({
-            title: 'Clip',
-        })
+        useMeta(pageMeta({
+            title: 'Clip — Blockchain Digital Credentials App',
+            description: 'Designing CLIP — a blockchain-based digital credential management app. Midnight Blue, Neon Green, and Aurora Gradients combine to make complex tech feel approachable.',
+            path: '/work/clip',
+            image: projectCover('clip'),
+            type: 'article',
+        }))
     }
 }
 </script>
