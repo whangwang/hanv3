@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Han Wang — UI/UX Designer & Front-end Developer</title>
+  <meta name="robots" content="noindex">
+  <!-- Single-Page-App fallback for GitHub Pages.
+       Encodes the requested path into a query string and bounces to "/", where
+       index.html decodes it back to the original URL via the History API. -->
+  <script>
+    (function () {
+      var l = window.location;
+      l.replace(
+        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+        '/?/' +
+        l.pathname.slice(1).replace(/&/g, '~and~') +
+        (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+        l.hash
+      );
+    })();
+  </script>
+</head>
+<body>
+  <p>Redirecting to <a href="/">hanwang.design</a>…</p>
+</body>
+</html>
