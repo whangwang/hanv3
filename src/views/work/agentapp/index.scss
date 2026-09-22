@@ -1,0 +1,2517 @@
+// AG App case-study page styles.
+// Page sets `indvidual: true` (so body gets `.detach`, killing the global
+// heading/button bleed) and `hideNav: true` (custom hero-aligned nav).
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400;1,700&family=Noto+Sans+TC:wght@400;500;700;900&family=Montserrat:wght@500;600;700;900&display=swap');
+@import '../../../assets/styles/config/scss/rwd';
+
+// ---- Brand tokens (page-local) ----
+$ag-paper:     #F4FAFF;
+$ag-paper-2:   #F5F7FA;
+$ag-ink:       #131A34;
+$ag-ink-2:     #2B324A;
+$ag-mute:      #535C7D;
+$ag-mute-2:    #7C889F;
+$ag-hair:      #D9E7FE;
+$ag-hair-2:    #C5D4EE;
+$ag-blue:      #3565B6;
+$ag-blue-soft: #D9E7FE;
+$ag-accent:    #5FC2FC;
+$ag-grad:      linear-gradient(90deg, #3565B6 0%, #5FC2FC 100%);
+$ag-grad-2:    linear-gradient(135deg, #3565B6 0%, #5FC2FC 100%);
+$ag-navy:      #0B1D3F;
+
+$ag-sans:      'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+$ag-tc:        'Noto Sans TC', 'PingFang TC', sans-serif;
+
+// ============================================================
+// Page wrapper — overrides global heading/button styles via
+// .detach (body class added by App.vue when route.meta.indvidual).
+// ============================================================
+// ============================================================
+// Custom in-page nav — two-nav slide pattern.
+//   .ag-nav-top    : sits over the hero at page top, scrolls away with
+//                    the page (absolute positioning, transparent bg).
+//   .ag-nav-stuck  : fixed at viewport top, hidden off-screen via
+//                    transform: translateY(-100%) by default. When the
+//                    `.visible` class is added (scrollY > 80), it slides
+//                    in with a white background + soft shadow.
+// Route sets `hideNav: true` so the global App.vue <nav> stays hidden.
+// ============================================================
+.work-agentapp-wrapper {
+  position: relative;
+}
+
+// Footer override — global .footer (rendered by App.vue, sibling of this
+// page's wrapper) is transparent on .custom-color routes. Force the brand
+// navy here so the page ends on the same dark beat as the ContactSection.
+.work-agentapp-wrapper ~ .footer {
+  background-color: $ag-navy;
+}
+
+h1, h2, h3, h4, h5 {
+  em{
+    line-height: 1.2!important;
+  }
+}
+
+.ag-nav-top,
+.ag-nav-stuck {
+  width: 100%;
+  padding: 16px 0;
+  z-index: 100;
+  > .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 0 64px;
+    @media (max-width: 1100px) { padding: 0 56px; }
+    @media (max-width: 700px)  { padding: 0 16px; }
+    > a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: auto;
+      text-decoration: none;
+    }
+    .logos {
+      display: flex;
+      align-items: center;
+      img { width: 48px; height: 48px; }
+      h4 {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 900;
+        font-style: italic;
+        margin-left: 8px;
+        font-size: 24px;
+        @media (max-width: 700px) { font-size: 18px; }
+      }
+    }
+    .link {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 400;
+      font-size: 18px;
+      font-style: italic;
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      img {
+        margin-left: 12px;
+        transform: translateY(-2px);
+      }
+      &:hover {
+        font-weight: 600;
+        img { margin-left: 16px; }
+      }
+      &:before {
+        content: 'Back to hanwang.design';
+        @media (max-width: 600px) { content: 'Back'; }
+      }
+    }
+  }
+}
+
+// Top nav — anchored to the wrapper's top, scrolls with the page.
+// Transparent so the hero gradient shows through; light text.
+.ag-nav-top {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  background: transparent;
+  z-index: 5;
+  > .container {
+    .logos h4,
+    .link { color: #fff; }
+    // back-arrow.svg ships as a dark glyph — invert it to white for the
+    // top nav over the dark/blue gradient hero.
+    .link img {
+      filter: brightness(0) saturate(100%) invert(100%);
+    }
+  }
+}
+
+// Slide-in stuck nav — fixed, white, off-screen until .visible toggles.
+.ag-nav-stuck {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100000;
+  background: #fff;
+  box-shadow: 0 6px 24px -8px rgba(11, 29, 63, 0.10);
+  transform: translateY(-100%);
+  transition: transform 0.4s cubic-bezier(.19, 1, .22, 1);
+  &.visible { transform: translateY(0); }
+  > .container {
+    .logos h4,
+    .link { color: $ag-ink; }
+    // back-arrow stays as a dark glyph on the white bar — keep the
+    // original SVG colour (no filter).
+  }
+}
+
+.work-agentapp-view {
+  background: $ag-paper;
+  color: $ag-ink;
+  font-family: $ag-sans !important;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+  min-height: 100vh;
+
+  * {
+    box-sizing: border-box;
+    font-family: $ag-sans !important;
+  }
+  a { color: inherit; text-decoration: none; }
+  p { margin: 0; }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: $ag-sans;
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: normal;
+    margin: 0;
+    color: inherit;
+    &::before, &::after { content: none; }
+  }
+  button {
+    font-family: $ag-sans;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1.4;
+    letter-spacing: normal;
+    text-transform: none;
+    text-align: center;
+  }
+
+  // ============================================================
+  // Layout
+  // ============================================================
+  .ag-wrap {
+    width: 100%;
+    max-width: 1512px;
+    margin: 0 auto;
+    padding: 0 112px;
+    @media (max-width: 1100px) { padding: 0 56px; }
+    @media (max-width: 700px)  { padding: 0 16px; }
+  }
+  .ag-section { padding: 96px 0; position: relative; }
+  @media (max-width: 900px) {
+    .ag-section { padding: 72px 0; }
+  }
+
+  // ============================================================
+  // Reveals
+  // ============================================================
+  .ag-reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 700ms cubic-bezier(.19,1,.22,1), transform 700ms cubic-bezier(.19,1,.22,1);
+    transition-delay: var(--rd, 0ms);
+    &.in { opacity: 1; transform: translateY(0); }
+  }
+  .ag-reveal-scale {
+    opacity: 0;
+    transform: scale(.985);
+    transition: opacity 800ms cubic-bezier(.19,1,.22,1), transform 800ms cubic-bezier(.19,1,.22,1);
+    transition-delay: var(--rd, 0ms);
+    &.in { opacity: 1; transform: scale(1); }
+  }
+
+  // ============================================================
+  // HERO — gradient (100vh) + nav + headline + landing image
+  //   .hero-gradient-bg : absolute 100vh gradient layer
+  //   .hero-text        : nav-padded headline + sub
+  //   .landing-area     : margin-top 96px from sub, holds bg-deco + landing
+  //   .bg-deco          : absolute, 1040px, bottom-aligned to landing top
+  // ============================================================
+  .ag-hero {
+    position: relative;
+    isolation: isolate;
+    overflow-x: clip;       // clips bg-deco horizontal overflow (vertical stays free)
+    overflow-y: visible;
+    color: #fff;
+    padding-bottom: 96px;  // breathing room before next (light-bg) section
+    @media (max-width: 900px) { padding-bottom: 72px; }
+
+    .hero-gradient-bg {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 100vh;
+      background: linear-gradient(to bottom right, #3565B6 0%, #5FC2FC 100%);
+      z-index: -2;
+      pointer-events: none;
+      // Mobile: end the gradient exactly where the landing-mobile image's
+      // own blue→light transition is, so the bg color flows into the image
+      // seamlessly instead of bleeding past it. Math:
+      //   landing-image top ≈ 289px from hero top
+      //     (96 padding + 77 title 2 lines + 20 + 48 sub 2 lines + 48 margin)
+      //   top photo height = image display width = (100vw - 32px)
+      //     (image aspect is 1000:1618; top half is square 1000×1000)
+      //   gradient bottom = 289 + (100vw - 32) = 100vw + 257px
+      @media (max-width: 700px) {
+        height: calc(100vw + 257px);
+      }
+    }
+  }
+
+  // hero text (sits below the in-page nav)
+  .hero-text {
+    padding-top: 176px;
+    position: relative;
+    z-index: 1;
+    @media (max-width: 900px) { padding-top: 140px; }
+    @media (max-width: 700px) { padding-top: 96px; }
+
+    .ag-hero-title {
+      font-weight: 700;
+      font-size: clamp(40px, 5vw, 64px);
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      color: #fff;
+      max-width: 800px;
+      @media (max-width: 700px) {
+        font-size: 32px;
+        line-height: 1.2;
+      }
+    }
+    .ag-hero-sub {
+      margin-top: 32px;
+      font-weight: 400;
+      font-size: clamp(18px, 1.6vw, 24px);
+      line-height: 1.45;
+      color: rgba(255, 255, 255, 0.95);
+      max-width: 640px;
+      @media (max-width: 700px) {
+        margin-top: 20px;
+        font-size: 16px;
+        line-height: 1.5;
+      }
+    }
+  }
+
+  // landing image — 96px below the subtitle. The image overlaps the gradient
+  // (which only spans 100vh from hero top), creating an intentional crossover.
+  .landing-area {
+    position: relative;
+    margin-top: 96px;
+    z-index: 1;
+    @media (max-width: 700px) { margin-top: 48px; }
+
+    // bg-deco SVG: absolute, always 1040px wide, bottom edge aligned with
+    // the top edge of the landing image (i.e., top of .landing-area).
+    .bg-deco {
+      position: absolute;
+      width: 1040px;
+      bottom: 100%;          // bottom of svg = top of landing-area
+      right: -100px;         // extends slightly past wrap right edge (clipped by hero)
+      pointer-events: none;
+      z-index: -1;
+      @media (max-width: 900px) { right: -200px; opacity: 0.85; }
+      // Mobile: scale down and tuck up against the headline like the Figma.
+      @media (max-width: 700px) {
+        width: 620px;
+        right: -180px;
+        bottom: 75%;
+        opacity: 0.9;
+      }
+    }
+
+    .landing-frame {
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      picture { display: block; }
+      img {
+        display: block;
+        width: 100%;
+        height: auto;
+        max-height: 800px;
+        object-fit: cover;
+        // Mobile composition image is taller than wide — let it size naturally.
+        @media (max-width: 700px) { max-height: none; }
+      }
+    }
+    .landing-badge {
+      position: absolute;
+      right: 24px;
+      bottom: -32px;
+      width: 280px;
+      pointer-events: none;
+      z-index: 2;
+      @media (max-width: 700px) { width: 200px; right: 12px; bottom: -16px; }
+      .badge-card {
+        background: linear-gradient(95deg, rgba(95,194,252,0) 0%, rgba(95,194,252,0.1) 100%), #fff;
+        border-radius: 8px;
+        padding: 20px 24px;
+        box-shadow: 0 12px 40px rgba(53,101,182,.2);
+      }
+      .badge-eyebrow {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: $ag-mute;
+        margin-bottom: 8px;
+      }
+      .badge-mark {
+        position: relative;
+        span {
+          display: inline-block;
+          font-style: italic;
+          font-weight: 700;
+          font-size: 28px;
+          color: $ag-blue;
+          background: $ag-grad;
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          transform: rotate(-6deg);
+          letter-spacing: -0.01em;
+        }
+      }
+    }
+  }
+
+  // ============================================================
+  // Type — display headlines + body
+  // ============================================================
+  .ag-h-display {
+    font-weight: 400;
+    font-size: clamp(34px, 4vw, 48px);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: $ag-ink;
+    em {
+      font-style: normal;
+      font-weight: 700;
+      color: $ag-blue;
+    }
+    &.centered { text-align: center; }
+  }
+  .ag-eyebrow {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: $ag-blue;
+    display: inline-block;
+    position: relative;
+    margin-bottom: 16px!important;
+  }
+  .ag-section-head {
+    margin-bottom: 64px;
+    .ag-eyebrow { margin-bottom: 24px; }
+    @media (max-width: 700px) { margin-bottom: 48px; }
+  }
+  .ag-body {
+    font-size: 18px;
+    line-height: 1.5;
+    font-weight: 400;
+    color: $ag-ink;
+    em { font-style: italic; font-weight: 700; color: $ag-blue; }
+    & + .ag-body { margin-top: 16px; }
+  }
+  .ag-body-l {
+    font-size: clamp(18px, 1.5vw, 22px);
+    line-height: 1.55;
+    font-weight: 400;
+    color: $ag-ink;
+    em { font-style: italic; font-weight: 700; color: $ag-blue; }
+  }
+  .kicker {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: $ag-blue;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  // ============================================================
+  // INTRO (Chapter 2)
+  // ============================================================
+  .ag-intro {
+    // Hairline divider sits at the section's bottom edge — separates
+    // the achievement card from the following Problem Statement section.
+    border-bottom: 1px solid $ag-hair;
+    padding-top: 24px;
+    .ag-h-display { margin-bottom: 64px; max-width: 900px; }
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+      @media (max-width: 1000px) { grid-template-columns: 1fr; gap: 48px; }
+    }
+    .intro-h {
+      font-size: 24px;
+      font-weight: 700;
+      color: $ag-ink;
+      margin-bottom: 24px;
+      line-height: 1.4;
+    }
+    .meta-row {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 16px;
+      align-items: baseline;
+      padding: 16px 0;
+      border-top: 1px solid $ag-hair;
+      &:last-child { border-bottom: 1px solid $ag-hair; }
+      @media (max-width: 500px) {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+      .k {
+        font-weight: 700;
+        font-size: 14px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: $ag-mute-2;
+      }
+      .v {
+        font-size: 16px;
+        line-height: 1.5;
+        color: $ag-ink;
+      }
+    }
+  }
+
+  // ============================================================
+  // PROBLEM STATEMENT — card initially, GENUINELY EXPANDS into the
+  // section background once the user scrolls past the "How might we" line.
+  //
+  // Single .problem-bg element animates its inset (top/bottom/left/right),
+  // border-radius and box-shadow simultaneously. Card mode = matches
+  // .problem-area edges with chrome; bg mode = extends past wrap padding
+  // to viewport edges, and past section padding to section edges.
+  // ============================================================
+  .ag-problem-section {
+    position: relative;
+    padding: 96px 0;
+    isolation: isolate;
+    // The expanded .problem-bg bleeds to the viewport edges with a 100vw
+    // centering trick; vw includes a classic scrollbar's width, so it lands
+    // half a scrollbar past each edge. Clip that excess horizontally (the
+    // section already spans the full content width) while leaving vertical
+    // overflow free, since the bg deliberately extends past top/bottom.
+    overflow-x: clip;
+    overflow-y: visible;
+    @media (max-width: 900px) { padding: 72px 0; }
+  }
+
+  .ag-problem-section .ag-wrap { position: relative; z-index: 1; }
+
+  .problem-area {
+    position: relative;
+    isolation: isolate;
+    color: #fff;
+  }
+
+  .problem-bg {
+    position: absolute;
+    z-index: 0;
+    background: $ag-grad;
+    pointer-events: none;
+    // Card mode: matches .problem-area edges
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 8px;
+    box-shadow: 0 34px 80px 0 rgba(95, 194, 252, 0.5);
+    transition:
+      top 800ms cubic-bezier(.19,1,.22,1),
+      bottom 800ms cubic-bezier(.19,1,.22,1),
+      left 800ms cubic-bezier(.19,1,.22,1),
+      right 800ms cubic-bezier(.19,1,.22,1),
+      border-radius 800ms cubic-bezier(.19,1,.22,1),
+      box-shadow 800ms cubic-bezier(.19,1,.22,1);
+  }
+  .ag-problem-section.is-expanded .problem-bg {
+    // bg mode: extends to section edges (cancels section padding 60/140)
+    // and to viewport edges (cancels wrap padding via 100vw centering trick).
+    top: -60px;
+    bottom: -96px;
+    left: calc((100% - 100vw) / 2);
+    right: calc((100% - 100vw) / 2);
+    border-radius: 0;
+    box-shadow: none;
+    @media (max-width: 900px) {
+      top: -40px;
+      bottom: -96px;
+    }
+  }
+
+  // "Problem Statement" eyebrow + "How might we..." question
+  // Reduced bottom padding so the question doesn't feel disconnected from
+  // the divider + Three Why content that follows after expansion.
+  .problem-statement {
+    position: relative;
+    z-index: 1;
+    padding: 96px 109px 32px;
+    text-align: center;
+    @media (max-width: 1100px) { padding: 80px 56px 24px; }
+    @media (max-width: 700px)  { padding: 64px 32px 16px; }
+
+    .grad-eyebrow {
+      text-align: center;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 56px;
+      display: block;
+    }
+    .grad-title {
+      font-weight: 300;
+      font-size: clamp(36px, 4.6vw, 64px);
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      color: #fff;
+      max-width: 980px;
+      margin: 0 auto;
+      em { font-style: italic; font-weight: 700; color: #fff; }
+    }
+  }
+
+  // Hidden until expanded. Uses grid-template-rows trick to animate
+  // from collapsed (0fr) to natural-height (1fr). `min-height: 0` on the
+  // grid item is required so the row can actually shrink below content size.
+  .problem-extended {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-rows: 0fr;
+    transition:
+      grid-template-rows 800ms cubic-bezier(.19,1,.22,1),
+      margin-top 800ms cubic-bezier(.19,1,.22,1);
+    margin-top: 0;
+  }
+  .problem-extended-inner {
+    overflow: hidden;
+    min-height: 0;
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity 600ms ease 300ms,
+      transform 600ms cubic-bezier(.19,1,.22,1) 300ms;
+    padding-bottom: 96px;
+  }
+  .ag-problem-section.is-expanded .problem-extended {
+    grid-template-rows: 1fr;
+    margin-top: 96px;
+  }
+  .ag-problem-section.is-expanded .problem-extended-inner {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  // "Three important why" headline + 3 cards. Sits at wrap content edge,
+  // not inside the original card padding — so it reads as section content,
+  // not as continuation of the card.
+  .problem-extended-title {
+    margin-top: 0;
+    margin-bottom: 48px;
+    font-weight: 400;
+    font-size: clamp(32px, 3.5vw, 48px);
+    line-height: 1.2;
+    color: #fff;
+    em { font-style: italic; font-weight: 700; }
+  }
+
+  .problem-extended-inner .why-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    @media (max-width: 900px) { grid-template-columns: 1fr; }
+  }
+  // Three Why cards: collapsed chrome, white text + icon directly on the
+  // gradient bg so they read as part of the section rather than as cards.
+  .problem-extended-inner .why-card {
+    background: transparent;
+    padding: 0 8px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    .why-icon {
+      color: #fff;
+      margin-bottom: 20px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.10);
+      border: 1px solid rgba(255, 255, 255, 0.30);
+      svg { width: 28px; height: 28px; display: block; }
+    }
+    .why-h {
+      font-size: 32px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    p {
+      font-size: 18px;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.9);
+    }
+    .why-deco { display: none; }
+  }
+
+  // Divider between HMW statement and the Three Important Why grid.
+  // Lives inside .problem-extended-inner so it reveals along with the rest.
+  .problem-extended-inner .grad-divider {
+    height: 1px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.3);
+    margin: 0 0 56px;
+  }
+
+  // ============================================================
+  // GRADIENT CARD (used for Concept and CTA)
+  // ============================================================
+  .ag-card-section { padding: 96px 0; }
+  .ag-grad-card {
+    border-radius: 8px;
+    background: $ag-grad;
+    box-shadow: 0 34px 80px 0 rgba(95, 194, 252, 0.5);
+    color: #fff;
+    padding: 96px 109px;
+    overflow: hidden;
+    position: relative;
+    @media (max-width: 900px) { padding: 72px 32px; }
+
+    .grad-eyebrow {
+      text-align: center;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 56px;
+    }
+    .grad-title {
+      font-weight: 300;
+      font-size: clamp(36px, 4.6vw, 64px);
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      color: #fff;
+      text-align: center;
+      max-width: 980px;
+      margin: 0 auto;
+      em {
+        font-style: italic;
+        font-weight: 700;
+        color: #fff;
+      }
+      &.centered { text-align: center; }
+    }
+    .grad-divider {
+      max-width: 100%;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.3);
+      margin: 96px 0;
+    }
+    .grad-sub {
+      font-size: clamp(32px, 3.5vw, 48px);
+      font-weight: 400;
+      color: #fff;
+      margin-bottom: 56px;
+      em {
+        font-style: italic;
+        font-weight: 700;
+      }
+    }
+    .grad-body {
+      font-size: clamp(16px, 1.4vw, 20px);
+      line-height: 1.6;
+      color: rgba(255,255,255,0.92);
+      max-width: 760px;
+      margin-top: 48px;
+      &.centered { text-align: center; margin-left: auto; margin-right: auto; }
+    }
+
+    &.centered {
+      text-align: center;
+      .grad-eyebrow { margin-bottom: 32px; }
+    }
+
+    .why-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      @media (max-width: 900px) { grid-template-columns: 1fr; }
+    }
+    .why-card {
+      background: #fff;
+      border-radius: 2px;
+      padding: 32px;
+      min-height: 231px;
+      box-shadow: 0 0 15px rgba(53,101,182,.1);
+      position: relative;
+      overflow: hidden;
+      .why-h {
+        font-size: 24px;
+        font-weight: 700;
+        color: $ag-ink;
+        line-height: 1.3;
+        margin-bottom: 16px;
+      }
+      p {
+        font-size: 14px;
+        line-height: 1.55;
+        color: $ag-mute;
+      }
+      .why-deco {
+        position: absolute;
+        right: -40px; bottom: -40px;
+        width: 160px; height: 160px;
+        background: radial-gradient(circle at 30% 30%, rgba(95,194,252,.18) 0%, rgba(95,194,252,0) 60%);
+        pointer-events: none;
+        &.alt  { background: radial-gradient(circle at 70% 30%, rgba(53,101,182,.15) 0%, rgba(53,101,182,0) 60%); }
+        &.alt2 { background: radial-gradient(circle at 50% 30%, rgba(95,194,252,.12) 0%, rgba(53,101,182,.08) 60%, transparent 80%); }
+      }
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 56px;
+      padding: 18px 36px;
+      border-radius: 2px;
+      background: #fff;
+      color: $ag-blue;
+      font-size: 18px;
+      font-weight: 700;
+      transition: transform .3s cubic-bezier(.19,1,.22,1), box-shadow .3s ease;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 36px rgba(0,0,0,0.18);
+      }
+      .arr { font-weight: 700; }
+    }
+  }
+
+  // ============================================================
+  // STRATEGY — two-column layout.
+  // Left: title + intro + numbered commitments list.
+  // Right: animated dashed-triangle SVG visualising "where they meet".
+  // ============================================================
+  .ag-strategy { 
+    background-color: white;
+   }
+
+  .strategy-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    @media (max-width: 1000px) {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+  }
+
+  .strategy-text-list {
+    list-style: none;
+    padding: 0;
+    margin: 48px 0 0;
+    li {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 16px;
+      padding: 20px 0;
+      border-top: 1px solid $ag-hair;
+      &:last-child { border-bottom: 1px solid $ag-hair; }
+    }
+    .li-num {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: $ag-blue;
+      padding-top: 4px;
+    }
+    .li-body { min-width: 0; }
+    .li-title {
+      display: block;
+      font-size: 18px;
+      font-weight: 700;
+      color: $ag-ink;
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+    .li-body p {
+      font-size: 15px;
+      line-height: 1.55;
+      color: $ag-mute;
+      margin: 0;
+    }
+  }
+
+  .strategy-diagram {
+    width: 100%;
+    max-width: 580px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .strategy-img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  // ============================================================
+  // RESEARCH FLOW — three-tier diagram:
+  //   Tier 01 (top)     · 4 activity cards
+  //   Connector         · dashed step-line + decorative dots
+  //   Tier 02 (middle)  · 3 overlapping diamond insights
+  //   Connector         · dashed step-line + decorative dots
+  //   Tier 03 (bottom)  · 3 vision-goal cards
+  // ============================================================
+  .ag-flow { background: #F4FAFF; }
+
+  .flow-diagram {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  // Numbered tier label (small marker badge + name + caption right-aligned)
+  .tier-label {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 24px;
+    .tier-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: $ag-grad-2;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      box-shadow: 0 4px 12px -3px rgba(53,101,182,0.4);
+      flex: none;
+    }
+    .tier-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: $ag-ink;
+      letter-spacing: -0.005em;
+    }
+    .tier-caption {
+      font-size: 13px;
+      color: $ag-mute;
+      margin-left: auto;
+      text-align: right;
+      @media (max-width: 700px) {
+        margin-left: 0; text-align: left; width: 100%;
+      }
+    }
+  }
+
+  .tier { display: grid; }
+
+  // Tier 01 · top — 4 white cards
+  .tier-top {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    @media (max-width: 1100px) { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 600px)  { grid-template-columns: 1fr; }
+  }
+
+  // Tier 03 · bottom — 3 gradient-bg cards
+  .tier-bottom {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    @media (max-width: 900px) { grid-template-columns: 1fr; }
+  }
+
+  // Generic tier card chrome
+  .tier-card {
+    border-radius: 8px;
+    padding: 24px 22px;
+    display: flex;
+    flex-direction: column;
+    &.top-card {
+      background: #fff;
+      border: 1px solid $ag-hair;
+      box-shadow: 0 0 12px rgba(53,101,182,0.06);
+      .card-num {
+        display: flex;
+        align-items: baseline;
+        gap: 6px;
+        margin-bottom: 14px;
+        .n {
+          font-size: clamp(32px, 3vw, 44px);
+          font-weight: 700;
+          line-height: 0.9;
+          letter-spacing: -0.03em;
+          background: $ag-grad;
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+        .unit {
+          font-size: 11px;
+          font-weight: 600;
+          color: $ag-mute-2;
+          letter-spacing: 0.04em;
+          text-transform: uppercase;
+        }
+      }
+      .card-h { 
+        font-size: 17px; font-weight: 700; color: $ag-ink; line-height: 1.3; margin-bottom: 8px; 
+        em{
+          font-style: normal;
+        }
+      }
+      .card-p { font-size: 14px; line-height: 1.5; color: $ag-mute; }
+    }
+    &.bottom-card {
+      background: $ag-grad-2;
+      color: #fff;
+      box-shadow: 0 34px 80px 0 rgba(95, 194, 252, 0.50);
+      padding: 28px 24px;
+      .card-illust {
+        display: block;
+        width: 100%;
+        max-width: 200px;
+        height: auto;
+        margin: auto;
+        margin-bottom: 18px;
+      }
+      .card-tag {
+        font-size: 11px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: rgba(255,255,255,0.78);
+        margin-bottom: 10px;
+      }
+      .card-h {
+        font-size: clamp(24px, 1.6vw, 22px);
+        font-weight: 400;
+        line-height: 1.2;
+        margin-bottom: 12px;
+        color: #fff;
+        em {
+          font-weight: 700;
+          font-style: normal;
+          color: #fff;
+        }
+        // allow manual line-breaks via <br /> in the title source
+        br { display: block; }
+      }
+      .card-p { font-size: 16px; line-height: 1.5; color: rgba(255,255,255,0.9); }
+    }
+  }
+
+  // Tier 02 · middle — pale-cyan pill panel (border-radius: 1000px) that
+  // hosts a horizontally-scrolling marquee of insight chips. The panel
+  // edges fade out via mask-image so chips drift in / drift out.
+  .tier-middle {
+    display: block;
+    margin: 0;
+  }
+  .insight-rect {
+    background: #DFF3FE;
+    border: none;
+    border-radius: 1000px;     // pill — fully rounded ends
+    box-shadow: none;
+    padding: 36px 0;           // vertical-only padding; marquee handles horizontal
+    overflow: hidden;
+    @media (max-width: 700px) {
+      border-radius: 60px;
+      padding: 28px 0;
+    }
+  }
+
+  // Marquee viewport — clips the scrolling track and fades both edges
+  // via a horizontal mask gradient so chips appear to drift in/out.
+  .pain-marquee {
+    overflow: hidden;
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      #000 8%,
+      #000 92%,
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      #000 8%,
+      #000 92%,
+      transparent 100%
+    );
+  }
+
+  .pain-track {
+    display: flex;
+    width: max-content;
+    gap: 16px;
+    padding: 6px 0;            // room for vertical bobbing offset
+    &:hover { animation-play-state: paused; }
+    &.row-1 {
+      animation: ag-marquee-left 38s linear infinite;
+    }
+    &.row-2 {
+      animation: ag-marquee-right 32s linear infinite;
+      margin-top: 14px;
+    }
+  }
+
+  // Two rows scroll in opposite directions — visually richer than one row.
+  // -50% because each row's chip list is duplicated for seamless looping.
+  @keyframes ag-marquee-left {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  @keyframes ag-marquee-right {
+    from { transform: translateX(-50%); }
+    to   { transform: translateX(0); }
+  }
+
+  // Larger chips that read as floating message bubbles. Alternating
+  // vertical offset gives a soft "floating in the panel" feel.
+  .insight-rect .pain-chip {
+    background: #fff;
+    border: 1px solid #BEE2F8;
+    border-radius: 999px;
+    padding: 14px 24px;
+    font-size: 15px;
+    line-height: 1.4;
+    color: $ag-ink;
+    flex: none;
+    white-space: nowrap;
+    box-shadow: 0 6px 18px -4px rgba(53, 101, 182, 0.12);
+    &:nth-child(odd)  { transform: translateY(-6px); }
+    &:nth-child(even) { transform: translateY(6px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pain-track { animation: none; }
+  }
+
+  // Synthesis line — quietly inside the pill panel, below the marquee.
+  // No callout chrome (no border, no bg, no padding box) — reads as a soft
+  // caption under the floating chips.
+  .insight-rect .insight-summary {
+    margin: 0px clamp(32px, 6vw, 96px) 28px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    text-align: center;
+    font-size: clamp(13px, 1.05vw, 15px);
+    line-height: 1.55;
+    font-weight: 400;
+    color: $ag-mute;
+    em {
+      font-weight: 600;
+      color: $ag-blue;
+    }
+  }
+
+  // Connectors: dashed step-lines (SVG) with decorative coloured dots overlaid.
+  // Lines have flowing dashes; dots pulse with a halo so the whole connector
+  // reads as "moving" — feeding into / out of the synthesis rect.
+  .flow-conn {
+    position: relative;
+    height: 90px;
+    margin: 12px 0;
+    @media (max-width: 800px) {
+      height: 56px;
+      svg { display: none; }            // simplify on narrow screens
+      .conn-dot { display: none; }
+    }
+    svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      // Flowing dashes — direction matches the line direction.
+      line {
+        animation: ag-flow-dash 1.4s linear infinite;
+      }
+    }
+    .conn-dot {
+      position: absolute;
+      top: 50%;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: $ag-blue;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 0 0 rgba(53,101,182,0);
+      // Pulse so each dot looks alive, with staggered delays.
+      animation: ag-dot-pulse 2.4s ease-in-out infinite;
+      &.accent { background: $ag-accent; }
+      &.yellow { background: #FFF96C; }
+      &.diamond {
+        width: 9px; height: 9px;
+        border-radius: 1px;
+        transform: translate(-50%, -50%) rotate(45deg);
+        animation-name: ag-dot-pulse-diamond;
+      }
+      // Stagger neighbours so they don't pulse in lockstep.
+      &:nth-of-type(2)  { animation-delay: -0.30s; }
+      &:nth-of-type(3)  { animation-delay: -0.60s; }
+      &:nth-of-type(4)  { animation-delay: -0.90s; }
+      &:nth-of-type(5)  { animation-delay: -1.20s; }
+      &:nth-of-type(6)  { animation-delay: -1.50s; }
+      &:nth-of-type(7)  { animation-delay: -1.80s; }
+      &:nth-of-type(8)  { animation-delay: -2.10s; }
+      &:nth-of-type(9)  { animation-delay: -0.15s; }
+    }
+  }
+  @keyframes ag-flow-dash {
+    to { stroke-dashoffset: -20; }      // 4+6 = 10, x2 for slower visual
+  }
+  @keyframes ag-dot-pulse {
+    0%, 100% {
+      opacity: 0.45;
+      box-shadow: 0 0 0 2px rgba(53,101,182,0.06);
+    }
+    50% {
+      opacity: 1;
+      box-shadow: 0 0 0 7px rgba(53,101,182,0.15);
+    }
+  }
+  // Same pulse but preserves the 45° rotation for diamond-shaped dots.
+  @keyframes ag-dot-pulse-diamond {
+    0%, 100% {
+      opacity: 0.45;
+      box-shadow: 0 0 0 2px rgba(53,101,182,0.06);
+    }
+    50% {
+      opacity: 1;
+      box-shadow: 0 0 0 5px rgba(53,101,182,0.15);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .flow-conn svg line,
+    .flow-conn .conn-dot { animation: none; }
+  }
+
+  // ============================================================
+  // MODULES (Chapter 5)
+  // ============================================================
+  .ag-module {
+    padding: 96px 0;
+    @media (max-width: 900px) { padding: 72px 0; }
+    .module-grid {
+      display: grid;
+      grid-template-columns: 4fr 6fr;     // image column gets more space
+      gap: 56px;
+      align-items: center;
+      @media (max-width: 1000px) { grid-template-columns: 1fr; gap: 64px; }
+      &.swap {
+        grid-template-columns: 6fr 4fr;
+        @media (max-width: 1000px) { grid-template-columns: 1fr; }
+        .module-left { order: 2; @media (max-width: 1000px) { order: 1; } }
+        .module-right { order: 1; @media (max-width: 1000px) { order: 2; } }
+      }
+    }
+    // Module number — smaller, upright, refined hybrid:
+    //  · faded blue outline on the leading "0" (subtle marker)
+    //  · gradient-fill on the live digit (the prominent figure)
+    //  · short horizontal rule as a typographic accent
+    .module-num {
+      color: #5FC2FC;
+      font-size: 48px;
+      font-weight: 900;
+      line-height: 1;
+      opacity: 0.4;
+    }
+    .module-label {
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: $ag-blue;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+    .module-intent {
+      font-weight: 400;
+      font-size: clamp(28px, 2.6vw, 40px);
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      margin-bottom: 24px;
+      color: $ag-ink;
+      em { font-style: normal; font-weight: 700; color: $ag-blue; }
+    }
+    .module-rationale {
+      font-size: 18px;
+      line-height: 1.5;
+      color: $ag-ink-2;
+      max-width: 540px;
+      em { font-style: italic; color: $ag-blue; font-weight: 600; }
+    }
+    .module-right > .ag-reveal-scale {
+      display: flex; gap: 28px;
+      justify-content: center; align-items: center;
+      flex-wrap: wrap;
+    }
+    // Static feature screenshot — fills the full width of its column so
+    // the section uses all available horizontal space inside the wrap.
+    .module-shot {
+      display: block;
+      width: 100%;
+      height: auto;
+      margin: 0;
+      filter: drop-shadow(0 30px 60px rgba(11, 29, 63, 0.18));
+    }
+  }
+
+  // Title row that sits above the modules.
+  // Less bottom padding so it leads directly into the first module.
+  .ag-features-head {
+    padding-bottom: 0;
+    position: relative;
+    @media (max-width: 900px) { padding-bottom: 0; }
+    h4{
+      font-size: 24px;
+      font-weight: 400;
+      margin-top: 8px;
+    }
+    .ag-section-head{
+      margin-bottom: 0px;
+    }
+    .ag-wrap{
+      position: relative;
+    }
+    .ag-feature-bg-deco{
+      position: absolute;
+      width: 50%;
+      height: auto;
+      left: 0;
+      top: 0;
+    }
+  }
+
+  // Pull-quote — extracted agent voice supporting the design decision.
+  .module-quote {
+    margin: 32px 0 0;
+    padding: 6px 0 6px 24px;
+    border-left: 3px solid $ag-blue;
+    max-width: 540px;
+    p {
+      font-family: $ag-sans;
+      font-style: italic;
+      font-weight: 500;
+      font-size: clamp(16px, 1.4vw, 19px);
+      line-height: 1.5;
+      color: $ag-ink-2;
+      margin: 0 0 8px;
+    }
+    cite {
+      font-style: normal;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: $ag-mute;
+      font-weight: 700;
+    }
+  }
+
+  // ============================================================
+  // MODULE 04 — Live Quoting (6-step storyboard)
+  // Same module-num / module-label / module-intent header treatment as
+  // the other 3 features so it reads as Feature 04 in the same series.
+  // Below the header: a 6-up storyboard of native screen images (each
+  // image already includes its own device frame, so no CSS phone
+  // wrapper). Footer pairs the pull-quote with the vision-goal tag.
+  // ============================================================
+  .quote-head {
+    max-width: 920px;
+    margin: 0 0 64px;
+    @media (max-width: 700px) { margin-bottom: 48px; }
+    .module-rationale { max-width: 760px; }
+  }
+
+  .quote-flow-stage {
+    position: relative;
+    margin: 0 0 80px;
+    @media (max-width: 700px) { margin-bottom: 56px; }
+  }
+
+  .quote-steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 24px;
+    @media (max-width: 1100px) { grid-template-columns: repeat(3, 1fr); gap: 40px 24px; }
+    @media (max-width: 600px)  { grid-template-columns: repeat(2, 1fr); gap: 40px 16px; }
+  }
+
+  .quote-step {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    // Inline chevron arrow between consecutive steps in the same row.
+    // Sits just outside the right edge of each non-last step, vertically
+    // centred on the screen image. Hidden at every row-break.
+    &:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: -16px;
+      width: 8px;
+      height: 8px;
+      border-top: 1.5px solid $ag-blue;
+      border-right: 1.5px solid $ag-blue;
+      transform: translateY(-50%) rotate(45deg);
+      opacity: 0.7;
+      z-index: 2;
+    }
+    @media (max-width: 1100px) {
+      &:nth-child(3)::after,
+      &:nth-child(6)::after { display: none; }
+    }
+    @media (max-width: 600px) {
+      &::after { display: none; }
+    }
+  }
+
+  .step-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    .step-num {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: $ag-blue;
+      background: linear-gradient(135deg, rgba(53,101,182,0.10), rgba(95,194,252,0.06));
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+    .step-tick {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, rgba(53,101,182,0.3), transparent);
+    }
+  }
+
+  .step-label {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.25;
+    color: $ag-ink;
+    margin: 2px 0 4px;
+  }
+
+  // Native screen image — already includes its own device frame, so we
+  // only add a subtle drop-shadow that traces the phone silhouette
+  // (filter-on-img respects PNG alpha, unlike box-shadow on a wrapper).
+  .step-shot {
+    display: block;
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 18px 36px rgba(11, 29, 63, 0.18));
+    transition: transform .35s cubic-bezier(.19,1,.22,1), filter .35s ease;
+  }
+  .quote-step:hover .step-shot {
+    transform: translateY(-4px);
+    filter: drop-shadow(0 24px 48px rgba(11, 29, 63, 0.26));
+  }
+
+  .step-caption {
+    font-size: 12px;
+    line-height: 1.55;
+    color: $ag-mute;
+    margin: 4px 0 0;
+  }
+
+  // Footer — pull-quote and vision-goal connection side by side.
+  .quote-foot {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px 64px;
+    align-items: end;
+    @media (max-width: 800px) {
+      grid-template-columns: 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+    .module-quote { margin: 0; max-width: none; }
+    .module-goal  { justify-self: end;
+      @media (max-width: 800px) { justify-self: start; }
+    }
+  }
+
+  // Connection back to a vision goal — small inline tag.
+  .module-goal {
+    margin-top: 28px;
+    padding: 14px 20px;
+    background: linear-gradient(90deg, rgba(53,101,182,0.08), rgba(95,194,252,0.04));
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    .m-goal-arrow {
+      color: $ag-blue;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .m-goal-tag {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: $ag-mute;
+      font-weight: 700;
+    }
+    .m-goal-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: $ag-blue;
+      letter-spacing: -0.005em;
+    }
+  }
+
+  // ============================================================
+  // CONCEPT (Chapter 6) — full-width section. Pale-blue diagonal
+  // gradient bg, dark text left-aligned, three highlights stacked
+  // vertically under the headline. The visual-concept-bg.svg sits
+  // pinned to the bottom-right corner at a fixed 600px width;
+  // overflow gets clipped if the section is narrower.
+  // ============================================================
+  .ag-concept {
+    position: relative;
+    overflow: hidden;                      // clip the bottom-right SVG
+    background: linear-gradient(to bottom right, #3565B6, #5FC2FC);
+    color: #fff;
+
+    // Foreground inversions for dark bg
+    .ag-eyebrow {
+      color: #fff;
+      &::before { background: #fff; }
+    }
+    .ag-h-display {
+      color: #fff;
+      em { color: #fff; }   // brand sky-blue stands out against deep navy
+    }
+  }
+
+  .concept-bg {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    height: 100%;
+    transform: translateX(25%);
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+  }
+
+  .ag-concept .ag-wrap {
+    position: relative;
+    z-index: 1;
+    padding-top: 96px;
+    padding-bottom: 96px;
+  }
+
+  .concept-text {
+    max-width: 720px;                      // keeps text clear of the SVG on the right
+    text-align: left;
+    h2{
+      font-weight: 700;
+      font-size: 64px;
+    }
+  }
+
+  .concept-pillars {
+    list-style: none;
+    margin: 56px 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    max-width: 460px;                       // slim column, no card chrome
+  }
+
+  // Inline pillars on the deep navy bg — flag icon + text, no card bg.
+  .concept-pillar {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+
+    .cp-icon {
+      flex: 0 0 32px;
+      width: 32px;
+      height: 32px;
+      display: block;
+      margin-top: 2px;                        // optical align with cp-name
+    }
+    .cp-body { flex: 1; min-width: 0; }
+    .cp-head {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 8px;
+    }
+    .cp-name {
+      font-size: clamp(20px, 1.8vw, 24px);
+      font-weight: 700;
+      line-height: 1.25;
+      color: #fff;
+      letter-spacing: -0.01em;
+    }
+    .cp-tag {
+      font-size: 13px;
+      color: #5FC2FC;
+      font-weight: 500;
+    }
+    .cp-text {
+      font-size: 18px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.78);
+      margin: 0;
+    }
+  }
+
+  // On narrow viewports give text the full width and shrink the SVG
+  // so it doesn't overpower; we still let it sit bottom-right.
+  @media (max-width: 900px) {
+    .ag-concept { padding-bottom: 320px; } // room for SVG below content
+    .concept-text { max-width: 100%; }
+    .concept-bg { width: 480px; opacity: 0.85; }
+  }
+  @media (max-width: 600px) {
+    .ag-concept { padding-bottom: 220px; }
+    .concept-bg { width: 360px; }
+  }
+
+  // ============================================================
+  // DESIGN SYSTEM (Chapter 7)
+  // ============================================================
+  .ag-system {
+    background: #F9FCFF;
+  }
+  .system-row {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 64px;
+    padding: 64px 0;
+    border-top: 1px solid $ag-hair;
+    align-items: start;
+    @media (max-width: 900px) { grid-template-columns: 1fr; gap: 32px; padding: 56px 0; }
+    .system-heading {
+      position: sticky;
+      top: 112px;                                   // sits clear of the 80px stuck nav
+      @media (max-width: 900px) { position: static; top: auto; }
+      .kicker { margin-bottom: 12px; }
+      h3 {
+        font-size: clamp(28px, 2.4vw, 36px);
+        font-weight: 700;
+        line-height: 1.2;
+        color: $ag-ink;
+        margin-bottom: 18px;
+        .tc {
+          font-family: $ag-tc;
+          font-size: 0.55em;
+          color: $ag-mute;
+          margin-left: 14px;
+          vertical-align: 0.18em;
+          font-weight: 600;
+        }
+      }
+      .ag-body { color: $ag-mute; max-width: 460px; font-size: 18px; }
+    }
+  }
+  .spec-card {
+    background: #fff;
+    border: 1px solid $ag-hair;
+    border-radius: 8px;
+    padding: 28px;
+    position: relative;
+    box-shadow: 0 0 15px rgba(53,101,182,0.06);
+    @media (max-width: 700px) { padding: 18px; }
+    @media (max-width: 420px) { padding: 14px; }
+    .corner-tag {
+      position: absolute;
+      top: 18px; right: 18px;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      color: $ag-mute;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .group-title {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: $ag-mute;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+  }
+
+  // Typography — rendered as exported sheet from Figma
+  .type-spec {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    @media (max-width: 700px) { padding: 12px; }
+  }
+  .type-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 720px;
+  }
+
+  // Color
+  .color-group { margin-bottom: 32px; }
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    @media (max-width: 700px) { grid-template-columns: repeat(2, 1fr); }
+    .color-cell {
+      position: relative;
+      aspect-ratio: 1.05/1;
+      padding: 14px 16px;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      border: 1px solid $ag-hair;
+      margin: -1px 0 0 -1px;
+      min-width: 0;
+      overflow: hidden;
+      @media (max-width: 700px) { padding: 12px 12px; }
+      .swatch {
+        position: absolute; top: 0; left: 0; right: 0; bottom: 56px;
+        border-bottom: 1px solid $ag-hair;
+        @media (max-width: 700px) { bottom: 48px; }
+      }
+      .status-sample {
+        position: absolute; inset: 0;
+        display: flex; align-items: center; justify-content: center;
+        font-family: $ag-tc;
+        font-weight: 600;
+        font-size: 13px;
+      }
+      .nm {
+        font-size: 11px; letter-spacing: 0.04em; color: $ag-ink; font-weight: 600;
+        overflow-wrap: anywhere;
+        line-height: 1.3;
+      }
+      .hex {
+        font-size: 10px; color: $ag-mute; margin-top: 2px;
+        overflow-wrap: anywhere;
+        line-height: 1.3;
+      }
+    }
+  }
+  .shadow-block { margin-top: 8px; }
+  .shadow-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    @media (max-width: 700px) { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    @media (max-width: 420px) { grid-template-columns: 1fr; }
+    .shadow-cell {
+      padding: 24px 16px 18px;
+      text-align: center;
+      min-width: 0;
+      @media (max-width: 700px) { padding: 18px 12px 14px; }
+      .shadow-sample {
+        width: 100%; height: 54px;
+        background: #fff; border-radius: 2px;
+        margin-bottom: 14px;
+      }
+      .nm { font-size: 11px; color: $ag-ink; font-weight: 600; overflow-wrap: anywhere; }
+      .hex {
+        font-size: 10px; color: $ag-mute; margin-top: 2px;
+        overflow-wrap: anywhere;
+        line-height: 1.4;
+      }
+    }
+  }
+
+  // ============================================================
+  // Iconography spec — construction grids on top, then a stack of
+  // category rows showing real SVG icons from the production set.
+  // ============================================================
+  .icon-spec { padding-top: 56px; }
+
+  // Construction frames — three rounded white tiles, each holding the
+  // grid SVG that explains how that icon class is built.
+  .icon-construction {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+    @media (max-width: 700px) { grid-template-columns: 1fr; }
+
+    .ic-frame {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      padding: 24px 20px 20px;
+      background: #fff;
+      border: 1px solid $ag-hair;
+      border-radius: 8px;
+      img {
+        width: 100%;
+        max-width: 160px;
+        height: auto;
+        display: block;
+      }
+      figcaption {
+        font-size: 11px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: $ag-mute;
+        font-weight: 700;
+        text-align: center;
+      }
+    }
+  }
+
+  .icon-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding-top: 24px;
+    border-top: 1px solid $ag-hair;
+  }
+
+  .ic-cat {
+    .ic-cat-head {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 12px;
+      .ic-cat-name {
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: $ag-ink;
+        font-weight: 700;
+      }
+      .ic-cat-meta {
+        font-size: 11px;
+        color: $ag-mute;
+      }
+    }
+
+    .ic-cat-grid {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      flex-wrap: wrap;
+      gap: 0;
+      border: 1px solid $ag-hair;
+      border-radius: 6px;
+      overflow: hidden;
+      background: #fff;
+
+      // Tab-bar variant — chromatic icons live on a soft gradient panel
+      // to mimic the active-state surface they're designed for.
+      &.tone-tab {
+        background: linear-gradient(180deg, #F4FAFF 0%, #E0EEFE 100%);
+        border-color: $ag-blue-soft;
+        .ic-tile { border-color: rgba(53, 101, 182, 0.14); }
+      }
+      &.tone-colorful{
+        grid-template-columns: repeat(4, 1fr);
+        img{
+          width: 64px;
+          height: 64px;
+        }
+      }
+    }
+
+    .ic-tile {
+      width: 100%;
+      padding-top: 100%;
+      position: relative;
+      border-right: 1px solid $ag-hair;
+      border-bottom: 1px solid $ag-hair;
+      // Last item in each row: rely on overflow:hidden on parent for clean edges.
+      img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: auto;
+        height: auto;
+        display: block;
+      }
+    }
+  }
+
+  // ============================================================
+  // Components / Cards — rendered as exported SVG sheets from Figma
+  // ============================================================
+  .components-spec,
+  .cards-spec {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    @media (max-width: 700px) { padding: 12px; }
+  }
+  .components-img,
+  .cards-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 720px;
+  }
+
+  // Illustrations — rendered as a single exported sheet from Figma
+  .illust-spec {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    @media (max-width: 700px) { padding: 12px; }
+  }
+  .illust-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 720px;
+  }
+
+  // ============================================================
+  // ACHIEVEMENT CARD — sits inside the intro section, beneath the
+  // background/meta grid. Outcome-led wins (not number-led); each row
+  // has a numeric marker, achievement statement, and supporting line.
+  // ============================================================
+  .achievement-card {
+    margin-top: 80px;
+    background: #fff;
+    border: 1px solid $ag-hair;
+    border-radius: 12px;
+    box-shadow: 0 18px 40px -22px rgba(53, 101, 182, 0.18);
+    padding: 48px 56px;
+    @media (max-width: 900px) { margin-top: 56px; padding: 36px 28px; }
+
+    .ach-head {
+      margin-bottom: 40px;
+      .ag-eyebrow { margin-bottom: 16px; }
+    }
+    .ach-title {
+      font-size: clamp(24px, 2.2vw, 32px);
+      font-weight: 400;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      color: $ag-ink;
+      em {
+        font-style: normal;
+        font-weight: 700;
+        color: $ag-blue;
+      }
+    }
+
+    .ach-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .ach-item {
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: 24px;
+      align-items: baseline;
+      padding: 28px 0;
+      border-top: 1px solid $ag-hair;
+      @media (max-width: 700px) {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+    }
+    .ach-num {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-style: italic;
+      font-size: 22px;
+      color: $ag-blue;
+      letter-spacing: 0.02em;
+    }
+    .ach-body { min-width: 0; }
+    .ach-statement {
+      font-size: clamp(18px, 1.6vw, 22px);
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+      color: $ag-ink;
+      margin: 0 0 8px;
+      em {
+        font-style: normal;
+        font-weight: 700;
+        background: $ag-grad;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
+    .ach-support {
+      font-size: 15px;
+      line-height: 1.6;
+      color: $ag-mute;
+      margin: 0;
+    }
+    // Inline metric token — sits inside .ach-support copy.
+    .metric-inline {
+      display: inline-flex;
+      align-items: baseline;
+      font-weight: 700;
+      font-size: 1.1em;
+      letter-spacing: -0.01em;
+      margin-right: 6px;
+      .dim { color: $ag-mute-2; }
+      .plus { font-size: 0.7em; }
+      .arrow { color: $ag-mute-2; margin: 0 .25em; font-size: 0.8em; font-style: italic; }
+      .hi {
+        background: $ag-grad;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
+
+    // Client testimonial — wraps the card. Big open quote, italic body,
+    // small attribution. Sits on a soft tinted band so it reads as a
+    // distinct closing beat.
+    .ach-quote {
+      position: relative;
+      margin: 40px -56px -48px;          // bleed to card edges
+      padding: 40px 56px 48px;
+      background: linear-gradient(to bottom right, #fff 0%, #C9EBFF 200%);
+      border-top: 1px solid $ag-hair;
+      border-bottom-left-radius: 12px;
+      border-bottom-right-radius: 12px;
+      @media (max-width: 900px) {
+        margin: 32px -28px -36px;
+        padding: 32px 28px 36px;
+      }
+
+      .ach-quote-mark {
+        display: block;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 900;
+        font-style: italic;
+        font-size: 72px;
+        line-height: 0.6;
+        color: $ag-blue;
+        margin-bottom: 8px;
+      }
+      blockquote {
+        margin: 0;
+        padding: 0;
+        font-size: clamp(17px, 1.5vw, 20px);
+        line-height: 1.55;
+        font-style: italic;
+        font-weight: 500;
+        color: $ag-ink;
+        letter-spacing: -0.005em;
+      }
+      figcaption {
+        margin-top: 16px;
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: $ag-mute;
+      }
+    }
+  }
+
+  // (The custom CTA card and in-page footer were removed in favour of
+  //  the shared <ContactSection /> at the bottom of the template + the
+  //  global App.vue footer that renders automatically.)
+
+  // ============================================================
+  // ENDING — closing visual card. Sits after the design system,
+  // before the shared ContactSection. Carries a soft brand-blue
+  // shadow so it reads as the closing beat of the case study.
+  // ============================================================
+  .ag-ending {
+    background-color: #F9FCFF;
+    padding-top: 0px;
+    padding-bottom: 192px;
+    .ending-card {
+      margin: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow:
+        0 30px 60px -20px rgba(53, 101, 182, 0.35),
+        0 12px 24px -12px rgba(95, 194, 252, 0.30);
+      img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+    }
+    p{
+      margin-top: 48px;
+      text-align: center;
+      font-size: 14px;
+      color: $ag-mute;
+    }
+  }
+
+  // ============================================================
+  // Phone mockup (kept for module screens)
+  // ============================================================
+  .ns-phone-wrap { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  .ns-phone-mock {
+    width: 280px; height: 580px;
+    border-radius: 38px;
+    background: #131A34;
+    padding: 7px;
+    box-shadow:
+      0 30px 60px -25px rgba(19,26,52,.35),
+      0 1px 0 rgba(255,255,255,.4) inset;
+    position: relative;
+    flex: none;
+    transition: transform .35s cubic-bezier(.19,1,.22,1), box-shadow .35s ease;
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow:
+        0 38px 70px -25px rgba(19,26,52,.45),
+        0 1px 0 rgba(255,255,255,.4) inset;
+    }
+  }
+  .ns-screen {
+    position: absolute; inset: 7px;
+    border-radius: 32px;
+    overflow: hidden;
+    background: #F5F7FA;
+    display: flex; flex-direction: column;
+    font-family: $ag-tc;
+  }
+  .ns-notch {
+    position: absolute;
+    top: 13px; left: 50%; transform: translateX(-50%);
+    width: 96px; height: 26px;
+    background: #131A34;
+    border-radius: 14px;
+    z-index: 5;
+  }
+  .ns-phone-label {
+    font-size: 11px;
+    color: $ag-mute;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-align: center;
+    max-width: 260px;
+    line-height: 1.4;
+    font-weight: 600;
+  }
+  .ns-screen-content {
+    flex: 1; display: flex; flex-direction: column;
+    font-family: $ag-tc;
+    &.default-bg { background: #F5F7FA; }
+  }
+
+  // Phone atoms (Status bar / NavBar / TabBar / lock screen / etc.)
+  // Imported from previous build, scoped to this view.
+  .ns-status-bar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 18px 4px;
+    font: 600 11px/14px $ag-tc;
+    .ns-sb-icons { display: flex; gap: 5px; align-items: center; }
+  }
+  .ns-nav-bar {
+    display: grid; grid-template-columns: 40px 1fr 40px;
+    align-items: center; padding: 10px 8px 12px;
+    background: #fff;
+    border-bottom: 1px solid #F0F3F8;
+    &.inverted { background: transparent; border-bottom: none; }
+    .back { background: transparent; border: 0; padding: 6px; display: flex; justify-content: center; cursor: pointer; }
+    .title { text-align: center; font: 600 14px/1 $ag-tc; }
+    .right { display: flex; justify-content: flex-end; }
+  }
+  .ns-tab-bar {
+    display: flex; justify-content: space-around;
+    padding: 8px 0 14px;
+    background: #fff;
+    border-top: 1px solid #F0F3F8;
+    box-shadow: 0 -2px 8px rgba(19,26,52,.03);
+    .ns-tab {
+      display: flex; flex-direction: column; align-items: center; gap: 3px;
+      color: $ag-mute-2;
+      font: 500 10px/1 $ag-tc;
+      &.active { color: $ag-blue; }
+    }
+  }
+
+  // Lock screen
+  .ns-screen-content.lock {
+    background: linear-gradient(160deg, #0B1430 0%, #1B3A6E 38%, #2C6AB7 78%, #5FC2FC 110%);
+    position: relative;
+    .lock-clock {
+      text-align: center; color: #fff; margin-top: 14px;
+      .day { font: 500 10px/1 $ag-tc; opacity: .85; letter-spacing: .05em; }
+      .time { font: 300 64px/1 $ag-tc; letter-spacing: -.02em; margin-top: 6px; }
+    }
+    .lock-peaks { position: absolute; left: 0; right: 0; bottom: 96px; width: 100%; height: 80px; opacity: .18; }
+    .lock-pushes {
+      position: absolute; left: 10px; right: 10px; bottom: 90px;
+      display: flex; flex-direction: column; gap: 8px;
+      .push {
+        font-family: $ag-tc;
+        &.primary {
+          background: rgba(255,255,255,.92);
+          backdrop-filter: blur(20px);
+          border-radius: 14px;
+          padding: 12px 14px;
+          box-shadow: 0 8px 24px rgba(0,0,0,.18);
+          .push-head {
+            display: flex; align-items: center; gap: 8px; margin-bottom: 8px;
+            .logo { width: 18px; height: 18px; border-radius: 4px; background: $ag-grad-2; display: flex; align-items: center; justify-content: center; color: #fff; font: 700 8px/1 sans-serif; }
+            .src { font: 600 10px/1.2 inherit; color: $ag-ink; flex: 1; }
+            .when { font: 400 9px/1 inherit; color: $ag-mute-2; }
+          }
+          .push-meta {
+            display: flex; align-items: center; gap: 6px; margin-bottom: 6px;
+            .ref { font: 500 10px/1 inherit; color: $ag-mute-2; }
+          }
+          .push-title { font: 600 12px/1.4 inherit; color: $ag-ink; margin-bottom: 4px; }
+          .push-body { font: 400 11px/1.5 inherit; color: $ag-mute; }
+          .push-actions {
+            display: flex; gap: 6px; margin-top: 10px;
+            padding-top: 8px; border-top: 1px solid #F0F3F8;
+            .dismiss, .reply { flex: 1; text-align: center; padding: 4px 0; font: 500 10px/1 inherit; color: $ag-mute-2; }
+            .reply { font-weight: 600; color: $ag-blue; border-left: 1px solid #F0F3F8; }
+          }
+        }
+        &.stack {
+          background: rgba(255,255,255,.55);
+          backdrop-filter: blur(20px);
+          border-radius: 14px;
+          padding: 8px 14px;
+          height: 24px;
+          margin: 0 8px;
+          font: 500 9px/1.4 $ag-tc;
+          color: rgba(19,26,52,.7);
+          display: flex; align-items: center; gap: 6px;
+          .dot { width: 12px; height: 12px; border-radius: 3px; background: #fff; opacity: .7; }
+        }
+      }
+    }
+    .unlock-pill {
+      position: absolute; left: 0; right: 0; bottom: 14px;
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      .bar { width: 80px; height: 3px; border-radius: 2px; background: rgba(255,255,255,.7); }
+    }
+  }
+
+  // Enquiry reply
+  .enquiry-body {
+    flex: 1; padding: 10px;
+    display: flex; flex-direction: column; gap: 8px;
+    overflow: hidden;
+    font-family: $ag-tc;
+    .policy-card {
+      background: #fff; border: 1px solid $ag-hair; border-radius: 2px;
+      padding: 12px; box-shadow: 0 0 15px rgba(53,101,182,.06);
+      .row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+      .ref { font: 600 11px/1.2 inherit; color: $ag-ink; }
+      .sub { font: 400 9px/1.4 inherit; color: $ag-mute-2; margin-bottom: 8px; }
+      .hr { height: 1px; background: #F0F3F8; margin-bottom: 8px; }
+      .kv {
+        display: flex; justify-content: space-between; align-items: center;
+        font: 400 10px/1.8 inherit;
+        .k { color: $ag-mute-2; }
+        .v { color: $ag-ink; display: inline-flex; align-items: center; gap: 5px; }
+      }
+    }
+    .section-label { font: 600 10px/1 inherit; color: $ag-ink; margin-top: 2px; }
+    .content-card {
+      background: #fff; border: 1px solid $ag-hair; border-radius: 2px;
+      padding: 10px 12px;
+      font: 400 10px/1.55 inherit; color: $ag-mute;
+    }
+    .reply-card {
+      background: #fff; border: 1px solid $ag-blue; border-radius: 2px;
+      padding: 10px 12px;
+      min-height: 60px; position: relative;
+      box-shadow: 0 4px 12px rgba(95,194,252,.15);
+      .text { font: 400 10px/1.5 inherit; color: $ag-ink; }
+      .counter { position: absolute; right: 8px; bottom: 6px; font: 500 8px/1 inherit; color: $ag-mute-2; }
+    }
+    .spacer { flex: 1; }
+    .cta-row {
+      display: flex; gap: 8px; padding: 4px 0 0;
+      button { height: 36px; border-radius: 2px; font: 600 11px/1 $ag-tc; cursor: pointer; }
+      .reset { flex: 1; background: #fff; color: $ag-blue; border: 1px solid $ag-blue; }
+      .submit { flex: 1.4; background: $ag-grad-2; color: #fff; border: 0; box-shadow: 0 4px 20px rgba(95,194,252,.5); }
+    }
+  }
+
+  // Customer tabs
+  .cust-header {
+    background: #fff; padding: 14px 14px 0; border-bottom: 1px solid #F0F3F8;
+    .row { display: flex; gap: 10px; align-items: center; margin-bottom: 12px; }
+    .avatar { width: 40px; height: 40px; border-radius: 50%; background: $ag-grad-2; color: #fff; display: flex; align-items: center; justify-content: center; font: 600 14px/1 $ag-tc; }
+    .meta { flex: 1; }
+    .name { font: 600 14px/1.2 $ag-tc; color: $ag-ink; }
+    .sub { font: 400 10px/1.4 $ag-tc; color: $ag-mute-2; }
+    .roles { display: flex; gap: 4px; }
+    .tabs { display: flex; }
+    .tab {
+      flex: 1; text-align: center; padding: 10px 0;
+      font: 500 12px/1 $ag-tc; color: $ag-mute-2;
+      border-bottom: 2px solid transparent;
+      &.active { font-weight: 600; color: $ag-blue; border-bottom-color: $ag-blue; }
+    }
+  }
+  .policy-list {
+    flex: 1; padding: 10px;
+    display: flex; flex-direction: column; gap: 8px; overflow: hidden;
+    .card {
+      background: #fff; border: 1px solid $ag-hair; border-radius: 2px;
+      padding: 10px 12px; box-shadow: 0 0 6px rgba(53,101,182,.04);
+      .row1 {
+        display: flex; justify-content: space-between; align-items: center;
+        margin-bottom: 4px;
+        .title { font: 600 11px/1.3 $ag-tc; color: $ag-ink; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      }
+      .row2 { display: flex; justify-content: space-between; font: 400 9px/1.4 $ag-tc; color: $ag-mute-2; }
+    }
+  }
+
+  // Coverage summary
+  .coverage-body {
+    flex: 1; overflow: hidden;
+    padding: 10px; display: flex; flex-direction: column; gap: 8px;
+    .cust-slim {
+      display: flex; align-items: center; gap: 8px; padding: 6px 4px 2px;
+      .name { font: 600 11px/1 $ag-tc; color: $ag-ink; }
+      .sub { font: 400 9px/1 $ag-tc; color: $ag-mute-2; }
+    }
+    .totals {
+      background: $ag-grad-2; color: #fff; border-radius: 2px;
+      padding: 12px; box-shadow: 0 4px 20px rgba(95,194,252,.35);
+      .lab { font: 500 9px/1 $ag-tc; opacity: .85; margin-bottom: 4px; }
+      .cur { font: 400 9px/1 $ag-tc; opacity: .85; margin-bottom: 2px; }
+      .amt { font: 600 22px/1 $ag-tc; letter-spacing: -.01em; }
+    }
+    .cov-card {
+      background: #fff; border-radius: 2px; border: 1px solid $ag-hair;
+      box-shadow: 0 0 15px rgba(53,101,182,.06);
+      overflow: hidden;
+      .cov-row {
+        display: grid; grid-template-columns: 1fr auto;
+        padding: 10px 12px;
+        border-bottom: 1px solid #F0F3F8;
+        &:last-child { border-bottom: none; }
+        &.inactive { opacity: .5; .n { color: #98A8BE; } .v { color: #98A8BE; } }
+        .meta { .n { font: 500 11px/1.4 $ag-tc; color: $ag-ink; } .sub { font: 400 9px/1.4 $ag-tc; color: $ag-mute-2; } }
+        .val { display: flex; align-items: center; gap: 4px; .v { font: 600 11px/1 $ag-tc; color: $ag-blue; text-align: right; } }
+      }
+    }
+    .foot-link { padding: 2px 4px; font: 500 10px/1 $ag-tc; color: $ag-blue; display: flex; justify-content: space-between; align-items: center; }
+  }
+
+  // Home
+  .hero-grad {
+    background: $ag-grad-2; color: #fff;
+    padding: 0 0 32px;
+    position: relative; overflow: hidden;
+    .peaks-deco { position: absolute; right: -20px; top: 30px; opacity: .18; }
+    .greeting-row {
+      padding: 8px 14px 0;
+      display: flex; justify-content: space-between; align-items: center;
+      .hi .time { font: 400 10px/1 $ag-tc; opacity: .85; }
+      .hi .name { font: 600 18px/1.3 $ag-tc; margin-top: 2px; }
+      .bell-wrap {
+        position: relative; padding: 6px;
+        .bell-dot { position: absolute; top: 4px; right: 4px; width: 7px; height: 7px; border-radius: 7px; background: #DB3D31; border: 1.5px solid $ag-blue; }
+      }
+    }
+    .search-wrap {
+      padding: 14px 12px 0;
+      .search { background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.3); border-radius: 2px; padding: 7px 10px; display: flex; gap: 6px; align-items: center; color: rgba(255,255,255,.85); font: 400 11px/1 $ag-tc; }
+    }
+    &.slim {
+      padding: 0 0 18px;
+      .back-row { padding: 8px 14px 0; display: flex; align-items: center; gap: 8px; .title { font: 600 13px/1 $ag-tc; } }
+    }
+  }
+  .radar-head {
+    padding: 14px 12px 8px;
+    display: flex; align-items: center; justify-content: space-between;
+    .left { display: flex; align-items: center; gap: 6px; }
+    .title { font: 600 13px/1 $ag-tc; color: $ag-ink; }
+    .badge { font: 500 9px/1 $ag-tc; color: $ag-mute-2; background: #F4FAFF; padding: 3px 5px; border-radius: 2px; }
+    .sort { font: 500 10px/1 $ag-tc; color: $ag-blue; }
+  }
+  .customer-list {
+    flex: 1; padding: 0 10px 10px;
+    display: flex; flex-direction: column; gap: 6px; overflow: hidden;
+    .cust-card {
+      background: #fff; border: 1px solid $ag-hair;
+      border-radius: 2px; padding: 10px 12px;
+      box-shadow: 0 0 6px rgba(53,101,182,.04);
+      &.hi { border-color: $ag-blue; box-shadow: 0 4px 12px rgba(53,101,182,.1); }
+      .row1 {
+        display: flex; align-items: center; gap: 8px; margin-bottom: 6px;
+        .avatar { width: 28px; height: 28px; border-radius: 50%; background: #F4FAFF; color: $ag-blue; display: flex; align-items: center; justify-content: center; font: 600 11px/1 $ag-tc; border: 1px solid $ag-hair; }
+        .meta { flex: 1; min-width: 0; }
+        .n { font: 600 12px/1.2 $ag-tc; color: $ag-ink; }
+        .sub { font: 400 9px/1.3 $ag-tc; color: $ag-mute-2; }
+        .right { display: flex; align-items: center; gap: 6px; }
+        .dot-urg { width: 6px; height: 6px; border-radius: 6px; background: #DB3D31; }
+        .count { font: 600 11px/1 $ag-tc; color: $ag-blue; &.urg { color: #DB3D31; } }
+      }
+      .tags { display: flex; gap: 4px; flex-wrap: wrap; }
+      .tag { font: 500 8.5px/1.4 $ag-tc; color: $ag-mute; background: #F4FAFF; padding: 2px 5px; border-radius: 2px; border: 1px solid #E5EEF8; }
+    }
+  }
+  .expanded-card {
+    margin: -10px 10px 0;
+    background: #fff; border: 1px solid $ag-blue; border-radius: 2px;
+    padding: 12px;
+    box-shadow: 0 6px 18px rgba(53,101,182,.12);
+    position: relative; z-index: 2;
+    display: flex; align-items: center; gap: 8px;
+    .avatar { width: 28px; height: 28px; border-radius: 50%; background: #F4FAFF; color: $ag-blue; display: flex; align-items: center; justify-content: center; font: 600 11px/1 $ag-tc; border: 1px solid $ag-hair; flex: none; }
+    .meta { flex: 1; min-width: 0; }
+    .n { font: 600 12px/1.2 $ag-tc; color: $ag-ink; }
+    .sub { font: 400 9px/1.3 $ag-tc; color: $ag-mute-2; }
+    .dot-urg { width: 6px; height: 6px; border-radius: 6px; background: #DB3D31; }
+    .count { font: 600 11px/1 $ag-tc; color: #DB3D31; }
+  }
+  .task-list {
+    flex: 1; padding: 8px 14px 10px;
+    display: flex; flex-direction: column; gap: 6px; overflow: hidden;
+    .task {
+      background: #fff;
+      border: 1px solid $ag-hair;
+      border-left: 3px solid $ag-blue;
+      border-radius: 2px;
+      padding: 10px 12px;
+      display: flex; align-items: center; gap: 10px;
+      box-shadow: 0 0 6px rgba(53,101,182,.04);
+      .ic-tile { width: 30px; height: 30px; border-radius: 2px; background: #F4FAFF; display: flex; align-items: center; justify-content: center; flex: none; }
+      .meta { flex: 1; min-width: 0; }
+      .row { display: flex; align-items: center; gap: 6px; margin-bottom: 2px; }
+      .custom { font: 500 8px/1 $ag-tc; color: $ag-mute-2; border: 1px dashed #C8D3E5; padding: 2px 4px; border-radius: 2px; }
+      .t { font: 600 11px/1.3 $ag-tc; color: $ag-ink; }
+      .d { font: 400 9px/1.4 $ag-tc; color: $ag-mute-2; }
+    }
+    .add-task {
+      margin-top: 2px;
+      background: transparent; border: 1px dashed #98A8BE; border-radius: 2px;
+      padding: 10px 12px;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      color: $ag-blue; font: 600 11px/1 $ag-tc;
+    }
+  }
+
+  // Notifications
+  .filter-row {
+    display: flex; gap: 6px; padding: 8px 12px;
+    border-bottom: 1px solid #F0F3F8;
+    background: #fff;
+    .filter {
+      padding: 5px 10px;
+      background: #F4FAFF;
+      color: $ag-blue;
+      border: 1px solid $ag-hair;
+      border-radius: 30px;
+      font: 600 10px/1 $ag-tc;
+      &.active { background: $ag-blue; color: #fff; border-color: $ag-blue; }
+    }
+  }
+  .notif-list {
+    flex: 1; padding: 8px 10px;
+    display: flex; flex-direction: column; gap: 6px; overflow: hidden;
+    .notif {
+      background: #fff; border: 1px solid $ag-hair; border-radius: 2px;
+      padding: 10px 12px;
+      box-shadow: 0 0 6px rgba(53,101,182,.04);
+      position: relative;
+      &.pinned { box-shadow: 0 4px 12px rgba(53,101,182,.1); }
+      .pin-tag {
+        position: absolute; top: -1px; right: -1px;
+        background: $ag-blue; color: #fff;
+        font: 600 8px/1 $ag-tc;
+        padding: 3px 5px;
+        border-radius: 0 2px 0 2px;
+        display: flex; align-items: center; gap: 3px;
+      }
+      .row1 { display: flex; justify-content: space-between; margin-bottom: 4px; }
+      .left { display: flex; align-items: center; gap: 6px; }
+      .unread { width: 5px; height: 5px; border-radius: 5px; background: $ag-blue; }
+      .when { font: 400 8.5px/1 $ag-tc; color: $ag-mute-2; }
+      .t { font: 500 11px/1.3 $ag-tc; color: $ag-ink; margin-bottom: 2px; &.unread { font-weight: 600; } }
+      .s { font: 400 9px/1.4 $ag-tc; color: $ag-mute-2; }
+    }
+    .swipe-container {
+      position: relative; height: 64px;
+      .actions {
+        position: absolute; inset: 0;
+        display: flex; border-radius: 2px; overflow: hidden;
+        .bg-white { flex: 1; background: #fff; }
+        .action {
+          width: 54px; color: #fff;
+          display: flex; flex-direction: column;
+          align-items: center; justify-content: center; gap: 3px;
+          font: 600 9px/1 $ag-tc;
+        }
+        .pin   { background: $ag-blue; }
+        .read  { background: #4A93D9; }
+        .share { background: $ag-accent; }
+      }
+      .swiped-card {
+        position: absolute;
+        left: -162px; right: 162px; top: 0; bottom: 0;
+        background: #fff; border: 1px solid $ag-hair; border-radius: 2px;
+        padding: 10px 12px;
+        box-shadow: 0 4px 12px rgba(53,101,182,.12);
+        .row1 { display: flex; justify-content: space-between; margin-bottom: 4px; }
+        .when { font: 400 8.5px/1 $ag-tc; color: $ag-mute-2; }
+        .t { font: 600 11px/1.3 $ag-tc; color: $ag-ink; margin-bottom: 2px; &.unread { font-weight: 600; } }
+        .s { font: 400 9px/1.4 $ag-tc; color: $ag-mute-2; }
+      }
+      .finger-hint {
+        position: absolute; left: -176px; top: 50%; transform: translateY(-50%);
+        width: 14px; height: 14px; border-radius: 50%;
+        background: rgba(53,101,182,.2); border: 1.5px solid $ag-blue;
+      }
+    }
+  }
+}
+
+.contact-section{
+  margin-top: 0px;
+}

@@ -8,7 +8,7 @@
                         <h4>Han Wang</h4>
                     </div>
                 </a>
-                <a href="/#/work" class="link">
+                <a href="/work" class="link">
                     <img :src="require(`@/assets/images/projects/back-arrow${data.theme == 'light' ? '-dark' : ''}.svg`)"/>
                 </a>
             </div>
@@ -61,7 +61,7 @@ export default{
         // Strip HTML and use the first description paragraph as the OG description
         const rawDesc = (this.data?.description?.[0] || '').replace(/\s+/g, ' ').trim()
         useMeta(pageMeta({
-            title: this.data?.metaTitle || this.$route.meta.title,
+            title: `${this.data?.metaTitle || this.$route.meta.title} | Han Wang | Product Designer | UX Researcher`,
             description: rawDesc,
             path: this.$route.path,
             image: projectName ? projectCover(projectName) : undefined,

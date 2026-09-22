@@ -6,8 +6,8 @@
                     <img src="@/assets/images/resume/cover@1x.jpg" :srcset="renderImage('resume/cover.jpg')" class="cover" />
                 </div>
                 <p>
-                    Experience Designer with 4+ years delivering end-to-end UX for large-scale institutional digital platforms. Currently designing student-facing digital experiences at the University of Melbourne, serving 50,000+ students across user research, service blueprints, and design system work.
-                    <br />I combine deep user research with hands-on front-end fluency — bridging user needs, technical constraints, and business outcomes without handoff friction.
+                    I'm a designer with 4 years' experience across UX research, product design, and front-end engineering, working across domains from education and technology to regulated industries like finance. 
+                    <br />I transform complex challenges into strategic, user-centred solutions. Combining expertise in design, front-end development, and AI-assisted workflows, I bridge the gap between design vision and technical implementation to deliver impactful digital experiences.
                 </p>
                 <p v-if="false">Start at 2020, I participated <span class="prompt">15+ projects</span> with my design or develop skill, built 10 products from 0 to 1.</p>
             </div>
@@ -65,21 +65,21 @@
                 <div class="exp-chart">
                     <div class="exp-block">
                         <p class="date">Jan 2025  —  present</p>
-                        <img src="@/assets/images/global/clients/unimelb.png" alt="" class="logo">
+                        <img src="@/assets/images/global/clients/unimelb.svg" alt="" class="logo">
                         <h4 class="title">Experience Design Analyst</h4>
                         <p class="org">Enterprise Service Group · Full-time</p>
                         <p class="description">
-                            <span class="prompt design">Student Website Transformation:</span> Solo project lead for the first three months — managed project planning, desktop research, research design, and all stakeholder communication before the Design Lead joined. Facilitated stakeholder discussions to define a research plan for redesigning help content and support-seeking experiences. Conducted desktop research, competitor analysis, current-state reviews, and interviews to inform institutional channel strategy decisions.<br /><br />
+                            <span class="prompt design">Student Website Transformation:</span> Led the help & support experience redesign and supported IA workstreams to fix a fragmented content structure disconnected from how students find information. Leveraging user research, card sorting, competitor analysis, and stakeholder alignment to navigate contested ownership and conflicting best practice. Delivered a short-term design solution within platform limits and a proposed future roadmap, alongside a governed model for long-term content decisions.<br /><br />
                             <span class="prompt design">Authenticated Experience (Student Digital Portal):</span> Ran research synthesis and solution design for the unification of the University's authenticated student platform — serving domestic, international, undergraduate, and postgraduate segments across the full student lifecycle. Applied a hypothesis-led approach validated through <span class="prompt design">13 in-depth interviews</span> and <span class="prompt design">249 Kano survey responses</span>, then used <span class="prompt design">RICE</span> to prioritise <span class="prompt design">25 Vision Stories</span> into a multi-horizon roadmap that directly informed the University's <span class="prompt design">2026 capital funding decision</span>.<br /><br />
                             <span class="prompt design">Quantifiable Impact:</span> Short-term uplift delivered a <span class="prompt design">+289% increase in banner click-through rate (8,522 → 33,169 YoY)</span>, improved mobile engagement to <span class="prompt design">60.77% (+13.4% YoY)</span>, and generated <span class="prompt design">~60,000 clicks</span> on the new personalised onboarding shortcut during peak enrolment.
                         </p>
                         <p class="project-link">
-                            <a href="/#/work/authux">Project: Student Authenticated Experience Improvement →</a>
+                            <a href="/work/authux">Project: Student Authenticated Experience Improvement →</a>
                         </p>
                     </div>
                     <div class="exp-block">
                         <p class="date">Mar 2024  —  Dec 2024</p>
-                        <img src="@/assets/images/global/clients/unimelb.png" alt="" class="logo">
+                        <img src="@/assets/images/global/clients/unimelb.svg" alt="" class="logo">
                         <h4 class="title">Student Co-Designer</h4>
                         <p class="org">Enterprise Service Group · Intern</p>
                         <p class="description">
@@ -140,17 +140,18 @@ export default{
     },
     mounted(){
         useMeta(pageMeta({
-            title: 'Resume',
-            description: 'Han Wang — Experience Design Analyst with a hybrid background across strategic service design, product design, and front-end engineering. Master of IT (HCI) and Bachelor of Science (CS).',
+            title: 'Resume | Han Wang | Product Designer | UX Researcher',
+            description: "I'm a designer with 4 years' experience across UX research, product design, and front-end engineering, working across domains from education and technology to regulated industries like finance. I transform complex challenges into strategic, user-centred solutions. Combining expertise in design, front-end development, and AI-assisted workflows, I bridge the gap between design vision and technical implementation to deliver impactful digital experiences.",
             path: '/resume',
         }))
     },
     methods: {
         downloadResume(role){
-            var link = document.createElement('a')
+            // Save as a role-tagged filename, but always pull the canonical PDF from /public
+            const link = document.createElement('a')
             document.body.appendChild(link)
-            link.download = `Han_Wang_${role}_Resume_2025.pdf`
-            link.href = `Han_Wang_${role}_Resume_2025.pdf`
+            link.href = `${process.env.BASE_URL || '/'}Han_Wang_Resume.pdf`
+            link.download = `Han_Wang_${role}_Resume_${new Date().getFullYear()}.pdf`
             link.click()
             document.body.removeChild(link)
         },

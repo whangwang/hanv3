@@ -7,7 +7,7 @@
             <img src="@/assets/images/global/logo.svg" alt="">
             <h4>Han Wang</h4>
           </div>
-          <a href="/#/work" class="link">
+          <a href="/work" class="link">
             <img src="@/assets/images/projects/back-arrow.svg"/>
           </a>
         </a>
@@ -853,7 +853,7 @@ export default {
   },
   mounted() {
     useMeta(pageMeta({
-      title: 'Authenticated Student Experience — Strategic Service Design',
+      title: 'Authenticated Student Experience — Strategic Service Design | Han Wang | Product Designer | UX Researcher',
       description: 'A year-long strategic design initiative reimagining the authenticated student experience for a leading higher-education institution. Discovery, RICE prioritisation, AI-powered prototyping, and a phased roadmap that secured executive endorsement.',
       path: '/work/authux',
       image: projectCover('auth'),

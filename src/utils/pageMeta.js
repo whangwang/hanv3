@@ -18,7 +18,9 @@ const DEFAULT_OG_IMAGE = `${SITE_URL}/ogimage.jpg`
  * @param {string}  [opts.type='website'] og:type
  */
 export function pageMeta({ title, description, path = '', image, type = 'website' }) {
-  const fullTitle = title ? `${title} — ${SITE_NAME}` : SITE_NAME
+  // Use the title verbatim so each page can compose its own (e.g. "Foo | Han Wang | …").
+  // Falls back to the bare site name when no title is provided.
+  const fullTitle = title || SITE_NAME
   const url = `${SITE_URL}${path.startsWith('/') ? path : `/${path}`}`.replace(/\/$/, '') || SITE_URL
   const ogImage = image || DEFAULT_OG_IMAGE
 

@@ -1,6 +1,8 @@
 <template>
     <metainfo>
-        <template v-slot:title="{ content }">{{ content ? `${content} | Han Wang - UI/UX Designr & Front-end Developer` : `Han Wang - UI/UX Designr & Front-end Developer` }}</template>
+        <!-- Per-page useMeta() already returns a fully composed title via pageMeta(),
+             so render it as-is. Fallback only when no useMeta has run yet. -->
+        <template v-slot:title="{ content }">{{ content || 'Han Wang — UI/UX Designer & Front-end Developer' }}</template>
     </metainfo>
     <transition name="loading">
         <div v-if="pageLoading" class="loader">
@@ -41,11 +43,15 @@
     <div class="footer">
         © HAN WANG {{ new Date().getFullYear() }}
     </div>
+    <!-- Floating chat — mounts globally so it appears on every route -->
+    <ChatPanel />
 </template>
 
 <script>
+import ChatPanel from '@/components/ChatPanel.vue'
 
 export default{
+    components: { ChatPanel },
     data(){
         return{
             links: [{

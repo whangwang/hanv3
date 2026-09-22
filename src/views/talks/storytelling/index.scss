@@ -1,0 +1,1079 @@
+// "How to Do Storytelling" — editorial long-form companion page.
+//
+// Adopts the portfolio's existing tokens (color, typography, breakpoints)
+// rather than inventing a new system. Route sets `indvidual: true` so the
+// global `body:not(.detach)` heading bleed is suppressed and this page owns
+// its own typography stack.
+//
+// Layout:
+//   ≥1024px : 3-column shell — slim section rail | article | comment rail
+//   <1024px : single column   — slim section rail hides, comment rail becomes
+//                               a slide-in drawer triggered by a floating FAB
+//
+// Visual language:
+//   bg          deep navy ($bg = #0B1D3F) — matches the rest of the portfolio
+//   ink         light-on-dark ($light, $light-80, $light-60)
+//   accent      $primary-green sparingly: pull-quotes, active rail, upvote on
+//   anchor hl   warm yellow shade ($primary-yellow) on anchors that have a
+//               comment thread, so commented passages read at a glance
+//   typography  Montserrat for display, Open Sans for body
+//   rhythm      generous (long-form essay), readable measure ~640px
+
+@import '../../../assets/styles/config/all.scss';
+
+// Local layout tokens
+$st-ink:        $light;
+$st-ink-2:      $light-80;
+$st-mute:       $light-60;
+$st-mute-2:     $light-40;
+$st-hair:       rgba(255, 255, 255, 0.10);
+$st-hair-soft:  rgba(255, 255, 255, 0.06);
+$st-accent:     $primary-green;
+$st-hilite:     $primary-yellow;       // anchor-with-comment highlight
+$st-measure:    640px;
+$st-rail-w:     360px;
+
+// ============================================================
+// Page shell
+// ============================================================
+.st-page {
+  position: relative;
+  color: $st-ink;
+  min-height: 100vh;
+  font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.st-progress {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: $st-accent;
+  transform-origin: left center;
+  transform: scaleX(0);
+  z-index: 60;
+  transition: transform 80ms linear;
+}
+
+// 3-column grid: section nav rail | article | comment rail
+.st-shell {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr) $st-rail-w;
+  gap: 56px;
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 96px 56px 160px;
+  align-items: start;
+  @media (max-width: 1279px) {
+    grid-template-columns: minmax(0, 1fr) $st-rail-w;
+    gap: 40px;
+    padding: 80px 40px 120px;
+  }
+  @include largePad() {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    padding: 80px 40px 120px;
+  }
+  @include smallPad() { padding: 64px 24px 96px; }
+  @include mobile()   { padding: 56px 16px 80px; }
+}
+
+// ============================================================
+// Section-nav rail (left)
+// ============================================================
+.st-section-rail {
+  position: sticky;
+  top: 96px;
+  display: flex;
+  gap: 16px;
+  align-items: stretch;
+  @media (max-width: 1279px) { display: none; }
+}
+
+.st-section-rail-track {
+  position: relative;
+  width: 1px;
+  background: $st-hair;
+  border-radius: 1px;
+}
+.st-section-rail-fill {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 0%;
+  background: $st-accent;
+  transition: height 120ms linear;
+}
+
+.st-section-rail-list {
+  list-style: none;
+  margin: 0; padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+
+.st-section-rail-item {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  text-decoration: none;
+  color: $st-mute;
+  padding: 4px 6px;
+  border-radius: 4px;
+  transition: color .15s ease;
+  .num {
+    font-variant-numeric: tabular-nums;
+    color: $st-mute-2;
+    font-size: 10px;
+  }
+  .name { line-height: 1.2; }
+  &:hover { color: $st-ink; }
+  &:focus-visible {
+    outline: none;
+    color: $st-ink;
+    box-shadow: 0 0 0 2px rgba($st-accent, .4);
+  }
+  &.active {
+    color: $st-accent;
+    .num { color: $st-accent; }
+  }
+}
+
+// ============================================================
+// Article (middle)
+// ============================================================
+.st-article {
+  max-width: $st-measure + 80px;
+  min-width: 0;
+}
+
+// Reveal animation
+.st-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 700ms cubic-bezier(.19, 1, .22, 1),
+    transform 700ms cubic-bezier(.19, 1, .22, 1);
+  &.in { opacity: 1; transform: translateY(0); }
+}
+.is-reduced-motion .st-reveal {
+  opacity: 1; transform: none; transition: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .st-reveal { opacity: 1; transform: none; transition: none; }
+  .st-progress, .st-section-rail-fill { transition: none; }
+}
+
+// ============================================================
+// Type primitives
+// ============================================================
+.st-eyebrow {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: $st-accent;
+  margin: 0 0 24px;
+}
+
+.st-display {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-style: italic;
+  font-size: clamp(44px, 7vw, 80px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: $st-ink;
+  margin: 0;
+}
+
+.st-deck {
+  margin: 32px 0 0;
+  font-size: clamp(20px, 2.4vw, 28px);
+  font-weight: 400;
+  line-height: 1.45;
+  color: $st-ink-2;
+  max-width: 620px;
+  letter-spacing: -0.005em;
+}
+
+.st-standfirst {
+  margin: 48px 0 0;
+  font-size: 16px;
+  line-height: 1.7;
+  color: $st-mute;
+  max-width: 560px;
+}
+
+.st-scroll-cue {
+  margin-top: 64px;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  color: $st-mute;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  .line {
+    display: inline-block;
+    width: 56px;
+    height: 1px;
+    background: $st-mute-2;
+  }
+}
+
+.st-hero {
+  padding-bottom: 160px;
+  @include smallPad() { padding-bottom: 96px; }
+}
+
+// ============================================================
+// Visual placeholders
+// ============================================================
+
+// Hero deck placeholder — a "this is where slides go" affordance
+.st-deck-placeholder {
+  margin: 64px 0 0;
+  .frame {
+    position: relative;
+    height: 220px;
+    border: 1.5px dashed rgba(255, 255, 255, 0.18);
+    border-radius: 12px;
+    background:
+      linear-gradient(135deg, rgba($st-accent, 0.05) 0%, rgba($st-accent, 0.01) 100%),
+      $st-hair-soft;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    .tag {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: $st-accent;
+    }
+    .caption {
+      font-size: 14px;
+      color: $st-mute;
+      font-style: italic;
+    }
+  }
+  @include smallPad() {
+    margin-top: 48px;
+    .frame { height: 160px; }
+  }
+}
+
+// Author portrait placeholder — square, dotted-outline, with initials
+.st-who-grid {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 32px;
+  align-items: start;
+  @include smallPad() {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+.st-portrait {
+  .frame {
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    border: 1.5px dashed rgba(255, 255, 255, 0.18);
+    border-radius: 12px;
+    background:
+      radial-gradient(circle at 30% 25%, rgba($st-accent, 0.08), transparent 60%),
+      $st-hair-soft;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+  }
+  .initials {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-style: italic;
+    font-size: 56px;
+    color: rgba($st-accent, 0.55);
+    letter-spacing: -0.02em;
+  }
+  .tag {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: $st-mute;
+  }
+  @include smallPad() {
+    max-width: 200px;
+  }
+}
+
+// Stat tile row — used in §3 to anchor the scene with big numbers
+.st-stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 8px 0 32px;
+  @include smallPad() { grid-template-columns: 1fr; gap: 12px; }
+}
+.st-stat-tile {
+  padding: 24px 20px;
+  background: $st-hair-soft;
+  border: 1px solid $st-hair;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  .big {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-style: italic;
+    font-size: clamp(36px, 4vw, 48px);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: $st-ink;
+    .plus { color: $st-accent; font-size: 0.7em; margin-left: 2px; }
+  }
+  .lbl {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: $st-mute;
+  }
+}
+
+// Numbered tiles for §2 takeaways
+.st-takeaway-grid {
+  list-style: none;
+  margin: 24px 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  @include smallPad() { grid-template-columns: 1fr; }
+}
+.st-takeaway-tile {
+  padding: 24px;
+  background: $st-hair-soft;
+  border: 1px solid $st-hair;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: border-color .15s ease;
+  &:hover { border-color: rgba($st-accent, 0.35); }
+  .num {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-style: italic;
+    font-size: 28px;
+    color: $st-accent;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .tag {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 16px;
+    color: $st-ink;
+  }
+  p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.55;
+    color: $st-ink-2;
+  }
+}
+
+// ============================================================
+// Sections
+// ============================================================
+.st-section {
+  padding-top: 96px;
+  padding-bottom: 32px;
+  border-top: 1px solid $st-hair;
+  &:first-of-type { border-top: 0; padding-top: 0; }
+  @include smallPad() { padding-top: 72px; }
+}
+
+.st-section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.st-section-num {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-style: italic;
+  font-size: 22px;
+  color: $st-accent;
+  letter-spacing: 0.02em;
+  flex: none;
+}
+
+.st-section-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-style: italic;
+  font-size: clamp(28px, 3.6vw, 40px);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: $st-ink;
+  margin: 0;
+  cursor: pointer;          // section titles are clickable to start a comment
+}
+
+.st-body {
+  max-width: $st-measure;
+  p {
+    font-size: 18px;
+    line-height: 1.75;
+    color: $st-ink-2;
+    margin: 0 0 20px;
+    em { font-style: italic; color: $st-ink; font-weight: 600; }
+    strong { font-weight: 700; color: $st-ink; }
+  }
+  p:last-child { margin-bottom: 0; }
+}
+
+.st-lede {
+  font-size: 22px !important;
+  line-height: 1.55 !important;
+  color: $st-ink !important;
+  font-style: italic;
+  margin-top: 24px !important;
+}
+
+.st-h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-style: italic;
+  font-size: 22px;
+  line-height: 1.3;
+  color: $st-ink;
+  margin: 40px 0 16px;
+  cursor: pointer;
+  em { font-style: italic; }
+}
+
+.st-aside {
+  margin-top: 24px !important;
+  font-size: 14px !important;
+  font-style: italic;
+  color: $st-mute !important;
+  line-height: 1.6 !important;
+}
+
+.st-pull {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-style: italic;
+  font-size: clamp(22px, 2.6vw, 28px) !important;
+  line-height: 1.35 !important;
+  color: $st-ink !important;
+  letter-spacing: -0.01em;
+  margin: 32px 0 !important;
+  padding-left: 24px;
+  border-left: 3px solid $st-accent;
+  em {
+    font-style: italic;
+    color: $st-accent !important;
+    font-weight: 700;
+  }
+}
+
+.st-headline {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-style: italic;
+  font-size: clamp(22px, 2.4vw, 26px) !important;
+  line-height: 1.3 !important;
+  color: $st-ink !important;
+  margin: 0 0 32px !important;
+  letter-spacing: -0.005em;
+}
+
+.st-live-note {
+  margin: 24px 0;
+  padding: 18px 22px;
+  background: $st-hair-soft;
+  border: 1px solid $st-hair;
+  border-left: 3px solid $st-accent;
+  border-radius: 6px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: $st-ink-2;
+  font-style: italic;
+  em { color: $st-ink; font-style: italic; font-weight: 600; }
+}
+
+.st-callout {
+  margin: 32px 0 0;
+  padding: 20px 24px;
+  background: rgba($st-accent, 0.06);
+  border: 1px solid rgba($st-accent, 0.18);
+  border-radius: 8px;
+  p { margin: 0; font-size: 16px; line-height: 1.6; color: $st-ink-2; }
+  strong { color: $st-accent; font-weight: 700; }
+}
+
+.st-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 24px 0;
+  @include smallPad() { grid-template-columns: 1fr; }
+}
+.st-compare-card {
+  padding: 18px 20px;
+  border-radius: 8px;
+  background: $st-hair-soft;
+  border: 1px solid $st-hair;
+  p { margin: 0; font-size: 16px !important; line-height: 1.55 !important; color: $st-ink !important; }
+  &.tell {
+    background: rgba($st-accent, 0.06);
+    border-color: rgba($st-accent, 0.2);
+  }
+}
+.st-card-tag {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $st-mute;
+  margin-bottom: 10px;
+  .tell & { color: $st-accent; }
+}
+
+.st-challenges {
+  list-style: none; padding: 0; margin: 16px 0 0;
+  display: flex; flex-direction: column; gap: 8px;
+  li {
+    span {
+      display: inline-block;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-style: italic;
+      font-size: 20px;
+      color: $st-ink;
+      padding: 8px 0;
+      border-bottom: 1px solid $st-hair;
+    }
+    &:last-child span { border-bottom: 0; }
+  }
+}
+
+.st-evidence {
+  list-style: none; padding: 0; margin: 16px 0 24px;
+  display: flex; flex-direction: column; gap: 10px;
+  li {
+    display: flex; align-items: baseline; gap: 16px;
+    padding: 12px 0;
+    border-top: 1px solid $st-hair;
+    &:last-child { border-bottom: 1px solid $st-hair; }
+    @include smallPad() { flex-direction: column; gap: 4px; }
+  }
+  .st-evidence-k {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700; font-style: italic;
+    font-size: 16px; color: $st-accent;
+    flex: 0 0 200px;
+  }
+  .st-evidence-v { font-size: 15px; color: $st-ink-2; line-height: 1.5; }
+}
+
+.st-quote {
+  margin: 32px 0;
+  padding: 28px 32px;
+  background: rgba($st-accent, 0.05);
+  border-left: 3px solid $st-accent;
+  border-radius: 6px;
+  p {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600; font-style: italic;
+    font-size: clamp(18px, 2vw, 22px);
+    line-height: 1.45;
+    color: $st-ink;
+    letter-spacing: -0.005em;
+  }
+}
+
+// ============================================================
+// Storytelling canvas
+// ============================================================
+.st-canvas-section .st-canvas { max-width: 100%; }
+.st-canvas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 24px 0 8px;
+  @include smallPad() { grid-template-columns: 1fr; }
+}
+.st-canvas-field {
+  display: flex; flex-direction: column; gap: 6px;
+  padding: 16px 18px;
+  background: $st-hair-soft;
+  border: 1px solid $st-hair;
+  border-radius: 8px;
+  transition: border-color .15s ease;
+  &:focus-within {
+    border-color: rgba($st-accent, .5);
+    background: rgba($st-accent, .04);
+  }
+}
+.st-canvas-k {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700; font-style: italic;
+  font-size: 16px; color: $st-accent;
+}
+.st-canvas-hint { font-size: 12px; color: $st-mute; line-height: 1.45; }
+.st-canvas-input {
+  margin-top: 8px;
+  appearance: none;
+  background: transparent;
+  border: 0; border-top: 1px dashed $st-hair;
+  padding: 10px 0 4px;
+  color: $st-ink;
+  font-family: inherit;
+  font-size: 15px;
+  line-height: 1.55;
+  resize: vertical;
+  min-height: 56px;
+  &::placeholder { color: $st-mute-2; }
+  &:focus { outline: none; }
+}
+
+// ============================================================
+// Close
+// ============================================================
+.st-close {
+  border-top: 1px solid $st-hair;
+  padding-top: 96px;
+}
+.st-close-thesis {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900; font-style: italic;
+  font-size: clamp(28px, 3.6vw, 40px);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: $st-ink;
+  max-width: 720px;
+  margin: 0 0 56px;
+}
+.st-foot {
+  border-top: 1px solid $st-hair;
+  padding-top: 24px;
+  p { font-size: 14px; color: $st-mute; line-height: 1.7; margin: 0; }
+  a {
+    color: $st-accent;
+    text-decoration: none;
+    border-bottom: 1px solid rgba($st-accent, .4);
+    transition: border-color .15s ease;
+    &:hover, &:focus-visible { border-color: $st-accent; outline: none; }
+  }
+}
+
+// ============================================================
+// Anchor highlights — yellow shade on commentable elements that
+// already have a comment thread. Click them to jump to the rail.
+// ============================================================
+[data-anchor-id] {
+  position: relative;
+  transition: background-color .25s ease, box-shadow .25s ease;
+  cursor: text;
+  &.has-comment {
+    background-color: rgba($st-hilite, 0.18);
+    box-shadow:
+      inset 3px 0 0 $st-hilite,
+      0 0 0 4px rgba($st-hilite, 0.06);
+    cursor: pointer;
+    border-radius: 2px;
+  }
+  // Brief pulse when the user lands on it via the rail
+  &.pulse {
+    animation: st-pulse 1.2s ease;
+  }
+}
+@keyframes st-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba($st-hilite, 0.55); }
+  60%  { box-shadow: 0 0 0 12px rgba($st-hilite, 0); }
+  100% { box-shadow: 0 0 0 0 rgba($st-hilite, 0); }
+}
+
+// Section titles + h3 anchor — keep the cursor signal as pointer always
+// (they don't need a selection to open a composer).
+h1[data-anchor-id], h2[data-anchor-id], h3[data-anchor-id],
+.st-section-title[data-anchor-id] { cursor: pointer; }
+
+// ============================================================
+// Floating selection button — appears next to a fresh text selection
+// ============================================================
+.st-selection-btn {
+  position: absolute;
+  z-index: 70;
+  appearance: none;
+  background: $st-accent;
+  color: $light-0;
+  border: 0;
+  border-radius: 100px;
+  padding: 8px 14px;
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 0.04em;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .35);
+  cursor: pointer;
+  transition: transform .15s ease;
+  &:hover { transform: translateY(-1px); }
+}
+
+// ============================================================
+// Comment rail shell (the wrapper that turns into a drawer ≤1023px)
+// ============================================================
+.st-rail-shell {
+  position: sticky;
+  top: 96px;
+  max-height: calc(100vh - 120px);
+  @include largePad() {
+    position: fixed;
+    inset: 0 0 0 auto;
+    width: min(420px, 100vw);
+    max-height: none;
+    background: $bg;
+    border-left: 1px solid $st-hair;
+    transform: translateX(100%);
+    transition: transform .3s cubic-bezier(.22, 1, .36, 1);
+    z-index: 80;
+    overflow-y: auto;
+    padding: 24px 20px 40px;
+    &.open { transform: translateX(0); box-shadow: -24px 0 60px rgba(0, 0, 0, .4); }
+  }
+}
+
+.st-rail-shell-close {
+  display: none;
+  @include largePad() {
+    display: block;
+    position: absolute;
+    top: 12px; right: 12px;
+    appearance: none;
+    background: $st-hair-soft;
+    border: 1px solid $st-hair;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    color: $st-ink;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 1;
+  }
+}
+
+// FAB for opening the rail on narrow viewports
+.st-rail-fab {
+  display: none;
+  @include largePad() {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    position: fixed;
+    bottom: 24px; right: 24px;
+    z-index: 70;
+    appearance: none;
+    background: $st-accent;
+    color: $light-0;
+    border: 0;
+    border-radius: 100px;
+    padding: 12px 18px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px; font-weight: 700;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, .4);
+    cursor: pointer;
+    .count {
+      background: rgba(11, 29, 63, 0.18);
+      border-radius: 100px;
+      padding: 2px 8px;
+      font-size: 12px;
+    }
+  }
+}
+
+// ============================================================
+// CommentRail content (lives inside .st-rail-shell)
+// ============================================================
+.st-rail-comments {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  height: 100%;
+  overflow-y: auto;
+  padding-right: 6px;
+  @include largePad() { padding-right: 0; }
+}
+
+.st-rail-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  padding-bottom: 12px;
+  border-bottom: 1px solid $st-hair;
+  .st-rail-title {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900; font-style: italic;
+    font-size: 20px;
+    color: $st-ink;
+  }
+  .st-rail-count {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px; font-weight: 700;
+    color: $st-mute;
+    background: $st-hair-soft;
+    border: 1px solid $st-hair;
+    border-radius: 100px;
+    padding: 2px 10px;
+  }
+}
+
+.st-rail-empty,
+.st-rail-loading {
+  font-size: 14px;
+  color: $st-mute;
+  font-style: italic;
+  line-height: 1.55;
+  margin: 4px 0 0;
+}
+
+// Composer (in rail) — pops in when an anchor is targeted
+.st-rail-composer,
+.st-rail-reply-form {
+  background: rgba($st-accent, 0.05);
+  border: 1px solid rgba($st-accent, 0.25);
+  border-radius: 10px;
+  padding: 16px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.st-rail-composer-head {
+  display: flex; align-items: center; justify-content: space-between;
+  .st-rail-composer-eyebrow {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: $st-accent;
+  }
+}
+.st-rail-composer-close {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  color: $st-mute;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 4px;
+  &:hover, &:focus-visible { color: $st-ink; outline: none; }
+}
+
+.st-rail-quote {
+  margin: 0;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border-left: 2px solid rgba($st-accent, 0.6);
+  border-radius: 4px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: $st-ink-2;
+  font-style: italic;
+  .quote-mark {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    color: $st-accent;
+    margin-right: 4px;
+  }
+  &.subtle {
+    background: transparent;
+    border-left-color: rgba(255, 255, 255, 0.18);
+    padding: 4px 10px;
+    font-size: 12px;
+    color: $st-mute;
+  }
+}
+
+.st-rail-input,
+.st-rail-textarea {
+  appearance: none;
+  background: $st-hair-soft;
+  border: 1px solid $st-hair;
+  border-radius: 6px;
+  padding: 10px 12px;
+  color: $st-ink;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.5;
+  width: 100%;
+  &::placeholder { color: $st-mute-2; }
+  &:focus { outline: none; border-color: rgba($st-accent, .55); box-shadow: 0 0 0 2px rgba($st-accent, .18); }
+}
+.st-rail-textarea { resize: vertical; min-height: 72px; }
+
+.st-rail-composer-actions {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 10px;
+  .st-rail-counter { font-size: 11px; color: $st-mute; }
+}
+
+.st-rail-link {
+  appearance: none; background: transparent; border: 0; padding: 0;
+  color: $st-mute;
+  font-family: inherit; font-size: 12px;
+  cursor: pointer;
+  &:hover, &:focus-visible { color: $st-ink; outline: none; }
+}
+.st-rail-btn {
+  appearance: none;
+  background: $st-accent;
+  border: 0;
+  border-radius: 6px;
+  padding: 8px 14px;
+  color: $light-0;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background .15s ease;
+  &:hover:not(:disabled) { background: $primary-green-dark; }
+  &:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba($st-accent, .4); }
+  &:disabled { opacity: 0.4; cursor: not-allowed; }
+}
+
+// Grouped comment list
+.st-rail-list {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-direction: column; gap: 18px;
+}
+.st-rail-group {
+  display: flex; flex-direction: column; gap: 10px;
+  padding-top: 14px;
+  border-top: 1px solid $st-hair;
+  &:first-child { border-top: 0; padding-top: 0; }
+  &.active .st-rail-jump .preview { color: $st-accent; }
+}
+
+.st-rail-jump {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-family: 'Open Sans', sans-serif;
+  &:hover .preview, &:focus-visible .preview { color: $st-accent; outline: none; }
+  .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: $st-hilite;
+    margin-top: 6px;
+    flex: none;
+  }
+  .preview {
+    font-size: 12px;
+    color: $st-mute;
+    line-height: 1.45;
+    font-style: italic;
+    transition: color .15s ease;
+  }
+}
+
+.st-rail-thread {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-direction: column; gap: 10px;
+}
+
+.st-rail-comment {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 12px 14px;
+  &.is-reply { background: rgba(255, 255, 255, 0.025); }
+  .st-rail-comment-head {
+    display: flex; align-items: baseline; gap: 8px;
+    margin-bottom: 6px;
+    .author { font-weight: 700; color: $st-ink; font-size: 13px; }
+    .time { color: $st-mute; font-size: 11px; }
+  }
+  .body {
+    margin: 0;
+    color: $st-ink-2;
+    font-size: 14px;
+    line-height: 1.55;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+  .actions {
+    margin-top: 10px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .upvote {
+    appearance: none;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 100px;
+    padding: 3px 10px;
+    display: inline-flex; align-items: center; gap: 5px;
+    color: $st-mute;
+    font-family: inherit;
+    font-size: 11px; font-weight: 600;
+    cursor: pointer;
+    transition: color .15s ease, border-color .15s ease, background .15s ease;
+    &:hover { color: $st-accent; border-color: rgba($st-accent, .4); }
+    &.voted {
+      color: $st-accent;
+      border-color: rgba($st-accent, .55);
+      background: rgba($st-accent, .08);
+      cursor: default;
+    }
+    &:focus-visible { outline: none; box-shadow: 0 0 0 2px rgba($st-accent, .35); }
+    .count { font-variant-numeric: tabular-nums; }
+  }
+  .reply-trigger {
+    appearance: none;
+    background: transparent;
+    border: 0; padding: 3px 0;
+    color: $st-mute;
+    font-family: inherit;
+    font-size: 11px; font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    &:hover, &:focus-visible { color: $st-accent; outline: none; }
+  }
+}
+
+.st-rail-replies {
+  list-style: none; margin: 6px 0 0 18px;
+  padding: 0 0 0 14px;
+  display: flex; flex-direction: column; gap: 8px;
+  border-left: 2px solid rgba(255, 255, 255, 0.08);
+}

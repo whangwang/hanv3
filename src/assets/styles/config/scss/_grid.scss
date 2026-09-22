@@ -39,7 +39,11 @@ $columns-m: 4;
 }
 
 %page-root{
-    min-width: 100vw;
+    // 100% (not 100vw): vw units include the width of a classic, always-shown
+    // scrollbar, so 100vw here made <body> wider than the layout viewport and
+    // produced a spurious horizontal scrollbar. 100% resolves against <html>'s
+    // content box, which already excludes the scrollbar.
+    min-width: 100%;
     min-height: 100vh;
 }
 

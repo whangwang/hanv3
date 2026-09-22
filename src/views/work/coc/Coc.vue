@@ -7,7 +7,7 @@
                         <img src="@/assets/images/global/logo.svg" alt="">
                         <h4>Han Wang</h4>
                     </div>
-                    <a href="/#/work" class="link">
+                    <a href="/work" class="link">
                         <img src="@/assets/images/projects/back-arrow.svg"/>
                     </a>
                 </a>
@@ -60,7 +60,7 @@ export default{
     },
     mounted(){
         useMeta(pageMeta({
-            title: 'CoC Ph.D. Official Website',
+            title: 'CoC Ph.D. Official Website | Han Wang | Product Designer | UX Researcher',
             description: 'Official website for the National Chengchi University CoC PhD program — design and front-end build.',
             path: '/work/coc',
             image: projectCover('coc'),

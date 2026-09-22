@@ -84,7 +84,7 @@ export default{
     name: 'EnquiryView',
     mounted(){
         useMeta(pageMeta({
-            title: 'Enquiry',
+            title: 'Enquiry | Han Wang | Product Designer | UX Researcher',
             description: 'Get in touch with Han Wang for design and development collaboration — UI/UX, design systems, front-end engineering.',
             path: '/enquiry',
         }))

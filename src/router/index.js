@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/Home.vue";
 
 const worksUsingTemplate = {
@@ -205,6 +205,16 @@ const routes = [
     component: () => import("../views/Enquiry.vue"),
   },
   {
+    path: "/talks/storytelling",
+    name: "TalksStorytelling",
+    component: () => import("../views/talks/storytelling/Storytelling.vue"),
+    meta: {
+      indvidual: true,
+      backgroundColor: "#0B1D3F",
+      title: "How to Do Storytelling — Han Wang",
+    },
+  },
+  {
     path: "/work/clip",
     name: "WorksClip",
     component: () => import("../views/work/clip/Clip.vue"),
@@ -225,6 +235,17 @@ const routes = [
       hideNav: true,
       backgroundColor: "#000F46",
       title: "Authenticated Student Experience — Strategic Service Design",
+    },
+  },
+  {
+    path: "/work/agentapp",
+    name: "WorksAgentApp",
+    component: () => import("../views/work/agentapp/AgentApp.vue"),
+    meta: {
+      indvidual: true,
+      hideNav: true,
+      backgroundColor: "#F4FAFF",
+      title: "AG App — Agent Mobile Workspace for Taiwan's Largest Insurance Corporation",
     },
   },
   {
@@ -281,7 +302,7 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes,
   scrollBehavior() {
     return new Promise((resolve) => {

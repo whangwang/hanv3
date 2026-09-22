@@ -1,7 +1,7 @@
 <template>
     <div class="contact-section" :style="bg != '' ? { backgroundColor: bg } : {}">
         <div :class="`container ${small && 'small'}`">
-            <h2 :class="`section-title ${dark && 'dark'}`">Let’s Create Miracle <br class="new-line-mobile">Together !</h2>
+            <h2 :class="`section-title ${dark && 'dark'}`">Let's Create Something <br class="new-line-mobile">Meaningful !</h2>
         </div>
         <div class="group">
             <div :class="`container ${small && 'small'}`">
@@ -10,7 +10,7 @@
                         <img src="@/assets/images/global/logo.svg" alt="" class="left">
                         <div class="right">
                             <h2 class="name">Han Wang</h2>
-                            <h4 class="job">UI/UX Designer & <br>Front-end Developer</h4>
+                            <h4 class="job">Product Designer & <br>UX Researcher</h4>
                             <div class="info">
                                 <h4 class="title">LinkedIn</h4>
                                 <a href="https://www.linkedin.com/in/hanwang0430" class="link">https://www.linkedin.com/in/hanwang0430</a>
@@ -59,10 +59,11 @@ export default{
     },
     methods: {
         downloadResume(role){
-            var link = document.createElement('a')
+            // Save as a role-tagged filename, but always pull the canonical PDF from /public
+            const link = document.createElement('a')
             document.body.appendChild(link)
-            link.download = `Han_Wang_Resume.pdf`
-            link.href = `Han_Wang_${role}_Resume_${new Date().getFullYear()}.pdf`
+            link.href = `${process.env.BASE_URL || '/'}Han_Wang_Resume.pdf`
+            link.download = `Han_Wang_${role}_Resume_${new Date().getFullYear()}.pdf`
             link.click()
             document.body.removeChild(link)
         },

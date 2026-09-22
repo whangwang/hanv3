@@ -7,6 +7,10 @@
                     <div class="cover" :style="renderCoverImage('auth')"></div>
                     <h5>Improving authenticated student experience - a strategic service design</h5>
                 </div>
+                <div class="block" @click="to('agentapp')">
+                    <div class="cover" :style="renderCoverImage('agentapp')"></div>
+                    <h5>Agent mobile workspace for 30,000+ insurance agents</h5>
+                </div>
                 <div class="block" @click="to('stickerhd')">
                     <div class="cover" :style="renderCoverImage('stickerhd')"></div>
                     <h5>E-commerce website redesign</h5>
@@ -66,12 +70,12 @@ export default{
     methods:{
         to(dist){
             //this.$router.push({ path: `/work/${dist}` })
-            window.open(`/#/work/${dist}`, '_blank').focus();
+            window.open(`/work/${dist}`, '_blank').focus();
         }
     },
     mounted(){
         useMeta(pageMeta({
-            title: 'Work',
+            title: 'Work | Han Wang | Product Designer | UX Researcher',
             description: 'Selected work by Han Wang — case studies across strategic service design, product design, and front-end engineering.',
             path: '/work',
         }))

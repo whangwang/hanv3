@@ -7,7 +7,7 @@
                         <img src="@/assets/images/global/logo.svg" alt="">
                         <h4>Han Wang</h4>
                     </div>
-                    <a href="/#/work" class="link">
+                    <a href="/work" class="link">
                         <img src="@/assets/images/projects/back-arrow.svg"/>
                     </a>
                 </a>
@@ -60,7 +60,7 @@ export default{
     },
     mounted(){
         useMeta(pageMeta({
-            title: 'Cloudmatrix — Face Recognition Platform',
+            title: 'Cloudmatrix — Face Recognition Platform | Han Wang | Product Designer | UX Researcher',
             description: 'The official website for a face recognition platform — design and front-end build.',
             path: '/work/cloudmatrix',
             image: projectCover('cloudmatrix'),

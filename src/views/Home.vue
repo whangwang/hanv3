@@ -8,7 +8,7 @@
                 </div>
                 <img class="slogan" src="@/assets/images/home/headline.svg" />
                 <h4>
-                    Designer, Researcher, Developer<br />
+                    Product Designer | UX Researcher<br />
                     <p class="tag">Based in <span>Melbourne, VIC 3000</span></p>
                 </h4>
                 <button @click="anchor('contact-section', 80)" class="highlight">
@@ -25,25 +25,25 @@
                         <img @click="anchor('exp-section')" src="@/assets/images/global/deco-arrow-more.svg" alt="" class="indicator">
                     </div>
                     <div class="right col-8" :style="`margin-top: ${headlineHeight}px;`">
-                        <a class="work col-7" target="_blank" href="/#/work/authux">
+                        <a class="work col-7" target="_blank" href="/work/authux">
                             <div :style="renderCoverImage('auth')" alt="" class="cover"></div>
                             <h5 class="title">Improving authenticated student experience</h5>
                             <p class="client bold">University of Melbourne</p>
                         </a>
-                        <a class="work col-7 mid" target="_blank" href="/#/work/tiago">
+                        <a class="work col-7 mid" target="_blank" href="/work/agentapp">
+                            <div :style="renderCoverImage('agentapp')" alt="" class="cover"></div>
+                            <h5 class="title">Agent mobile workspace for 30,000+ insurance agents</h5>
+                            <p class="client bold">Taiwan's largest insurance company</p>
+                        </a>
+                        <a class="work col-7 right" target="_blank" href="/work/tiago">
                             <div :style="renderCoverImage('tiago')" alt="" class="cover"></div>
                             <h5 class="title">Improve User experience in TIAGo Teleoperation</h5>
                             <p class="client bold">TIAGo</p>
                         </a>
-                        <a class="work col-7 right" target="_blank" href="/#/work/stickerhd">
+                        <a class="work col-7 mid" target="_blank" href="/work/stickerhd">
                             <div :style="renderCoverImage('stickerhd')" alt="" class="cover"></div>
                             <h5 class="title">E-commerce website redesign</h5>
                             <p class="client bold">StickerHD.com</p>
-                        </a>
-                        <a class="work col-7 mid" target="_blank" href="/#/work/nubila">
-                            <div :style="renderCoverImage('nubila')" alt="" class="cover"></div>
-                            <h5 class="title">Designing the future of weather detection based on blockchain</h5>
-                            <p class="client bold">Nubila Inc.</p>
                         </a>
                     </div>
                 </div>
@@ -51,15 +51,15 @@
             <div id="exp-section" class="exp">
                 <h2 class="adv-title">Experience</h2>
                 <div class="exp-block large">
-                    <img src="@/assets/images/global/clients/unimelb.png" alt="" class="logo">
+                    <img src="@/assets/images/global/clients/unimelb.svg" alt="" class="logo">
                     <div class="description">
                         <h3 class="job-title">Experience Design Analyst</h3>
                         <p class="org">University of Melbourne, Enterprise Service Group · Full-time</p>
                         <p>
-                            Solo project lead for the first three months before the Design Lead joined. Applied a hypothesis-led approach validated through <span class="prompt design">13 in-depth interviews</span> and <span class="prompt design">249 Kano survey responses</span>, then used <span class="prompt design">RICE</span> to prioritise <span class="prompt design">25 Vision Stories</span> into a roadmap that directly informed the University's <span class="prompt design">2026 capital funding decision</span>. Short-term uplift delivered a <span class="prompt design">+289% banner click-through increase (8,522 → 33,169 YoY)</span>, mobile engagement of <span class="prompt design">60.77% (+13.4% YoY)</span>, and <span class="prompt design">~60,000 onboarding clicks</span> during peak enrolment.
+                            <span class="prompt design">Lead research and design across the student platform (students.unimelb), bridging user needs, business goals, and technical constraints.</span> My work spans discovery research, information architecture, and product strategy, <span class="prompt design">from running user interviews and card sorting to aligning stakeholders across teams and prioritising with frameworks like KANO and RICE.</span> One of my recent project unified a fragmented authenticated experience serving 50,000+ students, translating competing stakeholder needs into both near-term improvements and a long-term service blueprint.
                         </p>
                         <p class="project-link">
-                            <a href="/#/work/authux">Project: Student Authenticated Experience Improvement →</a>
+                            <a href="/work/authux">Project: Student Authenticated Experience Improvement →</a>
                         </p>
                     </div>
                     <div class="date">
@@ -67,7 +67,7 @@
                     </div>
                 </div>
                 <div class="exp-block">
-                    <img src="@/assets/images/global/clients/unimelb.png" alt="" class="logo">
+                    <img src="@/assets/images/global/clients/unimelb.svg" alt="" class="logo">
                     <div class="description">
                         <h3 class="job-title">Student Co-Designer</h3>
                         <p class="org">University of Melbourne, Enterprise Service Group · Intern</p>
@@ -118,8 +118,8 @@ export default {
     mounted(){
         this.headlineHeight = document.getElementsByClassName('works-title')[0].clientHeight + 32
         useMeta(pageMeta({
-            title: 'UI/UX Designer & Front-end Developer',
-            description: 'Han Wang — Experience Design Analyst by day, freelance designer-developer the rest of the time. Strategic service design, research synthesis, design systems, and front-end engineering.',
+            title: 'Han Wang | Product Designer | UX Researcher',
+            description: "I'm a designer with 4 years' experience across UX research, product design, and front-end engineering, working across domains from education and technology to regulated industries like finance. I transform complex challenges into strategic, user-centred solutions. Combining expertise in design, front-end development, and AI-assisted workflows, I bridge the gap between design vision and technical implementation to deliver impactful digital experiences.",
             path: '/',
         }))
     },

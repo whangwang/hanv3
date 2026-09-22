@@ -8,7 +8,7 @@
                     <img src="@/assets/images/global/logo.svg" alt="">
                     <h4>Han Wang</h4>
                 </div>
-                <a href="/#/work" class="link">
+                <a href="/work" class="link">
                     <img src="@/assets/images/projects/back-arrow.svg"/>
                 </a>
             </a>
@@ -424,7 +424,7 @@ export default {
 
   mounted() {
     useMeta(pageMeta({
-      title: 'StickerHD — Deliver Uplift for E-Commerce',
+      title: 'StickerHD — Deliver Uplift for E-Commerce Website in 30 Days | Han Wang | Product Designer | UX Researcher',
       description: 'A 90-day end-to-end e-commerce redesign for a custom sticker printing company. Two-tier design token architecture, Next.js + Tailwind front-end, and a "handover-less" workflow.',
       path: '/work/stickerhd',
       image: projectCover('stickerhd'),

@@ -343,6 +343,14 @@
               &:not(:last-of-type):before{
                 height: 176px;
               }
+              @include largePad(){
+                img{
+                  padding-bottom: 0px;
+                }
+                &:not(:last-of-type):before{
+                  height: 72px;
+                }
+              }
             }
             .description{
                 text-align: left;

@@ -7,7 +7,7 @@
                         <img src="@/assets/images/global/logo.svg" alt="">
                         <h4>Han Wang</h4>
                     </div>
-                    <a href="/#/work" class="link">
+                    <a href="/work" class="link">
                         <img src="@/assets/images/projects/back-arrow.svg"/>
                     </a>
                 </a>
@@ -191,7 +191,7 @@ export default{
     },
     mounted(){
         useMeta(pageMeta({
-            title: 'Clip — Blockchain Digital Credentials App',
+            title: 'Clip — Blockchain Digital Credentials App | Han Wang | Product Designer | UX Researcher',
             description: 'Designing CLIP — a blockchain-based digital credential management app. Midnight Blue, Neon Green, and Aurora Gradients combine to make complex tech feel approachable.',
             path: '/work/clip',
             image: projectCover('clip'),

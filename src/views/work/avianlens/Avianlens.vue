@@ -7,7 +7,7 @@
                         <img src="@/assets/images/global/logo.svg" alt="">
                         <h4>Han Wang</h4>
                     </div>
-                    <a href="/#/work" class="link">
+                    <a href="/work" class="link">
                         <img src="@/assets/images/projects/back-arrow.svg"/>
                     </a>
                 </a>
@@ -522,7 +522,7 @@ export default{
     },
     mounted(){
         useMeta(pageMeta({
-            title: 'AvianLens — Unlock the World of Wings',
+            title: 'AvianLens — Unlock the World of Wings | Han Wang | Product Designer | UX Researcher',
             description: 'A hackathon-winning crowd-sourced birdwatching companion app. 1st place at the CISSA UI/UX hackathon — designed end-to-end in two days.',
             path: '/work/avianlens',
             image: projectCover('avianlens'),

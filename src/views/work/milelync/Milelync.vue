@@ -7,7 +7,7 @@
                         <img src="@/assets/images/global/logo.svg" alt="">
                         <h4>Han Wang</h4>
                     </div>
-                    <a href="/#/work" class="link">
+                    <a href="/work" class="link">
                         <img src="@/assets/images/projects/back-arrow.svg"/>
                     </a>
                 </a>
@@ -59,7 +59,7 @@ export default{
     },
     mounted(){
         useMeta(pageMeta({
-            title: 'Milelync — B2B Problem-Solving System',
+            title: 'Milelync — B2B Problem-Solving System | Han Wang | Product Designer | UX Researcher',
             description: 'A B2B problem-solving system designed for industry collaboration — design and product thinking.',
             path: '/work/milelync',
             image: projectCover('milelync'),
